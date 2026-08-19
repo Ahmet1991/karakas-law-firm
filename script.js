@@ -21,6 +21,10 @@ function applyLanguage(lang) {
 
 applyLanguage(currentLang);
 
+// The source site does not state a graduation year, so the visual label stays factual.
+const educationLabels = document.querySelectorAll('.education > div > span');
+if (educationLabels[0]) educationLabels[0].textContent = 'LL.B.';
+
 langToggle?.addEventListener('click', () => {
   applyLanguage(currentLang === 'tr' ? 'en' : 'tr');
 });

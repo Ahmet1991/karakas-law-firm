@@ -96,6 +96,7 @@ L = {
         "barAria": "Hızlı iletişim",
         "barCall": "Ara",
         "barWrite": "Yazın",
+        "linkedinAria": "Karakaş Hukuk Bürosu LinkedIn sayfası",
     },
     "en": {
         "code": "en",
@@ -159,6 +160,7 @@ L = {
         "barAria": "Quick contact",
         "barCall": "Call",
         "barWrite": "Write",
+        "linkedinAria": "Karakaş Law Firm on LinkedIn",
     },
 }
 
@@ -297,6 +299,12 @@ PHONE_ICON = (
     '0-.8-1l-3.2-.7a1 1 0 0 0-1 .4l-1 1.3a13.6 13.6 0 0 1-5.4-5.4l1.3-1a1 1 0 0 0 .4-1l-.7-3.2a1 1 0 0 0-1-.8Z"/></svg>'
 )
 
+LINKEDIN_ICON = (
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5.5a2.06 '
+    "2.06 0 1 1-4.12 0 2.06 2.06 0 0 1 4.12 0ZM7 9H3v12h4V9Zm6.32 0H9.34v12h3.94v-6.3c0-3.67 "
+    '4.77-3.97 4.77 0V21H22v-7.66c0-6.15-7.02-5.92-8.72-2.9V9Z"/></svg>'
+)
+
 MAIL_ICON = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">'
     '<rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 6.5L21 6"/></svg>'
@@ -362,10 +370,13 @@ def footer(lang, depth):
           <li><a href="tel:{FIRM['phoneHref']}">{e(FIRM['phone'])}</a></li>
           <li><a href="mailto:{FIRM['email']}">{e(FIRM['email'])}</a></li>
           <li><a href="{maps}" target="_blank" rel="noopener">{e(a['street'])}<br>{e(a['district'])} / {e(a['city'])}</a></li>
-          <li><a href="{FIRM['linkedin']}" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
 
+    </div>
+
+    <div class="social">
+      <a href="{FIRM['linkedin']}" target="_blank" rel="noopener" aria-label="{e(t['linkedinAria'])}">{LINKEDIN_ICON}</a>
     </div>
 
     <p class="footer__legal">{e(t['footerLegal'])}</p>
@@ -582,7 +593,7 @@ def build_areas_index(lang):
     body = f"""
 <main id="main">
 
-  <section class="page-hero">
+  <section class="page-hero page-hero--index">
     <div class="shell">
       <ol class="breadcrumb">
         <li><a href="{p['home']}">{e(t['home'])}</a></li>
@@ -592,11 +603,7 @@ def build_areas_index(lang):
       <p class="eyebrow">{e(t['areasTitle']).upper()}</p>
       <h1 class="display-l">{e(t['areasIndexHeading'])}</h1>
       <p class="page-hero__lead lead">{e(t['areasIndexLead'])}</p>
-    </div>
-  </section>
 
-  <section class="section section--dark">
-    <div class="shell">
       <div class="practice__grid">
 {chr(10).join(cards)}
       </div>

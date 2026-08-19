@@ -9,7 +9,7 @@ Output goes to assets/ as WebP, plus favicons and an Open Graph card.
 import os
 import sys
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 REPO = sys.argv[1] if len(sys.argv) > 1 else "."
 ASSETS = os.path.join(REPO, "assets")
@@ -90,6 +90,12 @@ mono_mask = mono.getchannel("A").point(lambda v: 255 if v > 16 else 0)
 mono = mono.crop(mono_mask.getbbox())
 for w in (120, 240):
     record(*save_webp(mono, f"mark-{w}.webp", w))
+
+# Hero watermark. It sits at ~6% opacity, where only the silhouette reads, so
+# it is softened and heavily compressed — the alpha channel is what costs, and
+# a crisp version would triple the page weight for no visible gain.
+ghost = mono.filter(ImageFilter.GaussianBlur(1.6))
+record(*save_webp(ghost, "mark-ghost.webp", 400, quality=32))
 
 # --------------------------------------------------------------- portrait ---
 portrait = trimmed(PORTRAIT_SRC)

@@ -1,0 +1,5 @@
+# Hazırlık aşaması: site canlı alan adına taşınana kadar arama
+# motorlarına kapalı. Yayına alırken content.json içindeki
+# firm.preview değerini false yapıp bu dosyayı yeniden üretin.
+User-agent: *
+Disallow: /

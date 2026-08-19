@@ -1,0 +1,452 @@
+{
+  "_note": "Site içeriğinin tek kaynağı. Bu dosyayı düzenleyip `python tools/build.py` çalıştırınca faaliyet alanı sayfaları yeniden üretilir. Üretilen HTML dosyaları repoya işlenir; yayına almak için build adımı gerekmez.",
+
+  "firm": {
+    "name": "Karakaş Hukuk Bürosu",
+    "nameEn": "Karakaş Law Firm",
+    "phone": "+90 530 549 30 90",
+    "phoneHref": "+905305493090",
+    "email": "avpinarkarakas@gmail.com",
+    "linkedin": "https://www.linkedin.com/company/karakas-law-firm/",
+    "address": {
+      "street": "Akdeniz Mah. 1353 Sk. No:2, Armesa İş Merkezi D:32",
+      "district": "Konak",
+      "city": "İzmir",
+      "country": "TR"
+    }
+  },
+
+  "areas": [
+    {
+      "no": "01",
+      "slug": { "tr": "ticaret-ve-sirketler-hukuku", "en": "corporate-and-commercial-law" },
+      "title": { "tr": "Ticaret ve Şirketler Hukuku", "en": "Corporate & Commercial Law" },
+      "card": {
+        "tr": "Kuruluştan pay devrine, genel kuruldan yönetim sorumluluğuna kurumsal yaşamın tamamı.",
+        "en": "The full corporate lifecycle — from incorporation and share transfers to governance and director liability."
+      },
+      "lead": {
+        "tr": "Şirketin kuruluşundan pay yapısının değişimine, genel kurul kararlarından yönetim organının sorumluluğuna kadar kurumsal yaşamın her aşamasında hukuki yapıyı kurar ve koruruz. Önceliğimiz, ticari kararın alındığı anda hukuki sonucunun da öngörülebilir olmasıdır.",
+        "en": "We build and maintain the legal architecture at every stage of corporate life — from incorporation to changes in share structure, from general assembly resolutions to the liability of the board. Our priority is that the legal consequence of a commercial decision is foreseeable at the moment it is taken."
+      },
+      "items": {
+        "tr": [
+          "Şirket ana sözleşmesi ve hissedarlar sözleşmesinin hazırlanması",
+          "Sermaye artırımı, pay devri, tür değişikliği ve halka açılma süreçleri",
+          "Genel kurul ve yönetim kurulu kararlarının hazırlanması ve yönetimi",
+          "Pay sahiplerinin hak ve yükümlülüklerinin düzenlenmesi",
+          "Yerli ve yabancı konsorsiyum ile ortak girişim yapıları",
+          "Günlük ticari faaliyetlere ilişkin düzenli danışmanlık",
+          "Kurumsal yönetim ilkeleri ve mevzuata uyum programları",
+          "Hisse senedi ve tahvil işlemleri",
+          "Yönetim kurulu üyeleri ve müdürlerin hukuki ve cezai sorumluluğu"
+        ],
+        "en": [
+          "Drafting articles of association and shareholders' agreements",
+          "Capital increases, share transfers, conversions and public offerings",
+          "Preparing and administering general assembly and board resolutions",
+          "Structuring shareholder rights and obligations",
+          "Domestic and international consortium and joint venture structures",
+          "Ongoing counsel on day-to-day commercial operations",
+          "Corporate governance and regulatory compliance programmes",
+          "Share and bond transactions",
+          "Civil and criminal liability of directors and managers"
+        ]
+      }
+    },
+
+    {
+      "no": "02",
+      "slug": { "tr": "dava-ve-tahkim", "en": "litigation-and-arbitration" },
+      "title": { "tr": "Dava ve Tahkim", "en": "Litigation & Arbitration" },
+      "card": {
+        "tr": "Ulusal ve uluslararası uyuşmazlıklar; yabancı tahkim kararlarının Türkiye'de icrası.",
+        "en": "Domestic and cross-border disputes, including enforcement of foreign arbitral awards in Türkiye."
+      },
+      "lead": {
+        "tr": "Her uyuşmazlık mahkeme salonunda çözülmek zorunda değildir. Dosyayı önce ticari maliyeti, süresi ve ilişkinin geleceği üzerinden değerlendirir; müzakere ile çözülebilecek meseleleri çözer, gerektiğinde yargı ve tahkim yollarında sonuna kadar takip ederiz.",
+        "en": "Not every dispute belongs in a courtroom. We first assess a matter by its commercial cost, its timeline and the future of the relationship — settling what can be settled through negotiation, and pursuing litigation or arbitration to the end where that is what the matter requires."
+      },
+      "items": {
+        "tr": [
+          "Ticari sözleşmelerden doğan ihtilaflarda dava takibi",
+          "Ulusal ve uluslararası tahkim yargılamalarında temsil",
+          "Yabancı tahkim kararlarının Türkiye'de tanınması ve tenfizi",
+          "Sulh ve müzakere yoluyla uyuşmazlık çözümü",
+          "Büronun çalıştığı tüm hukuk dallarında dava takibi",
+          "İhtiyati tedbir ve ihtiyati haciz süreçleri",
+          "Yurt dışındaki iş birliği bürolarıyla sınır ötesi dosya yönetimi"
+        ],
+        "en": [
+          "Litigation arising from commercial contracts",
+          "Representation in domestic and international arbitration",
+          "Recognition and enforcement of foreign arbitral awards in Türkiye",
+          "Dispute resolution through settlement and negotiation",
+          "Litigation across every practice area of the firm",
+          "Interim injunctions and provisional attachment proceedings",
+          "Cross-border matters managed with our partner firms abroad"
+        ]
+      }
+    },
+
+    {
+      "no": "03",
+      "slug": { "tr": "deniz-ticareti-hukuku", "en": "maritime-law" },
+      "title": { "tr": "Deniz Ticareti Hukuku", "en": "Maritime Law" },
+      "card": {
+        "tr": "Charterparty ve yük hasarı, çatma ve kurtarma, gemi kiralama, finansmanı ve tescili.",
+        "en": "Charterparty and cargo claims, collision and salvage, chartering, ship finance and registration."
+      },
+      "lead": {
+        "tr": "Deniz ticareti, hızın ve sınır ötesi hukukun aynı anda işlediği bir alandır. Yük hasarından çatma ve kurtarmaya, gemi finansmanından tescile kadar süreçleri; taşıyan, yük ilgilisi ve sigortacı perspektiflerini birlikte gözeterek yürütürüz.",
+        "en": "Maritime trade is a field where speed and cross-border law operate at once. From cargo damage to collision and salvage, from ship finance to registration, we handle matters with the carrier, the cargo interest and the insurer perspectives held together."
+      },
+      "items": {
+        "tr": [
+          "Gemi bağlama, çatma ve kurtarma süreçleri",
+          "Kargo ve charterparty kaynaklı davalar",
+          "Mesuliyet sigortacıları ile ilişkilerin yürütülmesi",
+          "Yük taşıması sırasında ve sonrasında doğan uyuşmazlıkların çözümü",
+          "Yolculuk esnasında oluşan zararlarda taraf temsili",
+          "Gemi kiralama ve finansmanı",
+          "Gemi tescil işlemleri",
+          "Deniz ticaretine ilişkin sözleşmelerin müzakeresi ve hazırlanması"
+        ],
+        "en": [
+          "Ship arrest, collision and salvage proceedings",
+          "Cargo and charterparty disputes",
+          "Dealings with liability underwriters and P&I clubs",
+          "Resolution of disputes arising during and after carriage of goods",
+          "Representation in claims for loss or damage occurring in transit",
+          "Ship chartering and finance",
+          "Ship registration",
+          "Negotiation and drafting of maritime contracts"
+        ]
+      }
+    },
+
+    {
+      "no": "04",
+      "slug": { "tr": "saglik-hukuku", "en": "healthcare-law" },
+      "title": { "tr": "Sağlık Hukuku", "en": "Healthcare Law" },
+      "card": {
+        "tr": "Hastane kuruluş ve devri, klinik araştırma sözleşmeleri, tazminat davalarında vekillik.",
+        "en": "Hospital formation and transfer, clinical trial agreements, representation in malpractice claims."
+      },
+      "lead": {
+        "tr": "Sağlık sektörü, ticari işleyişin mevzuat ve hasta hakları ile aynı anda kesiştiği bir alandır. Hastane gruplarına kuruluş ve devir süreçlerinden finansman sözleşmelerine, klinik araştırmalardan tazminat davalarına kadar bütüncül hizmet veririz.",
+        "en": "Healthcare is a field where commercial operation intersects with regulation and patient rights at the same time. We advise hospital groups end to end — from formation and transfer to financing agreements, from clinical research to compensation claims."
+      },
+      "items": {
+        "tr": [
+          "Hastanelerin uluslararası kredi kuruluşlarıyla finansman sözleşmelerinin hazırlanması ve müzakeresi",
+          "Hastane kuruluş ve devir sözleşmelerinin hazırlanması",
+          "Gizlilik sözleşmelerinin hazırlanması",
+          "Klinik araştırmalara ilişkin sözleşmelerin hazırlanması",
+          "Tazminat davalarında sağlık çalışanı ve hastane vekilliği",
+          "Yabancı hastaların finansmanı hakkında danışmanlık",
+          "Cari hesap ve icra işlemlerinde yurt içi ve yurt dışı takip"
+        ],
+        "en": [
+          "Drafting and negotiating hospital financing agreements with international lenders",
+          "Hospital formation and transfer agreements",
+          "Confidentiality agreements",
+          "Clinical research and trial agreements",
+          "Representation of healthcare professionals and hospitals in compensation claims",
+          "Counsel on financing arrangements for international patients",
+          "Domestic and international debt recovery and enforcement"
+        ]
+      }
+    },
+
+    {
+      "no": "05",
+      "slug": { "tr": "gayrimenkul-ve-insaat-hukuku", "en": "real-estate-and-construction-law" },
+      "title": { "tr": "Gayrimenkul ve İnşaat Hukuku", "en": "Real Estate & Construction" },
+      "card": {
+        "tr": "Proje geliştirme, inşaat ve kiralama sözleşmeleri, kentsel dönüşüm, imar uyuşmazlıkları.",
+        "en": "Project development, construction and lease agreements, urban regeneration, zoning disputes."
+      },
+      "lead": {
+        "tr": "Gayrimenkul işlemlerinde risk çoğunlukla sözleşmenin imzalandığı anda değil, yıllar sonra ortaya çıkar. Tescil, proje geliştirme, finansman ve imar süreçlerini; uyuşmazlığı sözleşme aşamasında önleyecek biçimde kurgularız.",
+        "en": "In real estate, risk rarely surfaces on the day of signature — it surfaces years later. We structure registration, development, financing and zoning matters so that disputes are designed out at the contract stage."
+      },
+      "items": {
+        "tr": [
+          "Gayrimenkul geliştirme projeleri ve proje danışmanlığı",
+          "Tapu ve tescil işlemleri",
+          "Uluslararası gayrimenkul edinimi ve inşaat sözleşmelerinin hazırlanması ile müzakeresi",
+          "Gayrimenkul edinimi yoluyla vatandaşlık süreçlerinin takibi",
+          "Kiralama ve inşaat sözleşmeleri",
+          "Mortgage ve emlak finansmanı, leasing",
+          "Bireysel ve portföy bazında emlak varlıklarının inşası, edinimi ve elden çıkarılması",
+          "Kentsel dönüşüm süreçleri ve ilgili mevzuat uyumu",
+          "İmar planlarından kaynaklanan uyuşmazlıklar"
+        ],
+        "en": [
+          "Real estate development projects and project counsel",
+          "Title and land registry transactions",
+          "Drafting and negotiating international property acquisition and construction agreements",
+          "Citizenship-by-investment processes following property acquisition",
+          "Lease and construction agreements",
+          "Mortgage and real estate finance, leasing",
+          "Construction, acquisition and disposal of property assets, individually or by portfolio",
+          "Urban regeneration processes and related regulatory compliance",
+          "Disputes arising from zoning and development plans"
+        ]
+      }
+    },
+
+    {
+      "no": "06",
+      "slug": { "tr": "banka-ve-finans-hukuku", "en": "banking-and-finance-law" },
+      "title": { "tr": "Banka ve Finans Hukuku", "en": "Banking & Finance" },
+      "card": {
+        "tr": "Kredi ve proje finansmanı, sermaye piyasaları, yapılandırılmış ve varlığa dayalı finansman.",
+        "en": "Credit and project finance, capital markets, structured and asset-backed finance."
+      },
+      "lead": {
+        "tr": "Finansman yapıları, tarafların risk iştahının hukuk diline çevrilmesidir. Kredi ve proje finansmanından sermaye piyasası işlemlerine, teminat yapılarının kurgulanmasından mevzuata uyuma kadar sürecin tamamında çalışırız.",
+        "en": "A financing structure is the parties' risk appetite translated into legal language. We work across the whole process — from credit and project finance to capital markets transactions, from security structures to regulatory compliance."
+      },
+      "items": {
+        "tr": [
+          "Banka ve finans kuruluşlarının işleyişi, yapısı ve organizasyonu hakkında danışmanlık",
+          "Kredi sözleşmeleri ve teminat yapıları",
+          "Şirket finansmanı ve kurumsal finansman",
+          "Mal ve proje finansmanı",
+          "Yapısal ve yapılandırılmış finansman",
+          "Uluslararası ticaret finansmanı",
+          "Sermaye piyasaları ve menkul kıymet işlemleri",
+          "Varlığa dayalı menkul kıymet ihracı ve varlık finansmanı",
+          "Finansal kiralama işlemleri",
+          "İslami finans hukuku"
+        ],
+        "en": [
+          "Counsel on the operation, structure and organisation of banks and financial institutions",
+          "Credit agreements and security structures",
+          "Corporate and company finance",
+          "Asset and project finance",
+          "Structural and structured finance",
+          "International trade finance",
+          "Capital markets and securities transactions",
+          "Asset-backed securities issuance and asset finance",
+          "Financial leasing transactions",
+          "Islamic finance"
+        ]
+      }
+    },
+
+    {
+      "no": "07",
+      "slug": { "tr": "maden-hukuku", "en": "mining-law" },
+      "title": { "tr": "Maden Hukuku", "en": "Mining Law" },
+      "card": {
+        "tr": "Ruhsatlandırma, 3213 sayılı Maden Kanunu uyumu, yabancı yatırımcı danışmanlığı.",
+        "en": "Licensing, compliance with Mining Law No. 3213, counsel to foreign investors."
+      },
+      "lead": {
+        "tr": "Madencilikte hukuki risk, ruhsat aşamasında verilen kararların on yıl sonraki sonucudur. 3213 sayılı Maden Kanunu ve ilgili mevzuat çerçevesinde ruhsatlandırmadan işletmeye, idari süreçlerden uyuşmazlıklara kadar süreci bütün olarak yönetiriz.",
+        "en": "In mining, legal risk is the ten-year consequence of decisions made at the licensing stage. Within the framework of Mining Law No. 3213 and related legislation, we manage the process as a whole — from licensing to operation, from administrative procedure to disputes."
+      },
+      "items": {
+        "tr": [
+          "Ruhsatlandırma aşamalarında hukuki danışmanlık",
+          "3213 sayılı Maden Kanunu ve ilgili mevzuata ilişkin danışmanlık",
+          "Dava süreçlerinde ve işlemsel çalışmalarda temsil",
+          "Hukuki düzenlemelere ve mevzuata uyum",
+          "Vergisel süreçlerde teknik danışmanlık",
+          "Türkiye'de yatırım yapmak isteyen yabancı maden şirketlerine danışmanlık"
+        ],
+        "en": [
+          "Legal counsel throughout the licensing stages",
+          "Advice on Mining Law No. 3213 and related legislation",
+          "Representation in litigation and transactional work",
+          "Regulatory and legislative compliance",
+          "Technical counsel on tax-related procedures",
+          "Counsel to foreign mining companies investing in Türkiye"
+        ]
+      }
+    },
+
+    {
+      "no": "08",
+      "slug": { "tr": "icra-ve-iflas-hukuku", "en": "enforcement-and-insolvency-law" },
+      "title": { "tr": "İcra ve İflas Hukuku", "en": "Enforcement & Insolvency" },
+      "card": {
+        "tr": "Alacak takibi, rehnin paraya çevrilmesi, menfi tespit, konkordato ve yapılandırma.",
+        "en": "Debt recovery, enforcement of pledges, negative declaratory actions, composition and restructuring."
+      },
+      "lead": {
+        "tr": "Alacağın tahsili kadar, borçlu tarafta doğru savunma da teknik bir iştir. Alacaklı ve borçlu müvekkilleri aynı ciddiyetle temsil eder; takip, haciz, yapılandırma ve konkordato süreçlerini sonuç odaklı yürütürüz.",
+        "en": "Recovering a receivable and defending a debtor are equally technical exercises. We represent creditor and debtor clients with the same rigour, running enforcement, attachment, restructuring and composition proceedings with an eye on the outcome."
+      },
+      "items": {
+        "tr": [
+          "Alacaklı ve borçlu müvekkillerin menfaatlerinin korunması",
+          "Yerli ve yabancı müvekkillerin alacaklarının takibi, haciz ve paraya çevirme",
+          "Mahkeme ilamlarının icra yoluyla yerine getirilmesi",
+          "Çek, senet ve diğer kıymetli evrakların tahsili",
+          "Taşınır ve taşınmaz rehinlerinin paraya çevrilmesi",
+          "Müvekkil aleyhine başlatılan icra ve iflas taleplerinin durdurulması veya iptali",
+          "Menfi tespit ve istirdat davaları",
+          "Borç yapılandırma süreçlerinin takibi",
+          "İyileştirme ve konkordato projelerinin hazırlanması ile süreç yönetimi"
+        ],
+        "en": [
+          "Protecting the interests of both creditor and debtor clients",
+          "Debt recovery, attachment and realisation for domestic and international clients",
+          "Enforcement of court judgments",
+          "Collection of cheques, promissory notes and other negotiable instruments",
+          "Realisation of pledges over movable and immovable property",
+          "Staying or setting aside enforcement and bankruptcy proceedings brought against clients",
+          "Negative declaratory and restitution actions",
+          "Management of debt restructuring processes",
+          "Preparation and management of recovery and composition (concordat) plans"
+        ]
+      }
+    },
+
+    {
+      "no": "09",
+      "slug": { "tr": "is-hukuku", "en": "employment-law" },
+      "title": { "tr": "İş Hukuku", "en": "Employment Law" },
+      "card": {
+        "tr": "Sözleşme mimarisi, fesih süreçleri, işe iade ve işçilik alacağı davaları, çalışma izinleri.",
+        "en": "Contract architecture, termination, reinstatement and wage claims, work permits."
+      },
+      "lead": {
+        "tr": "İş hukuku uyuşmazlıklarının büyük bölümü, sözleşmenin ve iş yeri belgelerinin kurgulandığı aşamada önlenebilir. İşveren tarafında önleyici yapıyı kurar; fesih, işe iade ve alacak davalarında süreci mevzuat değişikliklerini takip ederek yürütürüz.",
+        "en": "Most employment disputes can be prevented at the stage where the contract and workplace documentation are designed. We build that preventive structure on the employer side and conduct termination, reinstatement and wage claims while tracking legislative change."
+      },
+      "items": {
+        "tr": [
+          "Çalışan ve işveren arasındaki ilişkilerin düzenlenmesi",
+          "Bireysel ve toplu iş sözleşmelerinin hazırlanması",
+          "İş sözleşmesinin sona erdirilmesi uygulamaları",
+          "Tutanak, ihtar ve fesih bildirimlerinin hazırlanması",
+          "İşe iade ve işçilik alacağı davalarında temsil",
+          "İş sağlığı ve güvenliği yükümlülükleri ile mevzuat değişikliklerinin takibi",
+          "Yabancı çalışanlar için çalışma ve oturma izinleri",
+          "İş hukuku kapsamında kanuna uyum programları"
+        ],
+        "en": [
+          "Structuring employer–employee relationships",
+          "Drafting individual and collective labour agreements",
+          "Termination of employment contracts",
+          "Preparation of records, warnings and termination notices",
+          "Representation in reinstatement and wage claim proceedings",
+          "Occupational health and safety obligations and tracking legislative change",
+          "Work and residence permits for foreign employees",
+          "Employment law compliance programmes"
+        ]
+      }
+    },
+
+    {
+      "no": "10",
+      "slug": { "tr": "idare-ve-vergi-hukuku", "en": "administrative-and-tax-law" },
+      "title": { "tr": "İdare ve Vergi Hukuku", "en": "Administrative & Tax Law" },
+      "card": {
+        "tr": "İdari işlemin iptali, gümrük ve vergi uyuşmazlıkları, uluslararası şirket yapılandırması.",
+        "en": "Annulment of administrative acts, customs and tax disputes, international corporate structuring."
+      },
+      "lead": {
+        "tr": "İdareyle ilişkide süre, çoğu zaman esastan daha belirleyicidir. Başvuru ve itiraz süreçlerini kaçırılmayacak biçimde kurgular; idari işlemin iptalinden vergi uyuşmazlıklarına, uluslararası yapılandırmadan gümrük cezalarına kadar geniş bir alanda çalışırız.",
+        "en": "In dealings with the administration, time limits are often more decisive than the merits. We structure applications and objections so that deadlines are never the reason a case is lost, working across annulment actions, tax disputes, international structuring and customs penalties."
+      },
+      "items": {
+        "tr": [
+          "İdari kurumlarla ilişkilerde danışmanlık",
+          "Para cezası, ruhsat ve izin iptali gibi idari işlemlere karşı iptal davaları",
+          "İdari işlemlerden doğan tam yargı (tazminat) davalarında temsil",
+          "İdari başvuru ve itiraz süreçleri",
+          "Gümrük mevzuatından doğan idari cezalar",
+          "Vergi suç ve cezalarından kaynaklanan uyuşmazlıklar",
+          "Yerel vergi danışmanlığı",
+          "Uluslararası vergi ve şirket yapılandırması",
+          "Yurt dışı şirket kurulumu ve devralınması",
+          "Birleşme ve devralma işlemleri"
+        ],
+        "en": [
+          "Counsel on dealings with public authorities",
+          "Annulment actions against administrative acts such as fines and licence revocations",
+          "Representation in full remedy (compensation) actions arising from administrative acts",
+          "Administrative applications and objection procedures",
+          "Administrative penalties under customs legislation",
+          "Disputes arising from tax offences and penalties",
+          "Domestic tax counsel",
+          "International tax and corporate structuring",
+          "Establishment and acquisition of companies abroad",
+          "Mergers and acquisitions"
+        ]
+      }
+    },
+
+    {
+      "no": "11",
+      "slug": { "tr": "fikri-mulkiyet-hukuku", "en": "intellectual-property-law" },
+      "title": { "tr": "Fikri Mülkiyet Hukuku", "en": "Intellectual Property" },
+      "card": {
+        "tr": "Marka, patent ve tasarım tescili, telif, haksız rekabet, lisans ve devir sözleşmeleri.",
+        "en": "Trademark, patent and design registration, copyright, unfair competition, licensing and assignment."
+      },
+      "lead": {
+        "tr": "Fikri mülkiyet, çoğu şirket için bilançoda görünmeyen en değerli varlıktır. Portföyün tescilinden lisanslanmasına, ihlal hâlinde dava ve alternatif çözüm yollarına kadar bu varlığı korumaya yönelik bütüncül bir yaklaşım izleriz.",
+        "en": "For many companies, intellectual property is the most valuable asset that never appears on the balance sheet. We take a comprehensive approach to protecting it — from portfolio registration and licensing to litigation and alternative remedies in cases of infringement."
+      },
+      "items": {
+        "tr": [
+          "Telekomünikasyon, internet, reklam, medya ve sağlık alanlarında faaliyet gösteren kişi ve şirketlere danışmanlık",
+          "Fikri mülkiyet portföyü edinimi ve buna ilişkin işlemler",
+          "Marka, patent ve tasarımların uluslararası tescil başvuruları",
+          "Telif hakları ve eser sahipliğinden doğan uyuşmazlıklar",
+          "Haksız rekabet ve ticari sır davalarında temsil",
+          "Hukuk, ceza, tahkim ve arabuluculuk süreçlerinde temsil",
+          "Lisans, devir ve temlik sözleşmelerinin hazırlanması"
+        ],
+        "en": [
+          "Counsel to individuals and companies in telecommunications, internet, advertising, media and healthcare",
+          "Acquisition of intellectual property portfolios and related transactions",
+          "International trademark, patent and design registration applications",
+          "Copyright and authorship disputes",
+          "Representation in unfair competition and trade secret proceedings",
+          "Representation in civil, criminal, arbitration and mediation proceedings",
+          "Drafting licence, transfer and assignment agreements"
+        ]
+      }
+    },
+
+    {
+      "no": "12",
+      "slug": { "tr": "sigorta-hukuku", "en": "insurance-law" },
+      "title": { "tr": "Sigorta Hukuku", "en": "Insurance Law" },
+      "card": {
+        "tr": "Rücu davaları, taşımacılık kaynaklı tazminat talepleri, poliçe ve acente uyumu.",
+        "en": "Subrogation claims, transport-related compensation, policy and agency compliance."
+      },
+      "lead": {
+        "tr": "Sigorta uyuşmazlıkları çoğunlukla poliçenin tek bir cümlesinde düğümlenir. Sigorta şirketleri, acenteler ve sigortalılar için poliçe yorumundan rücu davalarına, taşımacılık kaynaklı tazminat taleplerinden mevzuata uyuma kadar çalışırız.",
+        "en": "Insurance disputes usually turn on a single sentence in the policy. For insurers, agencies and policyholders alike, we work across policy interpretation, subrogation claims, transport-related compensation and regulatory compliance."
+      },
+      "items": {
+        "tr": [
+          "Rücu ilişkisinden doğan davalarda temsil",
+          "Müvekkillerin sigorta şirketleriyle ilişkilerinde danışmanlık",
+          "Sigorta şirketleri ve acentelerin faaliyetlerinin mevzuata uygun yürütülmesi",
+          "Trafik sigortacılığı alanında hukuki başvurular",
+          "Kara, hava ve deniz yolu yük ve kargo taşımacılığındaki kazalardan doğan tazminat davaları",
+          "Sigorta poliçelerinin hazırlanması, yorumlanması ve poliçeye ilişkin hizmetler"
+        ],
+        "en": [
+          "Representation in subrogation proceedings",
+          "Counsel on clients' relationships with insurers",
+          "Regulatory compliance for insurers and insurance agencies",
+          "Legal applications in the field of motor insurance",
+          "Compensation claims arising from road, air and sea freight and cargo accidents",
+          "Drafting, interpretation of and services relating to insurance policies"
+        ]
+      }
+    }
+  ]
+}

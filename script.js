@@ -25,6 +25,9 @@ applyLanguage(currentLang);
 const educationLabels = document.querySelectorAll('.education > div > span');
 if (educationLabels[0]) educationLabels[0].textContent = 'LL.B.';
 
+// Remove the small vertical founder label beside the portrait.
+document.querySelector('.profile-visual > p')?.remove();
+
 // Use the transparent high-resolution portrait supplied for the profile section.
 const portrait = document.querySelector('.portrait-placeholder');
 if (portrait) {

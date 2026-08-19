@@ -29,7 +29,7 @@ if (educationLabels[0]) educationLabels[0].textContent = 'LL.B.';
 const portrait = document.querySelector('.portrait-placeholder');
 if (portrait) {
   portrait.classList.add('has-photo');
-  portrait.innerHTML = '<img src="assets/pinar-karakas.webp" alt="Pınar Karakaş" loading="lazy" decoding="async">';
+  portrait.innerHTML = '<img src="assets/pinar-karakas-original-lossless.webp" alt="Pınar Karakaş" loading="lazy" decoding="async">';
 
   const portraitStyle = document.createElement('style');
   portraitStyle.textContent = `

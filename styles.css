@@ -5,3 +5,19 @@
 @media (max-width:980px){:root{--shell:min(100% - 34px,1240px)}.main-nav{gap:18px}.main-nav>a{display:none}.hero-grid{grid-template-columns:1fr}.hero-panel{display:none}.intro-grid,.section-head{grid-template-columns:1fr}.section-head .section-kicker{grid-row:auto}.section-head>p{grid-column:auto}.practice-grid{grid-template-columns:repeat(2,1fr)}.profile-grid{grid-template-columns:.8fr 1.2fr;gap:50px}.contact-grid{gap:55px}.section{padding:100px 0}}
 @media (max-width:720px){.site-header{background:rgba(10,15,26,.94)}.nav-wrap{height:72px}.menu-toggle{display:block}.main-nav{position:fixed;inset:72px 0 auto;background:#0a0f1a;padding:26px 24px 36px;display:none;flex-direction:column;align-items:flex-start;border-top:1px solid rgba(255,255,255,.08)}.main-nav.open{display:flex}.main-nav>a{display:block;font-size:14px}.lang-toggle{padding-left:0}.hero{padding-top:120px;min-height:92vh}.hero h1{font-size:clamp(48px,13vw,70px)}.hero-lead{font-size:14px}.hero-actions{flex-direction:column;align-items:stretch}.intro-grid{gap:42px}.intro h2{font-size:43px;margin-bottom:42px}.two-col-copy{grid-template-columns:1fr;gap:25px}.section-head{gap:30px}.section-head h2{font-size:43px}.practice-grid{grid-template-columns:1fr}.practice-card{min-height:220px}.profile-grid{grid-template-columns:1fr}.profile-visual{max-width:520px}.profile-visual>p{display:none}.profile-copy h2{font-size:55px}.contact-grid{grid-template-columns:1fr}.contact-title h2{font-size:48px}.contact-item p,.contact-item a{font-size:19px}.footer-grid{grid-template-columns:1fr;gap:40px}.footer-meta{grid-column:auto;flex-direction:column;gap:14px}.section{padding:82px 0}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.practice-card,.btn{transition:none}}
+
+/* Premium Karakas logo integration */
+.brand-logo-link{height:88px;width:118px;display:flex;align-items:center;justify-content:center;overflow:visible;flex:0 0 auto}
+.brand-logo-img,.mobile-menu-logo,.footer-logo-img{display:block;width:auto;max-width:none;clip-path:inset(24.5% 27.5% 22% 27.5%);filter:drop-shadow(0 5px 18px rgba(0,0,0,.22))}
+.brand-logo-img{height:72px;transform:scale(2.05);transform-origin:center}
+.mobile-menu-brand{display:none!important}
+.footer-logo-link{display:flex;align-items:center;justify-content:flex-start;width:210px;height:145px;overflow:visible}
+.footer-logo-img{height:132px;transform:scale(2.05);transform-origin:center}
+@media (max-width:720px){
+  .brand-logo-link{height:72px;width:100px}
+  .brand-logo-img{height:60px;transform:scale(2.02)}
+  .mobile-menu-brand{display:flex!important;width:138px;height:96px;align-items:center;justify-content:center;margin:-10px 0 8px;overflow:visible}
+  .mobile-menu-logo{height:88px;transform:scale(2.02);transform-origin:center}
+  .footer-logo-link{width:180px;height:125px}
+  .footer-logo-img{height:114px;transform:scale(2.02)}
+}

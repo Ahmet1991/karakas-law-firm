@@ -1,98 +1,270 @@
-const root = document.documentElement;
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.main-nav');
-const langToggle = document.querySelector('.lang-toggle');
-const languageNodes = document.querySelectorAll('[data-tr][data-en]');
+/* Karakaş Hukuk Bürosu — behaviour only.
+   Anything visual lives in styles.css; this file never injects styles. */
+(function () {
+  "use strict";
 
-let currentLang = localStorage.getItem('karakas-lang') || 'tr';
+  /* ============================================================== config ==
+     FORM_ACCESS_KEY: iletişim formunun gönderim anahtarı.
 
-function applyLanguage(lang) {
-  currentLang = lang;
-  root.lang = lang;
-  languageNodes.forEach((node) => {
-    node.textContent = node.dataset[lang];
-  });
-  langToggle?.classList.toggle('is-en', lang === 'en');
-  document.title = lang === 'tr'
-    ? 'Karakaş Hukuk Bürosu | İzmir'
-    : 'Karakaş Law Firm | Izmir';
-  localStorage.setItem('karakas-lang', lang);
-}
+     Form web3forms.com üzerinden çalışır — sunucu gerektirmez, ücretsiz
+     katmanı bu site için fazlasıyla yeterlidir. Kurulum:
+       1. https://web3forms.com adresine avpinarkarakas@gmail.com ile kaydolun.
+       2. E-posta ile gelen Access Key'i aşağıya yapıştırın.
+     Anahtar girilene kadar form gönderilmez; ziyaretçiye e-posta ile yazması
+     için hazır bir bağlantı sunulur, yani hiçbir talep kaybolmaz.
+     ====================================================================== */
+  var FORM_ACCESS_KEY = "BURAYA_WEB3FORMS_ACCESS_KEY";
+  var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  var CONTACT_EMAIL = "avpinarkarakas@gmail.com";
 
-applyLanguage(currentLang);
+  var lang = document.documentElement.lang === "en" ? "en" : "tr";
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// The source site does not state a graduation year, so the visual label stays factual.
-const educationLabels = document.querySelectorAll('.education > div > span');
-if (educationLabels[0]) educationLabels[0].textContent = 'LL.B.';
+  var TXT = {
+    tr: {
+      required: "Lütfen zorunlu alanları doldurun.",
+      email: "Lütfen geçerli bir e-posta adresi girin.",
+      consent: "Devam etmek için aydınlatma metnini onaylamanız gerekiyor.",
+      busy: "Gönderiliyor…",
+      ok: "Mesajınız iletildi. En kısa sürede dönüş yapılacaktır.",
+      error: "Mesaj gönderilemedi. Lütfen doğrudan e-posta ile yazın:",
+      unconfigured: "Form servisi henüz bağlanmadı. Mesajınızı e-posta ile gönderin:",
+      mailLabel: "E-posta ile gönder",
+      mapLoading: "Harita yükleniyor…",
+    },
+    en: {
+      required: "Please complete the required fields.",
+      email: "Please enter a valid email address.",
+      consent: "Please accept the privacy notice to continue.",
+      busy: "Sending…",
+      ok: "Your message has been sent. We will get back to you shortly.",
+      error: "The message could not be sent. Please email us directly:",
+      unconfigured: "The form service is not connected yet. Please email us:",
+      mailLabel: "Send by email",
+      mapLoading: "Loading map…",
+    },
+  }[lang];
 
-// Remove the small vertical founder label beside the portrait.
-document.querySelector('.profile-visual > p')?.remove();
+  /* ------------------------------------------------ header scroll state -- */
+  var header = document.querySelector(".site-header");
 
-// Use the transparent high-resolution portrait supplied for the profile section.
-const portrait = document.querySelector('.portrait-placeholder');
-if (portrait) {
-  portrait.classList.add('has-photo');
-  portrait.innerHTML = '<img src="assets/pinar-karakas-seffaf-yuksek-kalite.png" alt="Pınar Karakaş" loading="lazy" decoding="async">';
-
-  const portraitStyle = document.createElement('style');
-  portraitStyle.textContent = `
-    .profile-visual {
-      width: min(100%, 320px);
-      justify-self: center;
-    }
-    .portrait-placeholder.has-photo {
-      width: 100%;
-      aspect-ratio: auto;
-      min-height: 0;
-      background: transparent;
-      border: 0;
-      overflow: visible;
-    }
-    .portrait-placeholder.has-photo::before,
-    .portrait-placeholder.has-photo::after {
-      display: none;
-    }
-    .portrait-placeholder.has-photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      object-position: center bottom;
-    }
-    @media (max-width: 720px) {
-      .profile-visual {
-        width: min(78vw, 285px);
-        justify-self: center;
+  if (header) {
+    var stuck = false;
+    var syncHeader = function () {
+      var next = window.scrollY > 24;
+      if (next !== stuck) {
+        stuck = next;
+        header.classList.toggle("is-stuck", stuck);
       }
-    }
-  `;
-  document.head.appendChild(portraitStyle);
-}
+    };
+    syncHeader();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+  }
 
-langToggle?.addEventListener('click', () => {
-  applyLanguage(currentLang === 'tr' ? 'en' : 'tr');
-});
+  /* -------------------------------------------------------- mobile menu -- */
+  var toggle = document.querySelector(".menu-toggle");
+  var nav = document.querySelector(".main-nav");
 
-menuToggle?.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
+  if (toggle && nav) {
+    var setMenu = function (open) {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute(
+        "aria-label",
+        open
+          ? lang === "en" ? "Close menu" : "Menüyü kapat"
+          : lang === "en" ? "Open menu" : "Menüyü aç"
+      );
+    };
 
-nav?.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-  });
-});
+    toggle.addEventListener("click", function () {
+      setMenu(toggle.getAttribute("aria-expanded") !== "true");
+    });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) setMenu(false);
+    });
 
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+
+    // Leaving the mobile breakpoint must not strand the menu in a stale state.
+    var wide = window.matchMedia("(min-width: 1025px)");
+    var onWide = function (event) {
+      if (event.matches) setMenu(false);
+    };
+    if (wide.addEventListener) wide.addEventListener("change", onWide);
+    else wide.addListener(onWide);
+  }
+
+  /* ------------------------------------------------------ scroll reveal -- */
+  var animated = document.querySelectorAll(".reveal, .rise");
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    Array.prototype.forEach.call(animated, function (el) {
+      el.classList.add("is-in");
+    });
+  } else {
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    Array.prototype.forEach.call(animated, function (el) {
+      observer.observe(el);
+    });
+  }
+
+  /* --------------------------------------------------------- contact form -- */
+  var form = document.querySelector("[data-form]");
+
+  if (form) {
+    var status = form.querySelector(".form__status");
+    var submit = form.querySelector('button[type="submit"]');
+
+    var say = function (state, message, mailBody) {
+      status.dataset.state = state;
+      status.textContent = message;
+      if (mailBody) {
+        status.append(" ");
+        var a = document.createElement("a");
+        a.href =
+          "mailto:" +
+          CONTACT_EMAIL +
+          "?subject=" +
+          encodeURIComponent(mailBody.subject) +
+          "&body=" +
+          encodeURIComponent(mailBody.body);
+        a.textContent = CONTACT_EMAIL;
+        a.style.color = "inherit";
+        a.style.textDecoration = "underline";
+        status.append(a);
+      }
+    };
+
+    var compose = function (data) {
+      var subject =
+        (lang === "en" ? "Website enquiry" : "Web sitesi iletişim talebi") +
+        (data.get("konu") ? " — " + data.get("konu") : "");
+      var body = [
+        (lang === "en" ? "Name" : "Ad Soyad") + ": " + (data.get("ad_soyad") || ""),
+        (lang === "en" ? "Email" : "E-posta") + ": " + (data.get("eposta") || ""),
+        (lang === "en" ? "Phone" : "Telefon") + ": " + (data.get("telefon") || "-"),
+        (lang === "en" ? "Subject" : "Konu") + ": " + (data.get("konu") || "-"),
+        "",
+        data.get("mesaj") || "",
+      ].join("\n");
+      return { subject: subject, body: body };
+    };
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var data = new FormData(form);
+
+      // Honeypot: only a bot fills this in.
+      if (data.get("website")) return;
+
+      var name = (data.get("ad_soyad") || "").toString().trim();
+      var email = (data.get("eposta") || "").toString().trim();
+      var message = (data.get("mesaj") || "").toString().trim();
+
+      if (!name || !email || !message) {
+        say("error", TXT.required);
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        say("error", TXT.email);
+        return;
+      }
+      if (!data.get("kvkk")) {
+        say("error", TXT.consent);
+        return;
+      }
+
+      if (FORM_ACCESS_KEY.indexOf("BURAYA_") === 0) {
+        say("error", TXT.unconfigured, compose(data));
+        return;
+      }
+
+      data.append("access_key", FORM_ACCESS_KEY);
+      data.append("subject", compose(data).subject);
+      data.append("from_name", "karakaslawfirm.com");
+
+      submit.disabled = true;
+      say("busy", TXT.busy);
+
+      fetch(FORM_ENDPOINT, { method: "POST", body: data })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (result) {
+          if (result && result.success) {
+            form.reset();
+            say("ok", TXT.ok);
+          } else {
+            say("error", TXT.error, compose(data));
+          }
+        })
+        .catch(function () {
+          say("error", TXT.error, compose(data));
+        })
+        .then(function () {
+          submit.disabled = false;
+        });
+    });
+  }
+
+  /* ------------------------------------------------------------------ map -- */
+  // Google is only contacted once the visitor asks for the map.
+  var map = document.querySelector("[data-map]");
+
+  if (map && map.dataset.src) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.textContent = map.dataset.label || "Load map";
+
+    var note = document.createElement("small");
+    note.textContent = map.dataset.note || "";
+
+    button.addEventListener("click", function () {
+      button.disabled = true;
+      button.textContent = TXT.mapLoading;
+
+      var frame = document.createElement("iframe");
+      frame.src = map.dataset.src;
+      frame.loading = "lazy";
+      frame.title = map.dataset.label || "Map";
+      frame.referrerPolicy = "no-referrer-when-downgrade";
+      frame.allowFullscreen = true;
+
+      frame.addEventListener("load", function () {
+        map.classList.remove("map--idle");
+        map.textContent = "";
+        frame.removeAttribute("style");
+        map.appendChild(frame);
+      });
+
+      // Keep it off-layout until it has actually loaded.
+      frame.style.position = "absolute";
+      frame.style.opacity = "0";
+      frame.style.pointerEvents = "none";
+      map.appendChild(frame);
+    });
+
+    map.append(button, note);
+  }
+
+  /* --------------------------------------------------------------- misc -- */
+  var year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+})();

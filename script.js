@@ -29,12 +29,18 @@ if (educationLabels[0]) educationLabels[0].textContent = 'LL.B.';
 const portrait = document.querySelector('.portrait-placeholder');
 if (portrait) {
   portrait.classList.add('has-photo');
-  portrait.innerHTML = '<img src="assets/pinar-karakas-original-lossless.webp" alt="Pınar Karakaş" loading="lazy" decoding="async">';
+  portrait.innerHTML = '<img src="assets/pinar-karakas-original-lossless.webp" alt="Pınar Karakaş" width="357" height="376" loading="lazy" decoding="async">';
 
   const portraitStyle = document.createElement('style');
   portraitStyle.textContent = `
+    .profile-visual {
+      width: min(100%, 330px);
+      justify-self: center;
+    }
     .portrait-placeholder.has-photo {
-      background: #ece7dc;
+      width: 100%;
+      aspect-ratio: 357 / 376;
+      background: #fff;
       border: 1px solid rgba(10,15,26,.10);
     }
     .portrait-placeholder.has-photo::before,
@@ -43,10 +49,15 @@ if (portrait) {
     }
     .portrait-placeholder.has-photo img {
       width: 100%;
-      height: 100%;
+      height: auto;
       display: block;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: contain;
+    }
+    @media (max-width: 720px) {
+      .profile-visual {
+        width: min(82vw, 310px);
+        justify-self: start;
+      }
     }
   `;
   document.head.appendChild(portraitStyle);

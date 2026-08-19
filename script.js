@@ -45,26 +45,60 @@
     },
   }[lang];
 
-  /* ------------------------------------------------ header scroll state -- */
   var header = document.querySelector(".site-header");
-
-  if (header) {
-    var stuck = false;
-    var syncHeader = function () {
-      var next = window.scrollY > 24;
-      if (next !== stuck) {
-        stuck = next;
-        header.classList.toggle("is-stuck", stuck);
-      }
-    };
-    syncHeader();
-    window.addEventListener("scroll", syncHeader, { passive: true });
-  }
-
-  /* -------------------------------------------------------- mobile menu -- */
   var toggle = document.querySelector(".menu-toggle");
   var nav = document.querySelector(".main-nav");
 
+  /* ------------------------------------------------ header scroll state -- */
+
+  if (header) {
+    var stuck = false;
+    var hidden = false;
+    var lastY = window.scrollY;
+    var ghost = document.querySelector(".hero__ghost");
+    var ticking = false;
+
+    var syncHeader = function () {
+      var y = window.scrollY;
+
+      var nextStuck = y > 24;
+      if (nextStuck !== stuck) {
+        stuck = nextStuck;
+        header.classList.toggle("is-stuck", stuck);
+      }
+
+      // Retreat on the way down, return on the way up — but never while the
+      // mobile menu is open, and never over the hero.
+      if (!reduceMotion) {
+        var menuOpen = nav && nav.classList.contains("is-open");
+        var nextHidden = !menuOpen && y > 320 && y > lastY + 4;
+        if (y < lastY - 4 || menuOpen) nextHidden = false;
+        if (nextHidden !== hidden) {
+          hidden = nextHidden;
+          header.classList.toggle("is-hidden", hidden);
+        }
+
+        // The monogram drifts at a fraction of the scroll rate.
+        if (ghost && y < window.innerHeight * 1.4) {
+          ghost.style.transform = "translate3d(0," + (y * -0.08).toFixed(1) + "px,0)";
+        }
+      }
+
+      lastY = y;
+      ticking = false;
+    };
+
+    var onScroll = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncHeader);
+    };
+
+    syncHeader();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  /* -------------------------------------------------------- mobile menu -- */
   if (toggle && nav) {
     var setMenu = function (open) {
       nav.classList.toggle("is-open", open);
@@ -102,7 +136,14 @@
   }
 
   /* ------------------------------------------------------ scroll reveal -- */
-  var animated = document.querySelectorAll(".reveal, .rise");
+  Array.prototype.forEach.call(
+    document.querySelectorAll(".practice__grid .card"),
+    function (card, i) {
+      card.style.setProperty("--stagger", String(i % 6));
+    }
+  );
+
+  var animated = document.querySelectorAll(".reveal, .rise, .draw");
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
     Array.prototype.forEach.call(animated, function (el) {

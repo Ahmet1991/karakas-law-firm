@@ -50,8 +50,8 @@
   --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
   /* Layout — 100% (not 100vw) so a visible scrollbar can't cause overflow. */
-  --shell: min(1280px, 100% - 2 * var(--gutter));
-  --gutter: 40px;
+  --shell: min(1240px, 100% - 2 * var(--gutter));
+  --gutter: clamp(26px, 4.4vw, 72px);
   --header-h: 104px;
 
   /* Motion */
@@ -61,7 +61,7 @@
 
 @media (max-width: 900px) {
   :root {
-    --gutter: 24px;
+    --gutter: 22px;
     --header-h: 76px;
   }
 }
@@ -280,6 +280,34 @@ h3 {
   transform: translateY(-2px);
 }
 
+/* Outlined gold — the hero and header share this treatment. */
+.btn--gold-outline {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  border-color: var(--gold-500);
+  color: var(--gold-200);
+}
+
+.btn--gold-outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gold-400);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.btn--gold-outline:hover {
+  color: var(--ink-900);
+  border-color: var(--gold-400);
+}
+
+.btn--gold-outline:hover::before {
+  transform: none;
+}
+
 .btn--outline-light {
   border-color: rgba(255, 255, 255, 0.26);
   color: var(--on-dark);
@@ -318,7 +346,6 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  width: 100%;
 }
 
 /* Brand: raster monogram + typeset wordmark, so it stays crisp at any size. */
@@ -404,11 +431,12 @@ h3 {
 
 .main-nav__link {
   position: relative;
-  font-size: 12.5px;
-  font-weight: 400;
-  letter-spacing: 0.07em;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--on-dark-muted);
-  padding: 6px 0;
+  padding: 8px 0;
   transition: color 0.35s var(--ease);
   white-space: nowrap;
 }
@@ -419,11 +447,21 @@ h3 {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   background: var(--gold-400);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.45s var(--ease-out);
+}
+
+/* The page you are on keeps its rule drawn. */
+.main-nav__link.is-active {
+  color: var(--gold-300);
+}
+
+.main-nav__link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .main-nav__link:hover,
@@ -694,9 +732,14 @@ h3 {
 /* No width here — .shell owns the measure. */
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
-  gap: clamp(40px, 5vw, 76px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__copy {
+  max-width: min(52%, 620px);
 }
 
 .hero h1 {
@@ -1225,10 +1268,13 @@ h3 {
 
 .footer__meta {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 14px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(34px, 4vw, 48px);
   padding-top: 24px;
+  border-top: 1px solid var(--rule-dark-soft);
+  text-align: center;
   font-size: 10.5px;
   letter-spacing: 0.1em;
   color: var(--on-dark-faint);
@@ -2070,6 +2116,7 @@ h3 {
   display: grid;
   place-items: center;
   border: 1px solid rgba(201, 153, 99, 0.45);
+  border-radius: 50%;
   background: rgba(201, 153, 99, 0.07);
   color: var(--gold-300);
   transition: border-color 0.35s var(--ease), color 0.35s var(--ease),
@@ -2417,10 +2464,6 @@ body::after {
 
 /* Centred small-caps label with rules either side. */
 .band-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
   margin: 0 0 clamp(44px, 5vw, 68px);
   font-size: 11.5px;
   font-weight: 500;
@@ -2430,24 +2473,19 @@ body::after {
   text-align: center;
 }
 
-.band-label::before,
 .band-label::after {
   content: "";
-  width: clamp(28px, 5vw, 64px);
+  display: block;
+  width: 54px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-500));
-}
-
-.band-label::after {
-  background: linear-gradient(90deg, var(--gold-500), transparent);
+  margin: 14px auto 0;
+  background: var(--gold-500);
 }
 
 /* --------------------------------------------------------- practice row -- */
 .area-row {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  border-top: 1px solid var(--rule-dark-soft);
-  border-bottom: 1px solid var(--rule-dark-soft);
 }
 
 .area-tile {
@@ -2596,6 +2634,8 @@ body::after {
   gap: 18px;
   margin: clamp(26px, 3vw, 38px) 0 0;
   max-width: 56ch;
+  padding-left: clamp(20px, 2.2vw, 30px);
+  border-left: 1px solid var(--gold-600);
 }
 
 .about__body p {
@@ -2606,19 +2646,16 @@ body::after {
 
 /* Signature block closing the copy. */
 .signature {
-  margin-top: clamp(32px, 4vw, 46px);
-  padding-top: 22px;
-  border-top: 1px solid var(--rule-dark-soft);
+  margin-top: clamp(30px, 3.4vw, 42px);
   max-width: 22ch;
 }
 
 .signature b {
   display: block;
-  font-family: var(--display);
-  font-style: italic;
+  font-family: "Great Vibes", var(--display), cursive;
   font-weight: 400;
-  font-size: clamp(26px, 2.6vw, 34px);
-  line-height: 1;
+  font-size: clamp(38px, 3.6vw, 50px);
+  line-height: 1.1;
   color: var(--gold-300);
 }
 
@@ -2708,48 +2745,45 @@ body::after {
    founder's own portrait rather than stock allegory — it is the one image on
    the site that is genuinely the firm's. */
 .hero__media {
-  position: relative;
-  isolation: isolate;
-  align-self: end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 1;
+  overflow: hidden;
+  background: radial-gradient(
+      64% 56% at 46% 34%,
+      rgba(201, 153, 99, 0.2),
+      transparent 68%
+    ),
+    linear-gradient(200deg, rgba(43, 33, 26, 0.82), rgba(16, 12, 9, 0.2));
 }
 
+/* Feathered on the left so the block meets the copy without a hard seam. */
 .hero__media::before {
   content: "";
   position: absolute;
-  inset: -6% -5% 0 -5%;
-  background: radial-gradient(
-      68% 58% at 50% 34%,
-      rgba(201, 153, 99, 0.22),
-      transparent 68%
-    ),
-    linear-gradient(180deg, rgba(43, 33, 26, 0.7), rgba(16, 12, 9, 0));
-  border: 1px solid var(--rule-dark-soft);
-  border-bottom: 0;
-  z-index: -1;
-}
-
-.hero__media::after {
-  content: "";
-  position: absolute;
-  left: -5%;
-  right: -5%;
-  bottom: 0;
-  height: 2px;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
   background: linear-gradient(
     90deg,
-    transparent,
-    var(--gold-500) 30%,
-    var(--gold-300) 50%,
-    var(--gold-500) 70%,
-    transparent
+    var(--ink-800) 0%,
+    rgba(16, 12, 9, 0.55) 18%,
+    transparent 46%
   );
-  z-index: 1;
 }
 
 .hero__media img {
-  width: 100%;
-  height: auto;
-  position: relative;
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  width: auto;
+  height: 92%;
+  max-width: none;
+  object-fit: contain;
+  object-position: bottom right;
 }
 
 @media (max-width: 1024px) {

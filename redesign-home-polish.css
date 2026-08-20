@@ -361,18 +361,32 @@ body{
    en-boy koşulu var; dışında birleşik görsel statik kalıyor.
    Karartma gradyanını ::before'dan ::after'a taşıdık: aksi hâlde terazi
    katmanı karartmanın üstünde kalıp fotoğraftan kopuk parlıyordu. */
-@media(max-width:920px) and (max-aspect-ratio:1672/941){
+@media(max-width:920px){
+  /* Dikey ekranda yatay görseli kırparak doldurmak kompozisyonun ancak
+     üçte birini bırakıyordu. Mobil kendi kadrajını kullanıyor: kabartma
+     tam genişlikte bir bant olarak üstte duruyor, metin altında temiz
+     zeminde. Bandın alt kenarı zemine karışsın diye eriyor. */
+  .hero{min-height:auto;height:auto;padding:0;align-items:stretch}
   .hero::before{
-    background:url("assets/hero-adalet-base.webp") 66% 26%/auto 100% no-repeat;
+    background:url("assets/hero-adalet-mobil-full.webp") top center/100% auto no-repeat;
   }
   .hero::after{
     background:
-      linear-gradient(180deg,rgba(7,7,6,.18) 0%,rgba(7,7,6,.35) 38%,rgba(7,7,6,.92) 73%,#080807 100%),
-      linear-gradient(180deg,transparent 46%,rgba(0,0,0,.32) 72%,rgba(0,0,0,.54));
+      linear-gradient(180deg,rgba(7,7,6,.10) 0%,rgba(7,7,6,.06) 46%,rgba(7,7,6,.62) 82%,#080807 101vw),
+      radial-gradient(70% 40% at 60% 34%,rgba(207,151,75,.10),transparent 70%);
   }
+  .hero__inner{padding:calc(100vw + 30px) 0 58px;align-items:flex-start}
+  .hero__copy{width:100%;max-width:560px;transform:none}
+}
+
+/* Terazi mobilde de sallanıyor. Bant `100% auto` olduğu için katmanın
+   kutusu doğrudan hesaplanabiliyor; kırpma oranı 880/890. */
+@media(max-width:920px){
+  .hero::before{background-image:url("assets/hero-adalet-mobil.webp")}
   .hero__scales{
     display:block;position:absolute;pointer-events:none;
-    height:100%;aspect-ratio:1672/941;
-    left:66%;top:0;transform:translateX(-66%);
+    width:100%;aspect-ratio:880/890;left:0;top:0;
   }
+  .hero__scales img{transform-origin:58.52% 23.96%}
 }
+

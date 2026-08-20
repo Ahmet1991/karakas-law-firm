@@ -1,5 +1,20 @@
 (function(){
   "use strict";
+
+  /* Asset filenames in the local /assets folder are WebP. Keep the visual
+     system resilient by overriding only the image URLs here; no layout rules
+     are duplicated. */
+  var assetStyle=document.createElement('style');
+  assetStyle.setAttribute('data-karakas-assets','webp');
+  assetStyle.textContent=[
+    '.hero::before{background:linear-gradient(90deg,#080807 0%,rgba(8,8,7,.98) 31%,rgba(8,8,7,.76) 47%,rgba(8,8,7,.08) 69%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.46)),url("assets/hero-adalet-premium.webp") center right/cover no-repeat!important}',
+    '.about-media{background:linear-gradient(90deg,#0a0a09 0%,rgba(10,10,9,.55) 20%,transparent 52%),linear-gradient(180deg,transparent 56%,rgba(0,0,0,.38)),url("assets/hakkimizda-terazi-masa.webp") center/cover no-repeat!important}',
+    '.article-media.one{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.08)),url("assets/makale-kira-sozlesmeleri.webp")!important}',
+    '.article-media.two{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.08)),url("assets/makale-ticari-sozlesmeler.webp")!important}',
+    '.article-media.three{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.08)),url("assets/makale-is-hukuku.webp")!important}'
+  ].join('\n');
+  document.head.appendChild(assetStyle);
+
   var header=document.querySelector('.site-header');
   var toggle=document.querySelector('.menu-toggle');
   var nav=document.querySelector('.main-nav');

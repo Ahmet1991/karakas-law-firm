@@ -11,7 +11,8 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/hero-adalet-premium.webp">
+<link rel="preload" as="image" href="assets/hero-adalet-base.webp" media="(min-width:921px)">
+<link rel="preload" as="image" href="assets/hero-adalet-premium.webp" media="(max-width:920px)">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="redesign.css">
 <link rel="stylesheet" href="redesign-home-polish.css">
@@ -42,6 +43,8 @@
 
 <main id="main">
   <section class="hero">
+    <!-- Terazi ayrı katman: sahne görselinde yok, sarkaç gibi salınabilsin diye. -->
+    <div class="hero__scales" aria-hidden="true"><img src="assets/hero-terazi.webp" alt="" width="1672" height="941"></div>
     <div class="shell hero__inner">
       <div class="hero__copy reveal">
         <p class="eyebrow">Karakaş Hukuk Bürosu · İzmir</p>

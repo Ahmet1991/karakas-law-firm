@@ -11,3 +11,7 @@ içindeki webp'lerin kaynağıdır; kırpma veya boyut değişirse yeniden
 | `hakkimizda-terazi-masa.webp` | `hakkimizda-banner.webp` (aynen) + `hakkimizda-terazi-foto.webp` (gömülü metin kırpılarak) |
 | `pinar-karakas-seffaf-yuksek-kalite.png` | `pinar-karakas-portre.webp` |
 | `KARAKAS_HUKUK_LOGO_SEFFAF_4K.png` | logo lockup türevleri |
+| `hero-katman-a-terazisiz.png` | `hero-adalet-base.webp` (masaüstü, terazi ayrı katman) |
+| `hero-katman-b-terazi.png` | `hero-terazi.webp` (0.34 ölçek, göbek tepesi 1292,172'ye) |
+| A + B birleşik | `hero-adalet-premium.webp` (mobil ve yedek) |
+| `hero-adalet-premium-eski.webp` | terazi sarkacından önceki hero |

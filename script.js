@@ -1,7 +1,17 @@
-/* Karakaş Hukuk Bürosu — behaviour only.
-   Anything visual lives in styles.css; this file never injects styles. */
+/* Karakaş Hukuk Bürosu — shared behaviour and last-mile UI refinements. */
 (function () {
   "use strict";
+
+  /* Load the small final-polish layer relative to this shared script, so the
+     same file works from the homepage, English pages and nested area pages. */
+  var sharedScript = document.currentScript;
+  if (sharedScript && sharedScript.src && !document.querySelector('link[data-karakas-polish]')) {
+    var polishLink = document.createElement("link");
+    polishLink.rel = "stylesheet";
+    polishLink.href = new URL("polish.css", sharedScript.src).href;
+    polishLink.setAttribute("data-karakas-polish", "true");
+    document.head.appendChild(polishLink);
+  }
 
   /* ============================================================== config ==
      FORM_ACCESS_KEY: iletişim formunun gönderim anahtarı.
@@ -44,6 +54,29 @@
       mapLoading: "Loading map…",
     },
   }[lang];
+
+  /* ----------------------------------------------- restrained UI copy -- */
+  var replaceLeadTextNode = function (element, text) {
+    if (!element) return;
+    for (var i = 0; i < element.childNodes.length; i += 1) {
+      var node = element.childNodes[i];
+      if (node.nodeType === 3 && node.nodeValue.trim()) {
+        node.nodeValue = "\n        " + text + "\n        ";
+        return;
+      }
+    }
+  };
+
+  var navCta = document.querySelector(".nav-cta");
+  replaceLeadTextNode(navCta, lang === "en" ? "Contact Us" : "İletişime Geçin");
+
+  var footerBlurb = document.querySelector(".footer__blurb");
+  if (footerBlurb) {
+    footerBlurb.textContent =
+      lang === "en"
+        ? "A clear, measured and attentive approach to legal matters."
+        : "Hukuki süreçlerde açık, ölçülü ve özenli bir yaklaşım.";
+  }
 
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".menu-toggle");
@@ -102,6 +135,7 @@
   if (toggle && nav) {
     var setMenu = function (open) {
       nav.classList.toggle("is-open", open);
+      document.body.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute(
         "aria-label",
@@ -109,6 +143,7 @@
           ? lang === "en" ? "Close menu" : "Menüyü kapat"
           : lang === "en" ? "Open menu" : "Menüyü aç"
       );
+      if (open && header) header.classList.remove("is-hidden");
     };
 
     toggle.addEventListener("click", function () {
@@ -117,6 +152,12 @@
 
     nav.addEventListener("click", function (event) {
       if (event.target.closest("a")) setMenu(false);
+    });
+
+    document.addEventListener("pointerdown", function (event) {
+      if (!nav.classList.contains("is-open")) return;
+      if (nav.contains(event.target) || toggle.contains(event.target)) return;
+      setMenu(false);
     });
 
     document.addEventListener("keydown", function (event) {
@@ -133,6 +174,85 @@
     };
     if (wide.addEventListener) wide.addEventListener("change", onWide);
     else wide.addListener(onWide);
+  }
+
+  /* -------------------------------------------- active homepage section -- */
+  /* The underline now follows the section being read instead of remaining
+     permanently on “Ana Sayfa”. Nested pages keep their own current state. */
+  if (nav) {
+    var sectionLinks = Array.prototype.filter.call(
+      nav.querySelectorAll(".main-nav__link"),
+      function (link) {
+        return (link.getAttribute("href") || "").charAt(0) === "#";
+      }
+    );
+
+    if (sectionLinks.length > 1) {
+      var trackedSections = [];
+      var activeNavTicking = false;
+
+      var rebuildTrackedSections = function () {
+        trackedSections = sectionLinks
+          .map(function (link) {
+            var href = link.getAttribute("href");
+            var target =
+              href === "#top"
+                ? document.querySelector(".hero")
+                : document.getElementById(href.slice(1));
+            if (!target) return null;
+            return {
+              link: link,
+              target: target,
+              top: target.getBoundingClientRect().top + window.scrollY,
+            };
+          })
+          .filter(Boolean)
+          .sort(function (a, b) {
+            return a.top - b.top;
+          });
+      };
+
+      var syncActiveSection = function () {
+        if (!trackedSections.length) {
+          activeNavTicking = false;
+          return;
+        }
+
+        var probe = window.scrollY + Math.min(window.innerHeight * 0.34, 320);
+        var active = trackedSections[0];
+
+        trackedSections.forEach(function (item) {
+          if (item.top <= probe) active = item;
+        });
+
+        trackedSections.forEach(function (item) {
+          var isActive = item === active;
+          item.link.classList.toggle("is-active", isActive);
+          if (isActive) item.link.setAttribute("aria-current", "location");
+          else item.link.removeAttribute("aria-current");
+        });
+
+        activeNavTicking = false;
+      };
+
+      var requestActiveSectionSync = function () {
+        if (activeNavTicking) return;
+        activeNavTicking = true;
+        window.requestAnimationFrame(syncActiveSection);
+      };
+
+      rebuildTrackedSections();
+      syncActiveSection();
+      window.addEventListener("scroll", requestActiveSectionSync, { passive: true });
+      window.addEventListener("resize", function () {
+        rebuildTrackedSections();
+        requestActiveSectionSync();
+      });
+      window.addEventListener("load", function () {
+        rebuildTrackedSections();
+        requestActiveSectionSync();
+      });
+    }
   }
 
   /* --------------------------------------------------- headline splitting -- */

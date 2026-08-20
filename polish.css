@@ -1,0 +1,176 @@
+/* Karakaş Hukuk Bürosu — final visual polish layer.
+   Kept separate from the core visual system so the last-mile refinements
+   remain easy to audit and remove without disturbing generated pages. */
+
+::selection {
+  background: rgba(201, 153, 99, 0.34);
+  color: #fff;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The grain should be felt, not seen. It is also expensive on small devices. */
+body::after {
+  opacity: 0.034;
+}
+
+/* Keep the navigation chrome visually quiet while preserving the brand mark. */
+.brand__lockup {
+  width: 124px;
+}
+
+.site-header.is-stuck {
+  background: rgba(13, 10, 8, 0.91);
+  box-shadow: 0 12px 36px rgba(5, 3, 2, 0.12);
+}
+
+.main-nav__link.is-active {
+  color: var(--gold-300);
+}
+
+/* Hero: a touch more breathing room on desktop, full measure on tablet/mobile.
+   The base sheet intentionally hides the portrait below 1024px, so leaving
+   .hero__copy at 52% there would create a needlessly narrow headline. */
+.hero__copy {
+  max-width: min(54%, 650px);
+}
+
+.hero__lead {
+  max-width: 44ch;
+}
+
+.hero__media {
+  width: 50%;
+}
+
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 1px 0 0 rgba(219, 192, 158, 0.07);
+}
+
+.hero__media img {
+  right: 2%;
+  height: 94%;
+  filter: saturate(0.94) contrast(1.015);
+}
+
+/* The bright WhatsApp green is useful for recognition but too dominant at
+   rest on a restrained black/gold identity. Reveal the brand green on hover. */
+.wa-float {
+  background: rgba(16, 12, 9, 0.94);
+  color: var(--gold-300);
+  border: 1px solid rgba(201, 153, 99, 0.52);
+  box-shadow: 0 12px 34px rgba(6, 4, 3, 0.34);
+}
+
+.wa-float:hover {
+  background: #1faf54;
+  border-color: #1faf54;
+  color: #fff;
+}
+
+/* Slightly calmer footer rhythm. */
+.footer__blurb {
+  max-width: 36ch;
+  color: rgba(238, 228, 216, 0.52);
+}
+
+.footer__meta-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+}
+
+@media (max-width: 1024px) {
+  .hero__copy {
+    width: 100%;
+    max-width: 760px;
+  }
+
+  /* Animate the mobile menu without keeping interactive items clickable while
+     it is visually closed. The base stylesheet still owns dimensions. */
+  .main-nav {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.28s var(--ease), transform 0.38s var(--ease-out),
+      visibility 0.28s step-end;
+  }
+
+  .main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: opacity 0.28s var(--ease), transform 0.38s var(--ease-out),
+      visibility 0s step-start;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  body.nav-open .site-header {
+    transform: none !important;
+    background: rgba(12, 9, 7, 0.98);
+  }
+}
+
+@media (max-width: 900px) {
+  body::after {
+    opacity: 0.022;
+    animation: none;
+  }
+
+  .brand__lockup {
+    width: 96px;
+  }
+}
+
+@media (max-width: 640px) {
+  .display-xl {
+    font-size: clamp(42px, 12.2vw, 58px);
+    line-height: 1.03;
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+  }
+
+  .hero__lead {
+    margin-top: 26px;
+    max-width: 34ch;
+  }
+
+  .hero__actions {
+    margin-top: 34px;
+  }
+
+  .btn {
+    min-height: 50px;
+  }
+
+  .area-tile h3 {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav,
+  .main-nav.is-open {
+    transition: none;
+  }
+}

@@ -155,3 +155,24 @@ button{font:inherit}
 .social-row a.is-soon{opacity:.42;cursor:default}
 .social-row a.is-soon:hover{background:none;border-color:var(--gold-dim);color:var(--gold-2)}
 .social-row a.is-soon:hover svg{fill:currentColor}
+
+/* -------------------------------------------------------- dil değiştirici -- */
+.lang-switch{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:10px;font-weight:500;letter-spacing:.14em;white-space:nowrap;
+}
+.lang-switch a{color:rgba(255,255,255,.52);transition:color .25s}
+.lang-switch a:hover{color:var(--gold-2)}
+.lang-switch a[aria-current]{color:var(--gold-2);cursor:default}
+.lang-switch i{width:1px;height:11px;background:rgba(195,148,82,.42);font-style:normal}
+
+@media(max-width:920px){
+  /* Açılır menüde alta, ortalı ve ayrı bir satır olarak. */
+  .lang-switch{
+    order:2;justify-content:center;gap:14px;
+    margin-top:16px;padding-top:18px;
+    border-top:1px solid var(--line-soft);
+    font-size:12px;letter-spacing:.16em;
+  }
+  .nav-cta{order:1}
+}

@@ -2767,3 +2767,269 @@ body::after {
   line-height: 1.7;
   color: var(--on-dark-faint);
 }
+
+/* ==========================================================================
+   Journal band
+   ========================================================================== */
+.journal__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.journal__head h2 {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  margin: 0;
+}
+
+.journal__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  white-space: nowrap;
+  transition: color 0.35s var(--ease);
+}
+
+.journal__all svg {
+  width: 20px;
+  height: 12px;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.journal__all:hover {
+  color: var(--gold-200);
+}
+
+.journal__all:hover svg {
+  transform: translateX(5px);
+}
+
+.journal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule-dark-soft);
+  background: var(--ink-700);
+  overflow: hidden;
+  transition: border-color 0.45s var(--ease), background 0.45s var(--ease);
+}
+
+.post:hover {
+  border-color: rgba(201, 153, 99, 0.32);
+  background: var(--ink-600);
+}
+
+/* Card visual. No stock photography: a bronze field carrying the practice
+   icon, which stays on-brand and costs nothing to load. */
+.post__visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(
+      82% 76% at 50% 26%,
+      rgba(201, 153, 99, 0.2),
+      transparent 66%
+    ),
+    linear-gradient(158deg, #1c150f, #0d0a07);
+  border-bottom: 1px solid var(--rule-dark-soft);
+}
+
+.post__visual svg {
+  width: 52px;
+  height: 52px;
+  color: var(--gold-500);
+  opacity: 0.85;
+  transition: transform 0.7s var(--ease-out), color 0.45s var(--ease);
+}
+
+.post:hover .post__visual svg {
+  transform: scale(1.06) translateY(-2px);
+  color: var(--gold-300);
+}
+
+/* Faint monogram behind the icon. */
+.post__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/mark-ghost.webp") no-repeat 118% 130% / 62% auto;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.post__date {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-dark-faint);
+}
+
+.post__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(20px, 2vw, 26px);
+}
+
+.post h3 {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.5vw, 21px);
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text);
+  transition: color 0.4s var(--ease);
+}
+
+.post:hover h3 {
+  color: var(--gold-200);
+}
+
+.post__more {
+  margin-top: auto;
+  padding-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.post__more svg {
+  width: 18px;
+  height: 11px;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.post:hover .post__more svg {
+  transform: translateX(5px);
+}
+
+/* Marks the band as awaiting the firm's own writing. */
+.journal__placeholder {
+  margin: clamp(24px, 3vw, 34px) 0 0;
+  padding: 16px 20px;
+  border: 1px dashed rgba(201, 153, 99, 0.4);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--on-dark-muted);
+  text-align: center;
+}
+
+.journal__placeholder b {
+  color: var(--gold-300);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .journal__grid {
+    grid-template-columns: 1fr;
+  }
+  .journal__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+/* ==========================================================================
+   Footer, reference arrangement
+   ========================================================================== */
+.footer__top {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+/* Contact lines carrying their own icons. */
+.footer__contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.footer__contact li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.footer__contact svg {
+  width: 17px;
+  height: 17px;
+  margin-top: 3px;
+  color: var(--gold-400);
+}
+
+.footer__contact a,
+.footer__contact span {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--on-dark-muted);
+  transition: color 0.3s var(--ease);
+}
+
+.footer__contact a:hover {
+  color: #fff;
+}
+
+.footer__social h3 {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin: 0 0 20px;
+}
+
+.footer__social .social {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer__meta-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.footer__meta-links a {
+  transition: color 0.3s var(--ease);
+}
+
+.footer__meta-links a:hover {
+  color: var(--gold-300);
+}

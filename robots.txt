@@ -1,5 +1,7 @@
 # Hazırlık aşaması: site canlı alan adına taşınana kadar arama
-# motorlarına kapalı. Yayına alırken content.json içindeki
-# firm.preview değerini false yapıp bu dosyayı yeniden üretin.
+# motorlarına kapalı. Yayına alırken noindex etiketlerini kaldırın
+# ve aşağıdaki Disallow satırını Allow: / olarak değiştirin.
 User-agent: *
 Disallow: /
+
+Sitemap: https://www.karakaslawfirm.com/sitemap.xml

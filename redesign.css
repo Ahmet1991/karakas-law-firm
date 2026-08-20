@@ -149,3 +149,9 @@ button{font:inherit}
       url("assets/izmir-kordon-footer.webp") 82% 58%/cover no-repeat;
   }
 }
+
+/* Social slots that have no account yet: visible, but not pretending to
+   be links. Swap in an href and drop .is-soon when the handle exists. */
+.social-row a.is-soon{opacity:.42;cursor:default}
+.social-row a.is-soon:hover{background:none;border-color:var(--gold-dim);color:var(--gold-2)}
+.social-row a.is-soon:hover svg{fill:currentColor}

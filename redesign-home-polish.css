@@ -145,46 +145,18 @@ body{
   font-size:18px;
 }
 
-/* About band */
-.section:has(.about-grid){padding:0}
-.about-grid{
-  width:100%;
-  min-height:410px;
-  border-left:0;
-  border-right:0;
-  border-top-color:rgba(195,148,82,.24);
-  border-bottom-color:rgba(195,148,82,.24);
-  grid-template-columns:minmax(360px,.84fr) minmax(0,1.16fr);
+/* About band — the banner runs full bleed and carries its own copy. */
+.section--about{padding:0;border-bottom:1px solid rgba(195,148,82,.24)}
+.about-banner{
+  display:block;
+  border-top:1px solid rgba(195,148,82,.24);
+  border-bottom:1px solid rgba(195,148,82,.24);
+  background:#090908;
 }
-.about-copy{
-  padding:52px clamp(38px,5vw,78px);
-  background:
-    linear-gradient(90deg,rgba(6,6,5,.98),rgba(9,9,8,.94)),
-    #090908;
-}
-.about-copy .mini{
-  margin-bottom:14px;
-  font-size:10px;
-}
-.about-copy h2{
-  max-width:12ch;
-  font-size:clamp(34px,3.1vw,48px);
-  line-height:1.08;
-}
-.about-copy p{
-  margin-top:18px;
-  font-size:12.7px;
-  line-height:1.65;
-  max-width:50ch;
-}
-.about-copy .text-link{margin-top:24px}
-.about-media{
-  min-height:410px;
-  background:
-    linear-gradient(90deg,#090908 0%,rgba(9,9,8,.62) 15%,rgba(9,9,8,.12) 42%,transparent 62%),
-    linear-gradient(180deg,transparent 54%,rgba(0,0,0,.28)),
-    url("assets/hakkimizda-terazi-foto.webp") center/cover no-repeat;
-}
+.about-banner img{width:100%;height:auto;display:block}
+/* Desktop takes the banner's own type; the fallback copy is for narrow screens. */
+.about-banner__copy{display:none}
+.about-banner__cta{padding:26px 0;text-align:center}
 
 /* Articles */
 .section-head{margin-bottom:28px}
@@ -256,9 +228,13 @@ body{
   .hero h1{font-size:clamp(46px,8vw,66px);max-width:11ch}
   .hero__lead{max-width:52ch}
   .practice-grid{grid-template-columns:repeat(3,1fr)}
-  .about-grid{grid-template-columns:1fr}
-  .about-copy{padding:44px 36px}
-  .about-media{min-height:330px}
+  .about-banner img{aspect-ratio:16/9;object-fit:cover}
+  .about-banner__copy{display:block;padding:38px 0 4px}
+  .about-banner__copy h2{margin:0;max-width:16ch;font-family:var(--display);font-weight:400;
+    font-size:clamp(30px,4.4vw,40px);line-height:1.1;letter-spacing:-.02em}
+  .about-banner__copy p{margin-top:16px;color:#a8a29a;font-size:13px;line-height:1.75;max-width:56ch}
+  .about-banner__copy .mini{margin-bottom:12px;color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+  .about-banner__cta{padding:20px 0 34px;text-align:left}
 }
 
 @media(max-width:640px){
@@ -280,9 +256,7 @@ body{
   .practice-card:nth-child(n+3){border-top:1px solid rgba(195,148,82,.26)}
   .practice-card h3{font-size:12px}
   .practice-card p{font-size:10.2px}
-  .about-copy{padding:38px 24px}
-  .about-copy h2{font-size:36px}
-  .about-media{min-height:260px}
+  .about-banner img{aspect-ratio:4/3}
   .article-grid{grid-template-columns:1fr}
   .article-media{aspect-ratio:3/2}
   .footer-grid{grid-template-columns:1fr;gap:24px}

@@ -38,41 +38,6 @@
     items.forEach(function(el){io.observe(el);});
   }
 
-  /* Map: Google is only contacted once the visitor asks for it. */
-  var map=document.querySelector('[data-map]');
-  if(map&&map.dataset.src){
-    var button=document.createElement('button');
-    button.type='button';
-    button.textContent=map.dataset.label||'Haritayı Göster';
-
-    var note=document.createElement('small');
-    note.textContent=map.dataset.note||'';
-
-    button.addEventListener('click',function(){
-      button.disabled=true;
-      button.textContent=map.dataset.loading||'Harita yükleniyor…';
-
-      var frame=document.createElement('iframe');
-      frame.src=map.dataset.src;
-      frame.loading='lazy';
-      frame.title=map.dataset.label||'Harita';
-      frame.referrerPolicy='no-referrer-when-downgrade';
-      frame.allowFullscreen=true;
-      /* Keep it off-layout until it has actually loaded. */
-      frame.style.cssText='position:absolute;opacity:0;pointer-events:none';
-
-      frame.addEventListener('load',function(){
-        map.classList.remove('map--idle');
-        map.textContent='';
-        frame.removeAttribute('style');
-        map.appendChild(frame);
-      });
-      map.appendChild(frame);
-    });
-
-    map.append(button,note);
-  }
-
   var year=document.getElementById('year');
   if(year)year.textContent=new Date().getFullYear();
 })();

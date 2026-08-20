@@ -349,7 +349,30 @@ body{
     left:100%;top:50%;transform:translate(-100%,-50%);
   }
 }
-@media(min-width:921px) and (prefers-reduced-motion:no-preference){
-  /* Uçlar arasında sinüse yakın bir geçiş; sarkaç böyle hareket eder. */
+/* Uçlar arasında sinüse yakın bir geçiş; sarkaç böyle hareket eder.
+   Katman görünmediği kırılımlarda zaten display:none, animasyon zararsız. */
+@media(prefers-reduced-motion:no-preference){
   .hero__scales img{animation:terazi-salinim 20s ease-in-out .6s both}
+}
+
+/* Mobil. Burada hero `cover` kullanıyor; dar ve uzun ekranda cover'ın
+   yüksekliğe göre ölçeklendiği kesin olduğu için aynı kutuyu `auto 100%`
+   ile birebir kurabiliyoruz. Yatay ekranda bu garanti bozulur, o yüzden
+   en-boy koşulu var; dışında birleşik görsel statik kalıyor.
+   Karartma gradyanını ::before'dan ::after'a taşıdık: aksi hâlde terazi
+   katmanı karartmanın üstünde kalıp fotoğraftan kopuk parlıyordu. */
+@media(max-width:920px) and (max-aspect-ratio:1672/941){
+  .hero::before{
+    background:url("assets/hero-adalet-base.webp") 66% 26%/auto 100% no-repeat;
+  }
+  .hero::after{
+    background:
+      linear-gradient(180deg,rgba(7,7,6,.18) 0%,rgba(7,7,6,.35) 38%,rgba(7,7,6,.92) 73%,#080807 100%),
+      linear-gradient(180deg,transparent 46%,rgba(0,0,0,.32) 72%,rgba(0,0,0,.54));
+  }
+  .hero__scales{
+    display:block;position:absolute;pointer-events:none;
+    height:100%;aspect-ratio:1672/941;
+    left:66%;top:0;transform:translateX(-66%);
+  }
 }

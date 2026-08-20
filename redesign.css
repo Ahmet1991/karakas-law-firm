@@ -119,3 +119,33 @@ button{font:inherit}
   .wa-float svg{width:24px;height:24px}
 }
 @media(prefers-reduced-motion:reduce){.wa-float{transition:none}}
+
+/* ------------------------------------------------------- footer band -- */
+/* İzmir Kordon behind the footer. The photo is cropped clear of the logo
+   lockup that is baked into the source banner, so the real markup below
+   is the only place the brand appears. */
+.site-footer,.inner-footer{
+  position:relative;
+  isolation:isolate;
+  background:#070706;
+  overflow:hidden;
+}
+.site-footer::before,.inner-footer::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,#070706 0%,rgba(7,7,6,.74) 18%,rgba(7,7,6,.62) 54%,rgba(7,7,6,.78) 82%,rgba(7,7,6,.93) 100%),
+    linear-gradient(90deg,rgba(7,7,6,.95) 0%,rgba(7,7,6,.74) 40%,rgba(7,7,6,.46) 72%,rgba(7,7,6,.34) 100%),
+    url("assets/izmir-kordon-footer.webp") center 58%/cover no-repeat;
+}
+.site-footer > .shell,.inner-footer > .shell{position:relative}
+
+@media(max-width:640px){
+  .site-footer::before,.inner-footer::before{
+    background:
+      linear-gradient(180deg,#070706 0%,rgba(7,7,6,.8) 22%,rgba(7,7,6,.76) 66%,rgba(7,7,6,.9) 100%),
+      url("assets/izmir-kordon-footer.webp") 82% 58%/cover no-repeat;
+  }
+}

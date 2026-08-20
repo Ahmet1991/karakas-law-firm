@@ -157,3 +157,34 @@
   .founder__facts{grid-template-columns:1fr;gap:18px}
   .founder__tags li{font-size:10.5px;padding:7px 11px}
 }
+
+/* İzmir band — the office is on the Kordon, so the contact hero says so. */
+.subhero--izmir{
+  background:
+    linear-gradient(90deg,
+      #080807 0%,
+      rgba(8,8,7,.985) 24%,
+      rgba(8,8,7,.92) 38%,
+      rgba(8,8,7,.62) 54%,
+      rgba(8,8,7,.26) 76%,
+      rgba(8,8,7,.14) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.5)),
+    url("assets/izmir-kordon-gece.webp") center 64%/cover no-repeat;
+}
+.subhero--izmir::after{
+  background-image:none;
+  background:radial-gradient(46% 60% at 74% 52%,rgba(207,151,75,.10),transparent 68%);
+}
+.subhero__place{
+  display:flex;align-items:center;gap:13px;
+  margin:26px 0 0;color:#8f8a82;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+}
+.subhero__place::before{content:"";width:34px;height:1px;background:var(--gold-dim)}
+
+@media(max-width:680px){
+  .subhero--izmir{
+    background:
+      linear-gradient(180deg,rgba(7,7,6,.72) 0%,rgba(7,7,6,.82) 46%,rgba(8,8,7,.95) 84%,#080807 100%),
+      url("assets/izmir-kordon-gece.webp") 62% 60%/cover no-repeat;
+  }
+}

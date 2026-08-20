@@ -3,14 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a0f1a">
+<meta name="theme-color" content="#100c09">
 
 <title>Karakaş Law Firm | İzmir — Corporate Law &amp; Counsel</title>
 <meta name="description" content="İzmir-based Karakaş Law Firm advises domestic and international companies on corporate, maritime, mining, healthcare, finance and real estate law.">
 
 <!-- REMOVE BEFORE LAUNCH: indexing is disabled while the site is in
-     preparation so it cannot compete with the firm's live site. Delete this
-     line and add a canonical link once the domain points here. -->
+     preparation so it cannot compete with the firm's live site. -->
 <meta name="robots" content="noindex, nofollow">
 
 <meta property="og:type" content="website">
@@ -19,13 +18,13 @@
 <meta property="og:site_name" content="Karakaş Law Firm">
 <meta property="og:title" content="Karakaş Law Firm | İzmir">
 <meta property="og:description" content="Corporate law, dispute resolution and counsel for domestic and international companies. İzmir, Türkiye.">
-<meta property="og:image" content="../assets/og-image.jpg">
+<meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="alternate" hreflang="en" href="https://www.karakaslawfirm.com/en/">
 <link rel="alternate" hreflang="tr" href="https://www.karakaslawfirm.com/">
+<link rel="alternate" hreflang="en" href="https://www.karakaslawfirm.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://www.karakaslawfirm.com/">
 
 <link rel="icon" href="../assets/favicon.ico" sizes="32x32">
@@ -34,8 +33,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="../assets/mark-120.webp">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="../assets/logo-lockup-ondark-260.webp">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -46,11 +45,9 @@
   <div class="shell nav-wrap">
 
     <a class="brand" href="./" aria-label="Karakaş Law Firm — home">
-      <img class="brand__mark" src="../assets/mark-120.webp" srcset="../assets/mark-120.webp 120w, ../assets/mark-240.webp 240w" sizes="46px" width="120" height="149" alt="" fetchpriority="high">
-      <span class="brand__type">
-        <span class="brand__name">KARAKAŞ</span>
-        <span class="brand__sub">LAW FIRM</span>
-      </span>
+      <img class="brand__lockup" src="../assets/logo-lockup-ondark-260.webp"
+           srcset="../assets/logo-lockup-ondark-260.webp 260w, ../assets/logo-lockup-ondark-420.webp 420w"
+           sizes="132px" width="260" height="209" alt="Karakaş Law Firm" fetchpriority="high">
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
@@ -60,7 +57,6 @@
     <nav class="main-nav" id="main-nav" aria-label="Main menu">
       <a class="main-nav__link" href="#about">About</a>
       <a class="main-nav__link" href="#practice-areas">Practice Areas</a>
-      <a class="main-nav__link" href="#pinar-karakas">Pınar Karakaş</a>
       <a class="main-nav__link" href="#contact">Contact</a>
       <a class="nav-cta" href="#contact">
         Get in Touch
@@ -88,230 +84,162 @@
       <div>
         <p class="eyebrow reveal">İZMİR BAR ASSOCIATION · CORPORATE LAW</p>
 
-        <h1 class="display-xl">
-          <span class="rise"><span>Complex matters,</span></span>
-          <span class="rise"><span>clear counsel.</span></span>
-        </h1>
+        <h1 class="display-xl" data-split>Complex matters, clear counsel.</h1>
 
         <p class="hero__lead lead reveal" data-delay="2">
-          Karakaş Law Firm advises domestic and international companies and
-          individuals across a broad range of disciplines — from corporate and
-          commercial law to maritime trade, mining, healthcare and finance.
+          We advise domestic and international companies across a broad range
+          of disciplines — from corporate and commercial law to maritime trade,
+          mining, healthcare and finance.
         </p>
 
         <div class="hero__actions reveal" data-delay="3">
           <a class="btn btn--gold" href="#practice-areas">
-            Practice Areas
+            Explore Our Practice Areas
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           </a>
-          <a class="btn btn--outline-light" href="#contact">Contact Us</a>
         </div>
       </div>
 
-      <aside class="hero__card reveal" data-delay="2" aria-label="Firm details">
-        <dl>
-          <div>
-            <dt>Based in</dt>
-            <dd>İzmir, Türkiye</dd>
-          </div>
-          <div class="hero__card-rule draw" role="presentation"></div>
-          <div>
-            <dt>Bar</dt>
-            <dd>İzmir Bar Association</dd>
-          </div>
-          <div class="hero__card-rule draw" role="presentation"></div>
-          <div>
-            <dt>Working Languages</dt>
-            <dd>Turkish · English</dd>
-          </div>
-        </dl>
-      </aside>
+      <div class="hero__media reveal" data-delay="2">
+        <img src="../assets/pinar-karakas-640.webp"
+             srcset="../assets/pinar-karakas-400.webp 400w, ../assets/pinar-karakas-640.webp 640w, ../assets/pinar-karakas-900.webp 900w"
+             sizes="(max-width: 1024px) 1px, 34vw"
+             width="640" height="619" alt="Attorney Pınar Karakaş" fetchpriority="high">
+      </div>
     </div>
 
     <div class="scroll-cue" aria-hidden="true"><i></i>Explore</div>
   </section>
 
-  <!-- ----------------------------------------------------------- about -- -->
-  <section class="section" id="about">
-    <div class="shell">
-      <p class="kicker reveal"><b>01</b> About</p>
-
-      <div class="intro__grid">
-        <h2 class="display-l reveal">A practice that works from inside commercial life.</h2>
-
-        <div class="intro__body reveal" data-delay="1">
-          <p>
-            Karakaş Law Firm was founded in İzmir by Attorney Pınar Karakaş. The
-            firm acts for companies and individuals across a broad field — from
-            corporate and commercial law to dispute resolution, from maritime
-            trade to healthcare, real estate, finance and employment law.
-          </p>
-          <p>
-            It provides ongoing counsel to companies in the healthcare,
-            chemicals, marble, machinery, engineering, fuel and furniture
-            sectors, and to hospital groups — including on international
-            matters.
-          </p>
-          <p>
-            In disputes, our priority is to reach a commercially sustainable
-            resolution before a matter reaches the courtroom. Through the firms
-            we work with in other jurisdictions, we handle cross-border files
-            with the same proximity.
-          </p>
-        </div>
-      </div>
-
-      <blockquote class="pullquote reveal" data-delay="1">
-        Legal advice creates value only when it sits on the commercial reality of the business.
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- -------------------------------------------------- practice areas -- -->
+  <!-- ------------------------------------------------- faaliyet alanları -- -->
   <section class="section section--dark" id="practice-areas">
     <div class="shell">
+      <p class="band-label reveal">Practice Areas</p>
 
-      <div class="practice__head">
-        <div>
-          <p class="kicker reveal"><b>02</b> Practice Areas</p>
-          <h2 class="display-l reveal">Areas of legal practice</h2>
-        </div>
-        <p class="lead reveal" data-delay="1">
-          The headings below give a general overview of the firm's areas of
-          practice and do not constitute a claim of specialisation. Each opens
-          onto the detail of its scope.
-        </p>
+      <!-- AREAS:START — tools/build.py tarafından content.json'dan üretilir -->
+      <div class="area-row">
+        <a class="area-tile reveal" href="practice-areas/corporate-and-commercial-law/" aria-label="Corporate &amp; Commercial Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 20V9m4 11V9m4 11V9m4 11V9m4 11V9M2.5 9 12 3.5 21.5 9Z"/></svg></span>
+          <h3>Corporate &amp; Commercial Law</h3>
+          <p>Formation, share transfers and governance.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/litigation-and-arbitration/" aria-label="Litigation &amp; Arbitration — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17M8 20h8M5 7h14M5 7 2.5 13h5ZM19 7l-2.5 6h5Z"/><path d="M2.5 13a2.5 2.5 0 0 0 5 0M16.5 13a2.5 2.5 0 0 0 5 0"/></svg></span>
+          <h3>Litigation &amp; Arbitration</h3>
+          <p>Domestic and international dispute resolution.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/maritime-law/" aria-label="Maritime Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 6.5V21M8 10h8"/><path d="M4 13a8 8 0 0 0 16 0"/><path d="M4 13H2m18 0h2"/></svg></span>
+          <h3>Maritime Law</h3>
+          <p>Cargo, charterparty, ship finance and registration.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/healthcare-law/" aria-label="Healthcare Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v12H4Z"/><path d="M12 4v3"/><path d="M7 13h2.5l1.5-3 2 6 1.5-3H17"/></svg></span>
+          <h3>Healthcare Law</h3>
+          <p>Hospital transactions and compensation claims.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/real-estate-and-construction-law/" aria-label="Real Estate &amp; Construction — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M6 21V8l7-4v17M13 21V11h5v10"/><path d="M9 8.5v2m0 3v2M16 14.5v2"/></svg></span>
+          <h3>Real Estate &amp; Construction</h3>
+          <p>Development, construction and zoning matters.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/banking-and-finance-law/" aria-label="Banking &amp; Finance — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M5 20V10m4 10V10m6 10V10m4 10V10M2 10 12 4l10 6Z"/><circle cx="12" cy="14.5" r="1.6"/></svg></span>
+          <h3>Banking &amp; Finance</h3>
+          <p>Credit, project finance and capital markets.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/mining-law/" aria-label="Mining Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20"/><path d="M4 21 12 8l8 13"/><path d="M8.5 14.5h7"/><path d="M12 8V3"/><path d="M9 4.5h6"/></svg></span>
+          <h3>Mining Law</h3>
+          <p>Licensing and mining law compliance.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/enforcement-and-insolvency-law/" aria-label="Enforcement &amp; Insolvency — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h9l5 5v13H5Z"/><path d="M14 3v5h5"/><path d="M8 13h8M8 17h5"/></svg></span>
+          <h3>Enforcement &amp; Insolvency</h3>
+          <p>Debt recovery, composition and restructuring.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/employment-law/" aria-label="Employment Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8" r="2.6"/><circle cx="16.5" cy="9.5" r="2.1"/><path d="M3.5 19a5 5 0 0 1 10 0"/><path d="M14.5 15.2a4.4 4.4 0 0 1 6 3.8"/></svg></span>
+          <h3>Employment Law</h3>
+          <p>Contracts, termination and wage claims.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/administrative-and-tax-law/" aria-label="Administrative &amp; Tax Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21h16M6 21V10m12 11V10M3 10 12 4l9 6Z"/><path d="M9.5 21v-5.5h5V21"/><path d="M12 13v1.5"/></svg></span>
+          <h3>Administrative &amp; Tax Law</h3>
+          <p>Annulment actions and tax disputes.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/intellectual-property-law/" aria-label="Intellectual Property — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.4 10.9c.5.4.9 1.1.9 1.8V16h5v-.3c0-.7.4-1.4.9-1.8A6 6 0 0 0 12 3Z"/></svg></span>
+          <h3>Intellectual Property</h3>
+          <p>Trademarks, patents, copyright and licensing.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="practice-areas/insurance-law/" aria-label="Insurance Law — Read more">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.3 3 8.1 7.5 9 4.5-.9 7.5-4.7 7.5-9V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></span>
+          <h3>Insurance Law</h3>
+          <p>Subrogation, compensation and policy disputes.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
       </div>
+      <!-- AREAS:END -->
 
-      <div class="practice__grid">
-
-        <a class="card reveal" href="practice-areas/corporate-and-commercial-law/">
-          <span class="card__no">01</span>
-          <h3 class="card__title">Corporate &amp; Commercial Law</h3>
-          <p class="card__desc">The full corporate lifecycle — from incorporation and share transfers to governance and director liability.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="practice-areas/litigation-and-arbitration/">
-          <span class="card__no">02</span>
-          <h3 class="card__title">Litigation &amp; Arbitration</h3>
-          <p class="card__desc">Domestic and cross-border disputes, including enforcement of foreign arbitral awards in Türkiye.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="practice-areas/maritime-law/">
-          <span class="card__no">03</span>
-          <h3 class="card__title">Maritime Law</h3>
-          <p class="card__desc">Charterparty and cargo claims, collision and salvage, chartering, ship finance and registration.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="practice-areas/healthcare-law/">
-          <span class="card__no">04</span>
-          <h3 class="card__title">Healthcare Law</h3>
-          <p class="card__desc">Hospital formation and transfer, clinical trial agreements, representation in malpractice claims.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="practice-areas/real-estate-and-construction-law/">
-          <span class="card__no">05</span>
-          <h3 class="card__title">Real Estate &amp; Construction</h3>
-          <p class="card__desc">Project development, construction and lease agreements, urban regeneration, zoning disputes.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="practice-areas/banking-and-finance-law/">
-          <span class="card__no">06</span>
-          <h3 class="card__title">Banking &amp; Finance</h3>
-          <p class="card__desc">Credit and project finance, capital markets, structured and asset-backed finance.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="practice-areas/mining-law/">
-          <span class="card__no">07</span>
-          <h3 class="card__title">Mining Law</h3>
-          <p class="card__desc">Licensing, compliance with Mining Law No. 3213, counsel to foreign investors.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="practice-areas/enforcement-and-insolvency-law/">
-          <span class="card__no">08</span>
-          <h3 class="card__title">Enforcement &amp; Insolvency</h3>
-          <p class="card__desc">Debt recovery, enforcement of pledges, negative declaratory actions, composition and restructuring.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="practice-areas/employment-law/">
-          <span class="card__no">09</span>
-          <h3 class="card__title">Employment Law</h3>
-          <p class="card__desc">Contract architecture, termination, reinstatement and wage claims, work permits.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="practice-areas/administrative-and-tax-law/">
-          <span class="card__no">10</span>
-          <h3 class="card__title">Administrative &amp; Tax Law</h3>
-          <p class="card__desc">Annulment of administrative acts, customs and tax disputes, international corporate structuring.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="practice-areas/intellectual-property-law/">
-          <span class="card__no">11</span>
-          <h3 class="card__title">Intellectual Property</h3>
-          <p class="card__desc">Trademark, patent and design registration, copyright, unfair competition, licensing and assignment.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="practice-areas/insurance-law/">
-          <span class="card__no">12</span>
-          <h3 class="card__title">Insurance Law</h3>
-          <p class="card__desc">Subrogation claims, transport-related compensation, policy and agency compliance.</p>
-          <span class="card__go">Read more <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-      </div>
+      <p class="band-note reveal">
+        These headings give a general overview of the firm's areas of practice
+        and do not constitute a claim of specialisation.
+      </p>
     </div>
   </section>
 
-  <!-- --------------------------------------------------- pınar karakaş -- -->
-  <section class="section" id="pinar-karakas">
+  <!-- ------------------------------------------------------ hakkımızda -- -->
+  <section class="section" id="about">
     <div class="shell">
-      <p class="kicker reveal"><b>03</b> Founder</p>
+      <p class="band-label reveal">About</p>
 
-      <div class="profile__grid">
-        <div class="portrait reveal">
-          <img src="../assets/pinar-karakas-400.webp"
-               srcset="../assets/pinar-karakas-400.webp 400w, ../assets/pinar-karakas-640.webp 640w, ../assets/pinar-karakas-900.webp 900w"
-               sizes="(max-width: 900px) 320px, 30vw"
-               width="400" height="387" loading="lazy" decoding="async"
-               alt="Attorney Pınar Karakaş">
-        </div>
+      <div class="about__grid">
+        <div>
+          <h2 class="display-l reveal" data-split>A practice that works from inside commercial life.</h2>
 
-        <div class="reveal" data-delay="1">
-          <h2 class="profile__name display-l">Pınar Karakaş</h2>
-          <p class="profile__role">Founder · Attorney at Law</p>
-
-          <div class="profile__body">
+          <div class="about__body reveal" data-delay="1">
             <p>
-              She graduated from İstanbul Bilgi University Faculty of Law and
-              completed her master's degree in international commercial law at
-              Coventry University in the United Kingdom with honours.
+              Karakaş Law Firm was founded in İzmir by Attorney Pınar Karakaş.
+              The firm acts for companies and individuals across a broad field —
+              from corporate and commercial law to dispute resolution, from
+              maritime trade to healthcare, real estate, finance and employment
+              law.
             </p>
             <p>
-              Following her work at a respected law firm in İstanbul and her
-              role as counsel to a group of companies reporting directly to the
-              Turkish Savings Deposit Insurance Fund (TMSF), she returned to
-              İzmir and founded Karakaş Law Firm.
+              It provides ongoing counsel to companies in the healthcare,
+              chemicals, marble, machinery, engineering, fuel and furniture
+              sectors, and to hospital groups — including on international
+              matters.
             </p>
             <p>
-              She currently advises and represents leading companies in the
-              healthcare, chemicals, marble, machinery, engineering, fuel and
-              furniture sectors, as well as hospital groups, including on
-              international matters.
+              In disputes, our priority is to reach a commercially sustainable
+              resolution before a matter reaches the courtroom. Through the
+              firms we work with in other jurisdictions, we handle cross-border
+              files with the same proximity.
             </p>
           </div>
 
-          <dl class="credentials">
+          <div class="signature reveal" data-delay="2">
+            <b>Pınar Karakaş</b>
+            <small>Founding Attorney</small>
+          </div>
+        </div>
+
+        <div class="about__panel reveal" data-delay="1">
+          <h3>Credentials</h3>
+          <dl>
             <div>
               <dt>LL.B.</dt>
               <dd>İstanbul Bilgi University <small>Faculty of Law</small></dd>
@@ -325,6 +253,10 @@
               <dd>İzmir Bar Association</dd>
             </div>
             <div>
+              <dt>Based in</dt>
+              <dd>Konak / İzmir</dd>
+            </div>
+            <div>
               <dt>Languages</dt>
               <dd>Turkish · English</dd>
             </div>
@@ -334,15 +266,15 @@
     </div>
   </section>
 
-  <!-- --------------------------------------------------------- contact -- -->
+  <!-- ------------------------------------------------------- iletişim -- -->
   <section class="section section--dark" id="contact">
     <div class="shell">
-      <p class="kicker reveal"><b>04</b> Contact</p>
+      <p class="band-label reveal">Contact</p>
 
-      <h2 class="display-l reveal" style="max-width:20ch">Get in touch to discuss your legal matter.</h2>
+      <h2 class="display-l reveal" data-split style="max-width:22ch">Get in touch to discuss your legal matter.</h2>
       <p class="lead reveal" data-delay="1" style="margin:26px 0 clamp(44px,5vw,66px);max-width:54ch">
-        Outline the scope of your matter and we will arrange a suitable time for
-        an initial assessment.
+        Outline the scope of your matter and we will arrange a suitable time
+        for an initial assessment.
       </p>
 
       <div class="contact__grid contact__grid--form">
@@ -368,19 +300,19 @@
               <span>Subject</span>
               <select name="konu">
                 <option value="">Select</option>
-                <option>Corporate &amp; Commercial Law</option>
-                <option>Litigation &amp; Arbitration</option>
-                <option>Maritime Law</option>
-                <option>Healthcare Law</option>
-                <option>Real Estate &amp; Construction</option>
-                <option>Banking &amp; Finance</option>
-                <option>Mining Law</option>
-                <option>Enforcement &amp; Insolvency</option>
-                <option>Employment Law</option>
-                <option>Administrative &amp; Tax Law</option>
-                <option>Intellectual Property</option>
-                <option>Insurance Law</option>
-                <option>Other</option>
+                <option>Ticaret ve Şirketler Hukuku</option>
+                <option>Dava ve Tahkim</option>
+                <option>Deniz Ticareti Hukuku</option>
+                <option>Sağlık Hukuku</option>
+                <option>Gayrimenkul ve İnşaat Hukuku</option>
+                <option>Banka ve Finans Hukuku</option>
+                <option>Maden Hukuku</option>
+                <option>İcra ve İflas Hukuku</option>
+                <option>İş Hukuku</option>
+                <option>İdare ve Vergi Hukuku</option>
+                <option>Fikri Mülkiyet Hukuku</option>
+                <option>Sigorta Hukuku</option>
+                <option>Diğer</option>
               </select>
             </label>
           </div>
@@ -461,7 +393,6 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#practice-areas">Practice Areas</a></li>
-          <li><a href="#pinar-karakas">Pınar Karakaş</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="privacy/">Privacy Notice</a></li>
           <li><a href="../">Türkçe</a></li>
@@ -504,9 +435,15 @@
 
 <nav class="action-bar" aria-label="Quick contact">
   <ul>
-    <li><a href="tel:+905305493090"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6.6 3h-2A1.6 1.6 0 0 0 3 4.6C3 12.6 11.4 21 19.4 21a1.6 1.6 0 0 0 1.6-1.6v-2a1 1 0 0 0-.8-1l-3.2-.7a1 1 0 0 0-1 .4l-1 1.3a13.6 13.6 0 0 1-5.4-5.4l1.3-1a1 1 0 0 0 .4-1l-.7-3.2a1 1 0 0 0-1-.8Z"/></svg>Call</a></li>
-    <li><a href="https://wa.me/905305493090" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.24-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>WhatsApp</a></li>
-    <li><a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 6.5L21 6"/></svg>Write</a></li>
+    <li><a href="tel:+905305493090">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6.6 3h-2A1.6 1.6 0 0 0 3 4.6C3 12.6 11.4 21 19.4 21a1.6 1.6 0 0 0 1.6-1.6v-2a1 1 0 0 0-.8-1l-3.2-.7a1 1 0 0 0-1 .4l-1 1.3a13.6 13.6 0 0 1-5.4-5.4l1.3-1a1 1 0 0 0 .4-1l-.7-3.2a1 1 0 0 0-1-.8Z"/></svg>
+      Call</a></li>
+    <li><a href="https://wa.me/905305493090" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.24-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+      WhatsApp</a></li>
+    <li><a href="#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 6.5L21 6"/></svg>
+      Write</a></li>
   </ul>
 </nav>
 

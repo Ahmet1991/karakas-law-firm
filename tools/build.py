@@ -10,7 +10,11 @@ Node toolchain. Re-run this only when content.json changes.
 import html
 import json
 import os
+import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import icons
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "tools", "content.json")
@@ -692,6 +696,64 @@ def build_legal_page(lang):
     ), doc
 
 
+ARROW_WIDE = (
+    '<svg viewBox="0 0 24 14" fill="none" aria-hidden="true">'
+    '<path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" '
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>'
+)
+
+NL = "\n"
+
+
+def home_area_row(lang):
+    """The practice-area icon row that sits on the homepage."""
+    base = "faaliyet-alanlari/" if lang == "tr" else "practice-areas/"
+    detail = L[lang]["detail"]
+    tiles = []
+    for area in AREAS:
+        slug = area["slug"][lang]
+        tiles.append(
+            '        <a class="area-tile reveal" href="{base}{slug}/" aria-label="{aria}">{nl}'
+            '          <span class="area-tile__icon">{icon}</span>{nl}'
+            "          <h3>{title}</h3>{nl}"
+            "          <p>{short}</p>{nl}"
+            '          <span class="area-tile__arrow">{arrow}</span>{nl}'
+            "        </a>".format(
+                base=base,
+                slug=slug,
+                aria=e("{} — {}".format(area["title"][lang], detail)),
+                icon=icons.icon(area["slug"]["tr"]),
+                title=e(area["title"][lang]),
+                short=e(area["short"][lang]),
+                arrow=ARROW_WIDE,
+                nl=NL,
+            )
+        )
+    return '      <div class="area-row">' + NL + NL.join(tiles) + NL + "      </div>"
+
+
+def sync_home(lang):
+    """Rewrite the marked block inside the hand-written homepage."""
+    path = os.path.join(
+        ROOT, "index.html" if lang == "tr" else os.path.join("en", "index.html")
+    )
+    with open(path, encoding="utf-8") as fh:
+        src = fh.read()
+
+    pattern = re.compile(r"(<!-- AREAS:START[^>]*-->)(.*?)(<!-- AREAS:END -->)", re.S)
+    if not pattern.search(src):
+        raise SystemExit(path + ": AREAS isaretleri bulunamadi")
+
+    block = home_area_row(lang)
+    out = pattern.sub(
+        lambda m: m.group(1) + NL + block + NL + "      " + m.group(3), src, count=1
+    )
+
+    with open(path, "w", encoding="utf-8", newline=NL) as fh:
+        fh.write(out)
+    return os.path.relpath(path, ROOT).replace(os.sep, "/")
+
+
 def write(path, doc):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
@@ -737,6 +799,9 @@ def main():
         for i in range(len(AREAS)):
             written.append(write(*build_area_page(lang, i)))
         written.append(write(*build_legal_page(lang)))
+
+    for lang in ("tr", "en"):
+        written.append(sync_home(lang))
 
     written.append(build_sitemap())
     written.append(build_robots())

@@ -77,7 +77,7 @@ for w in (420, 840):
     record(*save_webp(lockup, f"logo-lockup-{w}.webp", w))
 
 lockup_dark = for_dark(lockup)
-for w in (420, 840):
+for w in (260, 420, 840):
     record(*save_webp(lockup_dark, f"logo-lockup-ondark-{w}.webp", w))
 
 # --------------------------------------------------------------- monogram ---

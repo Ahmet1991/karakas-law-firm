@@ -135,6 +135,33 @@
     else wide.addListener(onWide);
   }
 
+  /* --------------------------------------------------- headline splitting -- */
+  /* Each word gets its own mask so headlines rise a beat apart instead of
+     sliding in as one block. Done here rather than in the markup so the copy
+     stays plain text and editable. */
+  if (!reduceMotion) {
+    Array.prototype.forEach.call(
+      document.querySelectorAll("[data-split]"),
+      function (heading) {
+        var words = heading.textContent.trim().split(/\s+/);
+        heading.textContent = "";
+        words.forEach(function (word, i) {
+          var mask = document.createElement("span");
+          mask.className = "word";
+          var inner = document.createElement("span");
+          inner.textContent = word;
+          inner.style.setProperty("--wd", i * 46 + "ms");
+          mask.appendChild(inner);
+          heading.appendChild(mask);
+          if (i < words.length - 1) {
+            heading.appendChild(document.createTextNode(" "));
+          }
+        });
+        heading.classList.add("reveal-words");
+      }
+    );
+  }
+
   /* ------------------------------------------------------ scroll reveal -- */
   Array.prototype.forEach.call(
     document.querySelectorAll(".practice__grid .card"),
@@ -143,7 +170,7 @@
     }
   );
 
-  var animated = document.querySelectorAll(".reveal, .rise, .draw");
+  var animated = document.querySelectorAll(".reveal, .rise, .draw, .reveal-words");
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
     Array.prototype.forEach.call(animated, function (el) {

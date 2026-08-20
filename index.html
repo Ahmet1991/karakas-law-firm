@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a0f1a">
+<meta name="theme-color" content="#100c09">
 
 <title>Karakaş Hukuk Bürosu | İzmir — Kurumsal Hukuk ve Danışmanlık</title>
 <meta name="description" content="İzmir merkezli Karakaş Hukuk Bürosu; yerli ve yabancı şirketlere ticaret, deniz ticareti, maden, sağlık, finans ve gayrimenkul hukuku alanlarında avukatlık ve danışmanlık hizmeti verir.">
@@ -34,8 +34,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/mark-120.webp">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/logo-lockup-ondark-260.webp">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -46,11 +46,9 @@
   <div class="shell nav-wrap">
 
     <a class="brand" href="./" aria-label="Karakaş Hukuk Bürosu — ana sayfa">
-      <img class="brand__mark" src="assets/mark-120.webp" srcset="assets/mark-120.webp 120w, assets/mark-240.webp 240w" sizes="46px" width="120" height="149" alt="" fetchpriority="high">
-      <span class="brand__type">
-        <span class="brand__name">KARAKAŞ</span>
-        <span class="brand__sub">HUKUK BÜROSU</span>
-      </span>
+      <img class="brand__lockup" src="assets/logo-lockup-ondark-260.webp"
+           srcset="assets/logo-lockup-ondark-260.webp 260w, assets/logo-lockup-ondark-420.webp 420w"
+           sizes="132px" width="260" height="209" alt="Karakaş Hukuk Bürosu" fetchpriority="high">
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menüyü aç">
@@ -59,8 +57,7 @@
 
     <nav class="main-nav" id="main-nav" aria-label="Ana menü">
       <a class="main-nav__link" href="#hakkimizda">Hakkımızda</a>
-      <a class="main-nav__link" href="#faaliyet-alanlari">Faaliyet Alanları</a>
-      <a class="main-nav__link" href="#pinar-karakas">Pınar Karakaş</a>
+      <a class="main-nav__link" href="#faaliyet-alanlari">Faaliyet Alanlarımız</a>
       <a class="main-nav__link" href="#iletisim">İletişim</a>
       <a class="nav-cta" href="#iletisim">
         Danışmanlık Al
@@ -81,15 +78,6 @@
   <!-- ---------------------------------------------------------- hero -- -->
   <section class="hero">
     <div class="hero__glow" aria-hidden="true"></div>
-
-    <!-- HERO FOTOĞRAFI (opsiyonel).
-         İzmir / büro fotoğrafı hazır olduğunda aşağıdaki iki satırın yorumunu
-         kaldırmak yeterli; stil tarafında başka değişiklik gerekmez. Fotoğraf
-         otomatik olarak bronz-lacivert duotone'a çevrilir.
-    <img class="hero__photo" src="assets/hero-izmir.webp" alt="" aria-hidden="true">
-    <div class="hero__veil" aria-hidden="true"></div>
-    -->
-
     <div class="hero__grid" aria-hidden="true"></div>
     <img class="hero__ghost" src="assets/mark-ghost.webp" alt="" aria-hidden="true" width="400" height="497" loading="lazy" decoding="async">
 
@@ -97,229 +85,162 @@
       <div>
         <p class="eyebrow reveal">İZMİR BAROSU · KURUMSAL HUKUK</p>
 
-        <h1 class="display-xl">
-          <span class="rise"><span>Karmaşık meselelerde,</span></span>
-          <span class="rise"><span>net hukuk.</span></span>
-        </h1>
+        <h1 class="display-xl" data-split>Karmaşık meselelerde, net hukuk.</h1>
 
         <p class="hero__lead lead reveal" data-delay="2">
-          Karakaş Hukuk Bürosu; yerli ve yabancı şirketler ile gerçek kişilere,
-          ticaret hukukundan deniz ticaretine, madencilikten sağlık ve finansa
-          uzanan alanlarda avukatlık ve hukuki danışmanlık hizmeti sunar.
+          Yerli ve yabancı şirketlere ticaret hukukundan deniz ticaretine,
+          madencilikten sağlık ve finansa uzanan alanlarda avukatlık ve
+          danışmanlık hizmeti sunuyoruz.
         </p>
 
         <div class="hero__actions reveal" data-delay="3">
           <a class="btn btn--gold" href="#faaliyet-alanlari">
-            Faaliyet Alanları
+            Faaliyet Alanlarımızı Keşfedin
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           </a>
-          <a class="btn btn--outline-light" href="#iletisim">İletişime Geçin</a>
         </div>
       </div>
 
-      <aside class="hero__card reveal" data-delay="2" aria-label="Büro künyesi">
-        <dl>
-          <div>
-            <dt>Merkez</dt>
-            <dd>İzmir, Türkiye</dd>
-          </div>
-          <div class="hero__card-rule draw" role="presentation"></div>
-          <div>
-            <dt>Baro</dt>
-            <dd>İzmir Barosu</dd>
-          </div>
-          <div class="hero__card-rule draw" role="presentation"></div>
-          <div>
-            <dt>Çalışma Dilleri</dt>
-            <dd>Türkçe · İngilizce</dd>
-          </div>
-        </dl>
-      </aside>
+      <div class="hero__media reveal" data-delay="2">
+        <img src="assets/pinar-karakas-640.webp"
+             srcset="assets/pinar-karakas-400.webp 400w, assets/pinar-karakas-640.webp 640w, assets/pinar-karakas-900.webp 900w"
+             sizes="(max-width: 1024px) 1px, 34vw"
+             width="640" height="619" alt="Avukat Pınar Karakaş" fetchpriority="high">
+      </div>
     </div>
 
     <div class="scroll-cue" aria-hidden="true"><i></i>Keşfet</div>
   </section>
 
-  <!-- ------------------------------------------------------ hakkımızda -- -->
-  <section class="section" id="hakkimizda">
-    <div class="shell">
-      <p class="kicker reveal"><b>01</b> Hakkımızda</p>
-
-      <div class="intro__grid">
-        <h2 class="display-l reveal">Ticari hayatın içinden bakan bir hukuk pratiği.</h2>
-
-        <div class="intro__body reveal" data-delay="1">
-          <p>
-            Karakaş Hukuk Bürosu, Avukat Pınar Karakaş tarafından İzmir'de kuruldu.
-            Büro; şirketler ve gerçek kişiler için ticaret ve şirketler hukukundan
-            uyuşmazlık çözümüne, deniz ticaretinden sağlık, gayrimenkul, finans ve
-            iş hukukuna uzanan geniş bir alanda çalışır.
-          </p>
-          <p>
-            Sağlık, kimya, mermer, makina, mühendislik, akaryakıt ve mobilya
-            sektörlerinde faaliyet gösteren şirketlere ve hastane gruplarına —
-            yurt içi ve yurt dışı sahalar dahil olmak üzere — düzenli hukuki
-            danışmanlık sağlar.
-          </p>
-          <p>
-            Uyuşmazlıklarda önceliğimiz, meseleyi mahkemeye taşımadan önce ticari
-            olarak sürdürülebilir bir çözüme kavuşturmaktır. Farklı ülkelerde iş
-            birliği yürüttüğümüz bürolar sayesinde sınır ötesi dosyalarda da aynı
-            yakınlıkta çalışırız.
-          </p>
-        </div>
-      </div>
-
-      <blockquote class="pullquote reveal" data-delay="1">
-        Hukuki tavsiye, ancak işin ticari gerçekliğine oturduğunda değer üretir.
-      </blockquote>
-    </div>
-  </section>
-
   <!-- ------------------------------------------------- faaliyet alanları -- -->
   <section class="section section--dark" id="faaliyet-alanlari">
     <div class="shell">
+      <p class="band-label reveal">Faaliyet Alanlarımız</p>
 
-      <div class="practice__head">
-        <div>
-          <p class="kicker reveal"><b>02</b> Faaliyet Alanları</p>
-          <h2 class="display-l reveal">Hukuki çalışma alanları</h2>
-        </div>
-        <p class="lead reveal" data-delay="1">
-          Aşağıdaki başlıklar büronun çalışma alanlarını genel olarak gösterir ve
-          uzmanlık iddiası niteliğinde değildir. Her başlık, kapsamın ayrıntısına
-          açılır.
-        </p>
+      <!-- AREAS:START — tools/build.py tarafından content.json'dan üretilir -->
+      <div class="area-row">
+        <a class="area-tile reveal" href="faaliyet-alanlari/ticaret-ve-sirketler-hukuku/" aria-label="Ticaret ve Şirketler Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 20V9m4 11V9m4 11V9m4 11V9m4 11V9M2.5 9 12 3.5 21.5 9Z"/></svg></span>
+          <h3>Ticaret ve Şirketler Hukuku</h3>
+          <p>Kuruluş, pay devri ve kurumsal yönetim.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/dava-ve-tahkim/" aria-label="Dava ve Tahkim — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v17M8 20h8M5 7h14M5 7 2.5 13h5ZM19 7l-2.5 6h5Z"/><path d="M2.5 13a2.5 2.5 0 0 0 5 0M16.5 13a2.5 2.5 0 0 0 5 0"/></svg></span>
+          <h3>Dava ve Tahkim</h3>
+          <p>Ulusal ve uluslararası uyuşmazlık çözümü.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/deniz-ticareti-hukuku/" aria-label="Deniz Ticareti Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 6.5V21M8 10h8"/><path d="M4 13a8 8 0 0 0 16 0"/><path d="M4 13H2m18 0h2"/></svg></span>
+          <h3>Deniz Ticareti Hukuku</h3>
+          <p>Yük, charterparty, gemi finansmanı ve tescili.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/saglik-hukuku/" aria-label="Sağlık Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v12H4Z"/><path d="M12 4v3"/><path d="M7 13h2.5l1.5-3 2 6 1.5-3H17"/></svg></span>
+          <h3>Sağlık Hukuku</h3>
+          <p>Hastane işlemleri ve tazminat davaları.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/gayrimenkul-ve-insaat-hukuku/" aria-label="Gayrimenkul ve İnşaat Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M6 21V8l7-4v17M13 21V11h5v10"/><path d="M9 8.5v2m0 3v2M16 14.5v2"/></svg></span>
+          <h3>Gayrimenkul ve İnşaat Hukuku</h3>
+          <p>Proje geliştirme, inşaat ve imar süreçleri.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/banka-ve-finans-hukuku/" aria-label="Banka ve Finans Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M5 20V10m4 10V10m6 10V10m4 10V10M2 10 12 4l10 6Z"/><circle cx="12" cy="14.5" r="1.6"/></svg></span>
+          <h3>Banka ve Finans Hukuku</h3>
+          <p>Kredi, proje finansmanı ve sermaye piyasaları.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/maden-hukuku/" aria-label="Maden Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20"/><path d="M4 21 12 8l8 13"/><path d="M8.5 14.5h7"/><path d="M12 8V3"/><path d="M9 4.5h6"/></svg></span>
+          <h3>Maden Hukuku</h3>
+          <p>Ruhsatlandırma ve maden mevzuatına uyum.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/icra-ve-iflas-hukuku/" aria-label="İcra ve İflas Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h9l5 5v13H5Z"/><path d="M14 3v5h5"/><path d="M8 13h8M8 17h5"/></svg></span>
+          <h3>İcra ve İflas Hukuku</h3>
+          <p>Alacak takibi, konkordato ve yapılandırma.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/is-hukuku/" aria-label="İş Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8" r="2.6"/><circle cx="16.5" cy="9.5" r="2.1"/><path d="M3.5 19a5 5 0 0 1 10 0"/><path d="M14.5 15.2a4.4 4.4 0 0 1 6 3.8"/></svg></span>
+          <h3>İş Hukuku</h3>
+          <p>Sözleşme, fesih ve işçilik alacağı davaları.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/idare-ve-vergi-hukuku/" aria-label="İdare ve Vergi Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21h16M6 21V10m12 11V10M3 10 12 4l9 6Z"/><path d="M9.5 21v-5.5h5V21"/><path d="M12 13v1.5"/></svg></span>
+          <h3>İdare ve Vergi Hukuku</h3>
+          <p>İdari işlem iptali ve vergi uyuşmazlıkları.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/fikri-mulkiyet-hukuku/" aria-label="Fikri Mülkiyet Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.4 10.9c.5.4.9 1.1.9 1.8V16h5v-.3c0-.7.4-1.4.9-1.8A6 6 0 0 0 12 3Z"/></svg></span>
+          <h3>Fikri Mülkiyet Hukuku</h3>
+          <p>Marka, patent, telif ve lisans süreçleri.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="area-tile reveal" href="faaliyet-alanlari/sigorta-hukuku/" aria-label="Sigorta Hukuku — İncele">
+          <span class="area-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.3 3 8.1 7.5 9 4.5-.9 7.5-4.7 7.5-9V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></span>
+          <h3>Sigorta Hukuku</h3>
+          <p>Rücu, tazminat ve poliçe uyuşmazlıkları.</p>
+          <span class="area-tile__arrow"><svg viewBox="0 0 24 14" fill="none" aria-hidden="true"><path d="M1 7h20M16 2l5 5-5 5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
       </div>
+      <!-- AREAS:END -->
 
-      <div class="practice__grid">
-
-        <a class="card reveal" href="faaliyet-alanlari/ticaret-ve-sirketler-hukuku/">
-          <span class="card__no">01</span>
-          <h3 class="card__title">Ticaret ve Şirketler Hukuku</h3>
-          <p class="card__desc">Kuruluştan pay devrine, genel kuruldan yönetim sorumluluğuna kurumsal yaşamın tamamı.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="faaliyet-alanlari/dava-ve-tahkim/">
-          <span class="card__no">02</span>
-          <h3 class="card__title">Dava ve Tahkim</h3>
-          <p class="card__desc">Ulusal ve uluslararası uyuşmazlıklar; yabancı tahkim kararlarının Türkiye'de icrası.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="faaliyet-alanlari/deniz-ticareti-hukuku/">
-          <span class="card__no">03</span>
-          <h3 class="card__title">Deniz Ticareti Hukuku</h3>
-          <p class="card__desc">Charterparty ve yük hasarı, çatma ve kurtarma, gemi kiralama, finansmanı ve tescili.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="faaliyet-alanlari/saglik-hukuku/">
-          <span class="card__no">04</span>
-          <h3 class="card__title">Sağlık Hukuku</h3>
-          <p class="card__desc">Hastane kuruluş ve devri, klinik araştırma sözleşmeleri, tazminat davalarında vekillik.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="faaliyet-alanlari/gayrimenkul-ve-insaat-hukuku/">
-          <span class="card__no">05</span>
-          <h3 class="card__title">Gayrimenkul ve İnşaat Hukuku</h3>
-          <p class="card__desc">Proje geliştirme, inşaat ve kiralama sözleşmeleri, kentsel dönüşüm, imar uyuşmazlıkları.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="faaliyet-alanlari/banka-ve-finans-hukuku/">
-          <span class="card__no">06</span>
-          <h3 class="card__title">Banka ve Finans Hukuku</h3>
-          <p class="card__desc">Kredi ve proje finansmanı, sermaye piyasaları, yapılandırılmış ve varlığa dayalı finansman.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="faaliyet-alanlari/maden-hukuku/">
-          <span class="card__no">07</span>
-          <h3 class="card__title">Maden Hukuku</h3>
-          <p class="card__desc">Ruhsatlandırma, 3213 sayılı Maden Kanunu uyumu, yabancı yatırımcı danışmanlığı.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="faaliyet-alanlari/icra-ve-iflas-hukuku/">
-          <span class="card__no">08</span>
-          <h3 class="card__title">İcra ve İflas Hukuku</h3>
-          <p class="card__desc">Alacak takibi, rehnin paraya çevrilmesi, menfi tespit, konkordato ve yapılandırma.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="faaliyet-alanlari/is-hukuku/">
-          <span class="card__no">09</span>
-          <h3 class="card__title">İş Hukuku</h3>
-          <p class="card__desc">Sözleşme mimarisi, fesih süreçleri, işe iade ve işçilik alacağı davaları, çalışma izinleri.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" href="faaliyet-alanlari/idare-ve-vergi-hukuku/">
-          <span class="card__no">10</span>
-          <h3 class="card__title">İdare ve Vergi Hukuku</h3>
-          <p class="card__desc">İdari işlemin iptali, gümrük ve vergi uyuşmazlıkları, uluslararası şirket yapılandırması.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="faaliyet-alanlari/fikri-mulkiyet-hukuku/">
-          <span class="card__no">11</span>
-          <h3 class="card__title">Fikri Mülkiyet Hukuku</h3>
-          <p class="card__desc">Marka, patent ve tasarım tescili, telif, haksız rekabet, lisans ve devir sözleşmeleri.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="faaliyet-alanlari/sigorta-hukuku/">
-          <span class="card__no">12</span>
-          <h3 class="card__title">Sigorta Hukuku</h3>
-          <p class="card__desc">Rücu davaları, taşımacılık kaynaklı tazminat talepleri, poliçe ve acente uyumu.</p>
-          <span class="card__go">İncele <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg></span>
-        </a>
-
-      </div>
+      <p class="band-note reveal">
+        Başlıklar büronun çalışma alanlarını genel olarak gösterir ve uzmanlık
+        iddiası niteliğinde değildir.
+      </p>
     </div>
   </section>
 
-  <!-- --------------------------------------------------- pınar karakaş -- -->
-  <section class="section" id="pinar-karakas">
+  <!-- ------------------------------------------------------ hakkımızda -- -->
+  <section class="section" id="hakkimizda">
     <div class="shell">
-      <p class="kicker reveal"><b>03</b> Kurucu</p>
+      <p class="band-label reveal">Hakkımızda</p>
 
-      <div class="profile__grid">
-        <div class="portrait reveal">
-          <img src="assets/pinar-karakas-400.webp"
-               srcset="assets/pinar-karakas-400.webp 400w, assets/pinar-karakas-640.webp 640w, assets/pinar-karakas-900.webp 900w"
-               sizes="(max-width: 900px) 340px, 30vw"
-               width="400" height="387" loading="lazy" decoding="async"
-               alt="Avukat Pınar Karakaş">
-        </div>
+      <div class="about__grid">
+        <div>
+          <h2 class="display-l reveal" data-split>Ticari hayatın içinden bakan bir hukuk pratiği.</h2>
 
-        <div class="reveal" data-delay="1">
-          <h2 class="profile__name display-l">Pınar Karakaş</h2>
-          <p class="profile__role">Kurucu · Avukat</p>
-
-          <div class="profile__body">
+          <div class="about__body reveal" data-delay="1">
             <p>
-              İstanbul Bilgi Üniversitesi Hukuk Fakültesi'nden mezun oldu.
-              Uluslararası ticaret hukuku yüksek lisansını Birleşik Krallık'ta
-              Coventry University'de onur derecesiyle tamamladı.
+              Karakaş Hukuk Bürosu, Avukat Pınar Karakaş tarafından İzmir'de
+              kuruldu. Büro; şirketler ve gerçek kişiler için ticaret ve
+              şirketler hukukundan uyuşmazlık çözümüne, deniz ticaretinden
+              sağlık, gayrimenkul, finans ve iş hukukuna uzanan geniş bir alanda
+              çalışır.
             </p>
             <p>
-              İstanbul'da saygın bir avukatlık bürosundaki çalışmaları ve TMSF'ye
-              doğrudan bağlı şirketler grubunun vekilliği görevinin ardından
-              İzmir'e dönerek Karakaş Hukuk Bürosu'nu kurdu.
+              Sağlık, kimya, mermer, makina, mühendislik, akaryakıt ve mobilya
+              sektörlerinde faaliyet gösteren şirketlere ve hastane gruplarına —
+              yurt içi ve yurt dışı sahalar dahil olmak üzere — düzenli hukuki
+              danışmanlık sağlar.
             </p>
             <p>
-              Halihazırda sağlık, kimya, mermer, makina, mühendislik, akaryakıt ve
-              mobilya sektörlerinin önde gelen şirketlerine ve hastane gruplarına,
-              uluslararası sahalar dahil olmak üzere avukatlık ve danışmanlık
-              hizmeti veriyor.
+              Uyuşmazlıklarda önceliğimiz, meseleyi mahkemeye taşımadan önce
+              ticari olarak sürdürülebilir bir çözüme kavuşturmaktır. Farklı
+              ülkelerde iş birliği yürüttüğümüz bürolar sayesinde sınır ötesi
+              dosyalarda da aynı yakınlıkta çalışırız.
             </p>
           </div>
 
-          <dl class="credentials">
+          <div class="signature reveal" data-delay="2">
+            <b>Pınar Karakaş</b>
+            <small>Kurucu Avukat</small>
+          </div>
+        </div>
+
+        <div class="about__panel reveal" data-delay="1">
+          <h3>Künye</h3>
+          <dl>
             <div>
               <dt>LL.B.</dt>
               <dd>İstanbul Bilgi Üniversitesi <small>Hukuk Fakültesi · Lisans</small></dd>
@@ -331,6 +252,10 @@
             <div>
               <dt>Baro</dt>
               <dd>İzmir Barosu</dd>
+            </div>
+            <div>
+              <dt>Merkez</dt>
+              <dd>Konak / İzmir</dd>
             </div>
             <div>
               <dt>Diller</dt>
@@ -345,9 +270,9 @@
   <!-- ------------------------------------------------------- iletişim -- -->
   <section class="section section--dark" id="iletisim">
     <div class="shell">
-      <p class="kicker reveal"><b>04</b> İletişim</p>
+      <p class="band-label reveal">İletişim</p>
 
-      <h2 class="display-l reveal" style="max-width:20ch">Hukuki konunuzu görüşmek için iletişime geçin.</h2>
+      <h2 class="display-l reveal" data-split style="max-width:20ch">Hukuki konunuzu görüşmek için iletişime geçin.</h2>
       <p class="lead reveal" data-delay="1" style="margin:26px 0 clamp(44px,5vw,66px);max-width:54ch">
         Dosyanızın kapsamını kısaca aktarın; ilk değerlendirme için uygun bir
         görüşme zamanı belirleyelim.
@@ -468,8 +393,7 @@
         <h3>Site</h3>
         <ul>
           <li><a href="#hakkimizda">Hakkımızda</a></li>
-          <li><a href="#faaliyet-alanlari">Faaliyet Alanları</a></li>
-          <li><a href="#pinar-karakas">Pınar Karakaş</a></li>
+          <li><a href="#faaliyet-alanlari">Faaliyet Alanlarımız</a></li>
           <li><a href="#iletisim">İletişim</a></li>
           <li><a href="kvkk/">Aydınlatma Metni</a></li>
           <li><a href="en/">English</a></li>

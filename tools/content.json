@@ -1,6 +1,5 @@
 {
   "_note": "Site içeriğinin tek kaynağı. Bu dosyayı düzenleyip `python tools/build.py` çalıştırınca faaliyet alanı sayfaları yeniden üretilir. Üretilen HTML dosyaları repoya işlenir; yayına almak için build adımı gerekmez.",
-
   "firm": {
     "name": "Karakaş Hukuk Bürosu",
     "nameEn": "Karakaş Law Firm",
@@ -15,15 +14,24 @@
       "country": "TR"
     }
   },
-
   "areas": [
     {
       "no": "01",
-      "slug": { "tr": "ticaret-ve-sirketler-hukuku", "en": "corporate-and-commercial-law" },
-      "title": { "tr": "Ticaret ve Şirketler Hukuku", "en": "Corporate & Commercial Law" },
+      "slug": {
+        "tr": "ticaret-ve-sirketler-hukuku",
+        "en": "corporate-and-commercial-law"
+      },
+      "title": {
+        "tr": "Ticaret ve Şirketler Hukuku",
+        "en": "Corporate & Commercial Law"
+      },
       "card": {
         "tr": "Kuruluştan pay devrine, genel kuruldan yönetim sorumluluğuna kurumsal yaşamın tamamı.",
         "en": "The full corporate lifecycle — from incorporation and share transfers to governance and director liability."
+      },
+      "short": {
+        "tr": "Kuruluş, pay devri ve kurumsal yönetim.",
+        "en": "Formation, share transfers and governance."
       },
       "lead": {
         "tr": "Şirketin kuruluşundan pay yapısının değişimine, genel kurul kararlarından yönetim organının sorumluluğuna kadar kurumsal yaşamın her aşamasında hukuki yapıyı kurar ve koruruz. Önceliğimiz, ticari kararın alındığı anda hukuki sonucunun da öngörülebilir olmasıdır.",
@@ -54,14 +62,23 @@
         ]
       }
     },
-
     {
       "no": "02",
-      "slug": { "tr": "dava-ve-tahkim", "en": "litigation-and-arbitration" },
-      "title": { "tr": "Dava ve Tahkim", "en": "Litigation & Arbitration" },
+      "slug": {
+        "tr": "dava-ve-tahkim",
+        "en": "litigation-and-arbitration"
+      },
+      "title": {
+        "tr": "Dava ve Tahkim",
+        "en": "Litigation & Arbitration"
+      },
       "card": {
         "tr": "Ulusal ve uluslararası uyuşmazlıklar; yabancı tahkim kararlarının Türkiye'de icrası.",
         "en": "Domestic and cross-border disputes, including enforcement of foreign arbitral awards in Türkiye."
+      },
+      "short": {
+        "tr": "Ulusal ve uluslararası uyuşmazlık çözümü.",
+        "en": "Domestic and international dispute resolution."
       },
       "lead": {
         "tr": "Her uyuşmazlık mahkeme salonunda çözülmek zorunda değildir. Dosyayı önce ticari maliyeti, süresi ve ilişkinin geleceği üzerinden değerlendirir; müzakere ile çözülebilecek meseleleri çözer, gerektiğinde yargı ve tahkim yollarında sonuna kadar takip ederiz.",
@@ -88,14 +105,23 @@
         ]
       }
     },
-
     {
       "no": "03",
-      "slug": { "tr": "deniz-ticareti-hukuku", "en": "maritime-law" },
-      "title": { "tr": "Deniz Ticareti Hukuku", "en": "Maritime Law" },
+      "slug": {
+        "tr": "deniz-ticareti-hukuku",
+        "en": "maritime-law"
+      },
+      "title": {
+        "tr": "Deniz Ticareti Hukuku",
+        "en": "Maritime Law"
+      },
       "card": {
         "tr": "Charterparty ve yük hasarı, çatma ve kurtarma, gemi kiralama, finansmanı ve tescili.",
         "en": "Charterparty and cargo claims, collision and salvage, chartering, ship finance and registration."
+      },
+      "short": {
+        "tr": "Yük, charterparty, gemi finansmanı ve tescili.",
+        "en": "Cargo, charterparty, ship finance and registration."
       },
       "lead": {
         "tr": "Deniz ticareti, hızın ve sınır ötesi hukukun aynı anda işlediği bir alandır. Yük hasarından çatma ve kurtarmaya, gemi finansmanından tescile kadar süreçleri; taşıyan, yük ilgilisi ve sigortacı perspektiflerini birlikte gözeterek yürütürüz.",
@@ -124,14 +150,23 @@
         ]
       }
     },
-
     {
       "no": "04",
-      "slug": { "tr": "saglik-hukuku", "en": "healthcare-law" },
-      "title": { "tr": "Sağlık Hukuku", "en": "Healthcare Law" },
+      "slug": {
+        "tr": "saglik-hukuku",
+        "en": "healthcare-law"
+      },
+      "title": {
+        "tr": "Sağlık Hukuku",
+        "en": "Healthcare Law"
+      },
       "card": {
         "tr": "Hastane kuruluş ve devri, klinik araştırma sözleşmeleri, tazminat davalarında vekillik.",
         "en": "Hospital formation and transfer, clinical trial agreements, representation in malpractice claims."
+      },
+      "short": {
+        "tr": "Hastane işlemleri ve tazminat davaları.",
+        "en": "Hospital transactions and compensation claims."
       },
       "lead": {
         "tr": "Sağlık sektörü, ticari işleyişin mevzuat ve hasta hakları ile aynı anda kesiştiği bir alandır. Hastane gruplarına kuruluş ve devir süreçlerinden finansman sözleşmelerine, klinik araştırmalardan tazminat davalarına kadar bütüncül hizmet veririz.",
@@ -158,14 +193,23 @@
         ]
       }
     },
-
     {
       "no": "05",
-      "slug": { "tr": "gayrimenkul-ve-insaat-hukuku", "en": "real-estate-and-construction-law" },
-      "title": { "tr": "Gayrimenkul ve İnşaat Hukuku", "en": "Real Estate & Construction" },
+      "slug": {
+        "tr": "gayrimenkul-ve-insaat-hukuku",
+        "en": "real-estate-and-construction-law"
+      },
+      "title": {
+        "tr": "Gayrimenkul ve İnşaat Hukuku",
+        "en": "Real Estate & Construction"
+      },
       "card": {
         "tr": "Proje geliştirme, inşaat ve kiralama sözleşmeleri, kentsel dönüşüm, imar uyuşmazlıkları.",
         "en": "Project development, construction and lease agreements, urban regeneration, zoning disputes."
+      },
+      "short": {
+        "tr": "Proje geliştirme, inşaat ve imar süreçleri.",
+        "en": "Development, construction and zoning matters."
       },
       "lead": {
         "tr": "Gayrimenkul işlemlerinde risk çoğunlukla sözleşmenin imzalandığı anda değil, yıllar sonra ortaya çıkar. Tescil, proje geliştirme, finansman ve imar süreçlerini; uyuşmazlığı sözleşme aşamasında önleyecek biçimde kurgularız.",
@@ -196,14 +240,23 @@
         ]
       }
     },
-
     {
       "no": "06",
-      "slug": { "tr": "banka-ve-finans-hukuku", "en": "banking-and-finance-law" },
-      "title": { "tr": "Banka ve Finans Hukuku", "en": "Banking & Finance" },
+      "slug": {
+        "tr": "banka-ve-finans-hukuku",
+        "en": "banking-and-finance-law"
+      },
+      "title": {
+        "tr": "Banka ve Finans Hukuku",
+        "en": "Banking & Finance"
+      },
       "card": {
         "tr": "Kredi ve proje finansmanı, sermaye piyasaları, yapılandırılmış ve varlığa dayalı finansman.",
         "en": "Credit and project finance, capital markets, structured and asset-backed finance."
+      },
+      "short": {
+        "tr": "Kredi, proje finansmanı ve sermaye piyasaları.",
+        "en": "Credit, project finance and capital markets."
       },
       "lead": {
         "tr": "Finansman yapıları, tarafların risk iştahının hukuk diline çevrilmesidir. Kredi ve proje finansmanından sermaye piyasası işlemlerine, teminat yapılarının kurgulanmasından mevzuata uyuma kadar sürecin tamamında çalışırız.",
@@ -236,14 +289,23 @@
         ]
       }
     },
-
     {
       "no": "07",
-      "slug": { "tr": "maden-hukuku", "en": "mining-law" },
-      "title": { "tr": "Maden Hukuku", "en": "Mining Law" },
+      "slug": {
+        "tr": "maden-hukuku",
+        "en": "mining-law"
+      },
+      "title": {
+        "tr": "Maden Hukuku",
+        "en": "Mining Law"
+      },
       "card": {
         "tr": "Ruhsatlandırma, 3213 sayılı Maden Kanunu uyumu, yabancı yatırımcı danışmanlığı.",
         "en": "Licensing, compliance with Mining Law No. 3213, counsel to foreign investors."
+      },
+      "short": {
+        "tr": "Ruhsatlandırma ve maden mevzuatına uyum.",
+        "en": "Licensing and mining law compliance."
       },
       "lead": {
         "tr": "Madencilikte hukuki risk, ruhsat aşamasında verilen kararların on yıl sonraki sonucudur. 3213 sayılı Maden Kanunu ve ilgili mevzuat çerçevesinde ruhsatlandırmadan işletmeye, idari süreçlerden uyuşmazlıklara kadar süreci bütün olarak yönetiriz.",
@@ -268,14 +330,23 @@
         ]
       }
     },
-
     {
       "no": "08",
-      "slug": { "tr": "icra-ve-iflas-hukuku", "en": "enforcement-and-insolvency-law" },
-      "title": { "tr": "İcra ve İflas Hukuku", "en": "Enforcement & Insolvency" },
+      "slug": {
+        "tr": "icra-ve-iflas-hukuku",
+        "en": "enforcement-and-insolvency-law"
+      },
+      "title": {
+        "tr": "İcra ve İflas Hukuku",
+        "en": "Enforcement & Insolvency"
+      },
       "card": {
         "tr": "Alacak takibi, rehnin paraya çevrilmesi, menfi tespit, konkordato ve yapılandırma.",
         "en": "Debt recovery, enforcement of pledges, negative declaratory actions, composition and restructuring."
+      },
+      "short": {
+        "tr": "Alacak takibi, konkordato ve yapılandırma.",
+        "en": "Debt recovery, composition and restructuring."
       },
       "lead": {
         "tr": "Alacağın tahsili kadar, borçlu tarafta doğru savunma da teknik bir iştir. Alacaklı ve borçlu müvekkilleri aynı ciddiyetle temsil eder; takip, haciz, yapılandırma ve konkordato süreçlerini sonuç odaklı yürütürüz.",
@@ -306,14 +377,23 @@
         ]
       }
     },
-
     {
       "no": "09",
-      "slug": { "tr": "is-hukuku", "en": "employment-law" },
-      "title": { "tr": "İş Hukuku", "en": "Employment Law" },
+      "slug": {
+        "tr": "is-hukuku",
+        "en": "employment-law"
+      },
+      "title": {
+        "tr": "İş Hukuku",
+        "en": "Employment Law"
+      },
       "card": {
         "tr": "Sözleşme mimarisi, fesih süreçleri, işe iade ve işçilik alacağı davaları, çalışma izinleri.",
         "en": "Contract architecture, termination, reinstatement and wage claims, work permits."
+      },
+      "short": {
+        "tr": "Sözleşme, fesih ve işçilik alacağı davaları.",
+        "en": "Contracts, termination and wage claims."
       },
       "lead": {
         "tr": "İş hukuku uyuşmazlıklarının büyük bölümü, sözleşmenin ve iş yeri belgelerinin kurgulandığı aşamada önlenebilir. İşveren tarafında önleyici yapıyı kurar; fesih, işe iade ve alacak davalarında süreci mevzuat değişikliklerini takip ederek yürütürüz.",
@@ -342,14 +422,23 @@
         ]
       }
     },
-
     {
       "no": "10",
-      "slug": { "tr": "idare-ve-vergi-hukuku", "en": "administrative-and-tax-law" },
-      "title": { "tr": "İdare ve Vergi Hukuku", "en": "Administrative & Tax Law" },
+      "slug": {
+        "tr": "idare-ve-vergi-hukuku",
+        "en": "administrative-and-tax-law"
+      },
+      "title": {
+        "tr": "İdare ve Vergi Hukuku",
+        "en": "Administrative & Tax Law"
+      },
       "card": {
         "tr": "İdari işlemin iptali, gümrük ve vergi uyuşmazlıkları, uluslararası şirket yapılandırması.",
         "en": "Annulment of administrative acts, customs and tax disputes, international corporate structuring."
+      },
+      "short": {
+        "tr": "İdari işlem iptali ve vergi uyuşmazlıkları.",
+        "en": "Annulment actions and tax disputes."
       },
       "lead": {
         "tr": "İdareyle ilişkide süre, çoğu zaman esastan daha belirleyicidir. Başvuru ve itiraz süreçlerini kaçırılmayacak biçimde kurgular; idari işlemin iptalinden vergi uyuşmazlıklarına, uluslararası yapılandırmadan gümrük cezalarına kadar geniş bir alanda çalışırız.",
@@ -382,14 +471,23 @@
         ]
       }
     },
-
     {
       "no": "11",
-      "slug": { "tr": "fikri-mulkiyet-hukuku", "en": "intellectual-property-law" },
-      "title": { "tr": "Fikri Mülkiyet Hukuku", "en": "Intellectual Property" },
+      "slug": {
+        "tr": "fikri-mulkiyet-hukuku",
+        "en": "intellectual-property-law"
+      },
+      "title": {
+        "tr": "Fikri Mülkiyet Hukuku",
+        "en": "Intellectual Property"
+      },
       "card": {
         "tr": "Marka, patent ve tasarım tescili, telif, haksız rekabet, lisans ve devir sözleşmeleri.",
         "en": "Trademark, patent and design registration, copyright, unfair competition, licensing and assignment."
+      },
+      "short": {
+        "tr": "Marka, patent, telif ve lisans süreçleri.",
+        "en": "Trademarks, patents, copyright and licensing."
       },
       "lead": {
         "tr": "Fikri mülkiyet, çoğu şirket için bilançoda görünmeyen en değerli varlıktır. Portföyün tescilinden lisanslanmasına, ihlal hâlinde dava ve alternatif çözüm yollarına kadar bu varlığı korumaya yönelik bütüncül bir yaklaşım izleriz.",
@@ -416,14 +514,23 @@
         ]
       }
     },
-
     {
       "no": "12",
-      "slug": { "tr": "sigorta-hukuku", "en": "insurance-law" },
-      "title": { "tr": "Sigorta Hukuku", "en": "Insurance Law" },
+      "slug": {
+        "tr": "sigorta-hukuku",
+        "en": "insurance-law"
+      },
+      "title": {
+        "tr": "Sigorta Hukuku",
+        "en": "Insurance Law"
+      },
       "card": {
         "tr": "Rücu davaları, taşımacılık kaynaklı tazminat talepleri, poliçe ve acente uyumu.",
         "en": "Subrogation claims, transport-related compensation, policy and agency compliance."
+      },
+      "short": {
+        "tr": "Rücu, tazminat ve poliçe uyuşmazlıkları.",
+        "en": "Subrogation, compensation and policy disputes."
       },
       "lead": {
         "tr": "Sigorta uyuşmazlıkları çoğunlukla poliçenin tek bir cümlesinde düğümlenir. Sigorta şirketleri, acenteler ve sigortalılar için poliçe yorumundan rücu davalarına, taşımacılık kaynaklı tazminat taleplerinden mevzuata uyuma kadar çalışırız.",

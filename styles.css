@@ -694,18 +694,18 @@ h3 {
 /* No width here — .shell owns the measure. */
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.62fr);
-  gap: clamp(48px, 7vw, 108px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: clamp(40px, 5vw, 76px);
   align-items: center;
 }
 
 .hero h1 {
   margin: 26px 0 0;
-  max-width: 15ch;
+  max-width: 13ch;
 }
 
 .hero__lead {
-  max-width: 54ch;
+  max-width: 46ch;
   margin: 32px 0 0;
   color: var(--on-dark-muted);
 }
@@ -2716,7 +2716,7 @@ body::after {
 .hero__media::before {
   content: "";
   position: absolute;
-  inset: 8% -4% 0 -4%;
+  inset: -6% -5% 0 -5%;
   background: radial-gradient(
       68% 58% at 50% 34%,
       rgba(201, 153, 99, 0.22),
@@ -2731,8 +2731,8 @@ body::after {
 .hero__media::after {
   content: "";
   position: absolute;
-  left: -4%;
-  right: -4%;
+  left: -5%;
+  right: -5%;
   bottom: 0;
   height: 2px;
   background: linear-gradient(

@@ -183,7 +183,7 @@ body{
   background:
     linear-gradient(90deg,#090908 0%,rgba(9,9,8,.62) 15%,rgba(9,9,8,.12) 42%,transparent 62%),
     linear-gradient(180deg,transparent 54%,rgba(0,0,0,.28)),
-    url("assets/hakkimizda-terazi-masa.webp") center/cover no-repeat;
+    url("assets/hakkimizda-terazi-foto.webp") center/cover no-repeat;
 }
 
 /* Articles */
@@ -194,7 +194,7 @@ body{
   background:#0a0a09;
   border-color:rgba(195,148,82,.34);
 }
-.article-media{aspect-ratio:16/7.3}
+.article-media{aspect-ratio:3/2}
 .article-media.one{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.09)),url("assets/makale-kira-sozlesmeleri.webp")}
 .article-media.two{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.09)),url("assets/makale-ticari-sozlesmeler.webp")}
 .article-media.three{background-image:linear-gradient(180deg,transparent,rgba(0,0,0,.09)),url("assets/makale-is-hukuku.webp")}
@@ -229,7 +229,7 @@ body{
 
 @media(max-width:1180px){
   .site-header{height:82px}
-  .brand img{width:152px}
+  .brand img{width:165px}
   .main-nav{gap:18px}
   .nav-cta{padding:11px 15px}
   .hero{height:auto;min-height:700px}
@@ -238,7 +238,7 @@ body{
 
 @media(max-width:920px){
   .site-header{height:76px}
-  .brand img{width:124px}
+  .brand img{width:150px}
   .main-nav{inset:76px 0 auto}
   .hero{
     min-height:670px;
@@ -264,7 +264,7 @@ body{
 @media(max-width:640px){
   :root{--shell:min(100% - 28px,640px)}
   .site-header{height:70px}
-  .brand img{width:112px}
+  .brand img{width:136px}
   .main-nav{inset:70px 0 auto}
   .hero{min-height:640px}
   .hero__inner{padding:140px 0 48px}
@@ -284,7 +284,59 @@ body{
   .about-copy h2{font-size:36px}
   .about-media{min-height:260px}
   .article-grid{grid-template-columns:1fr}
-  .article-media{aspect-ratio:16/8.2}
+  .article-media{aspect-ratio:3/2}
   .footer-grid{grid-template-columns:1fr;gap:24px}
   .footer-bottom{flex-direction:column;gap:8px}
+}
+
+/* ------------------------------------------------------------------------
+   Visual-QA tuning for the homepage. These used to be injected from
+   redesign.js as an !important <style> block; they belong in the cascade.
+   Placed last so they win over the max-width blocks above.
+   ------------------------------------------------------------------------ */
+@media(min-width:1181px){
+  .site-header{height:112px}
+  .brand img{width:215px}
+  .main-nav{gap:clamp(22px,2vw,34px)}
+  .hero{height:720px;min-height:720px;max-height:720px}
+  .hero::before{
+    background:
+      linear-gradient(90deg,
+        #080807 0%,
+        rgba(8,8,7,.995) 28%,
+        rgba(8,8,7,.94) 40%,
+        rgba(8,8,7,.62) 53%,
+        rgba(8,8,7,.12) 70%,
+        rgba(8,8,7,.02) 100%) 0 0/100% 100% no-repeat,
+      linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.28)) 0 0/100% 100% no-repeat,
+      url("assets/hero-adalet-premium.webp") 97% center/auto 94% no-repeat;
+  }
+  .hero__inner{padding-top:82px}
+  .hero__copy{width:min(620px,46vw);transform:translateY(4px)}
+  .hero h1{font-size:clamp(56px,4.1vw,68px);max-width:16ch;line-height:1.03;letter-spacing:-.025em}
+  .hero__lead{max-width:50ch}
+}
+
+@media(min-width:921px) and (max-width:1180px){
+  .site-header{height:100px}
+  .brand img{width:190px}
+  .main-nav{gap:15px}
+  .hero{min-height:680px;height:680px}
+  .hero__inner{padding-top:76px}
+  .hero__copy{width:min(570px,50vw)}
+  .hero h1{font-size:56px;max-width:16ch}
+  .hero::before{
+    background:
+      linear-gradient(90deg,
+        #080807 0%,
+        rgba(8,8,7,.99) 30%,
+        rgba(8,8,7,.88) 43%,
+        rgba(8,8,7,.42) 58%,
+        rgba(8,8,7,.06) 77%) 0 0/100% 100% no-repeat,
+      url("assets/hero-adalet-premium.webp") 100% center/auto 90% no-repeat;
+  }
+}
+
+@media(max-width:640px){
+  .hero h1{max-width:12ch}
 }

@@ -1,0 +1,46 @@
+name: Regenerate practice SEO pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - '.github/workflows/seo-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate practice pages
+        run: python tools/build.py
+
+      - name: Apply persistent SEO layer
+        run: python tools/seo_postprocess.py
+
+      - name: Commit generated files
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add faaliyet-alanlari en/practice-areas kvkk en/privacy sitemap.xml robots.txt index.html en/index.html
+          if git diff --cached --quiet; then
+            echo 'No generated changes.'
+            exit 0
+          fi
+          git commit -m 'chore: regenerate practice SEO pages'
+          git push

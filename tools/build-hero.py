@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Hero katmanlarini uretir.
 
-  python tools/build-hero.py [scale] [boss_y]
+  python tools/build-hero.py [scale] [boss_y] [boss_x]
 
 Kaynaklar assets/_source icinde. Terazi ayri bir katman oldugu icin
 sahne (terazisiz), terazi (seffaf) ve ikisinin birlesigi ayri ayri
@@ -15,10 +15,10 @@ BOSS_Y = int(sys.argv[2]) if len(sys.argv) > 2 else 210
 
 BOSS = (1009, 51)          # sarkac.png'de gobegin tepesi
 BOSS_MID = 100             # gobegin dikey merkezi
-LEAN = 0.077               # sopa asagi indikce saga kayiyor (~4.4 derece)
+BLADE_X = 1294             # kilic silueti 1290,2; parlama gozu sagà çektigi icin 4px sag
 MOBILE_CROP = (780, 10, 1660, 900)
 
-BOSS_X = 1292 + round((BOSS_Y - 172) * LEAN)
+BOSS_X = int(sys.argv[3]) if len(sys.argv) > 3 else BLADE_X
 
 A = Image.open('assets/_source/hero-katman-a-terazisiz.png').convert('RGBA')
 B = Image.open('assets/_source/hero-katman-b-terazi.png').convert('RGBA')

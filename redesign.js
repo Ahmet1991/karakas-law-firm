@@ -31,8 +31,7 @@
     var mapWrap=mapFrame.parentElement;
 
     /* A coordinate query forces a single map marker instead of Google's
-       multi-result business search. The coordinate is the Armesa İş Merkezi
-       building on 1353. Sokak. */
+       multi-result business search. */
     mapFrame.src='https://www.google.com/maps?q=38.426121,27.135384&z=18&output=embed';
     mapFrame.style.filter='none';
     mapFrame.style.webkitFilter='none';
@@ -65,9 +64,14 @@
     document.head.appendChild(mapStyle);
   }
 
+  /* Use Google's canonical Directions URL format. Keep the destination name
+     and verified Place ID together; do not mix a lat/lng destination with a
+     different place identifier. */
   var directions=document.querySelector('.locate__actions .btn[href*="google.com/maps/dir"]');
   if(directions){
-    directions.href='https://www.google.com/maps/dir/?api=1&destination=38.426121%2C27.135384&destination_place_id=ChIJie8JKfrYuxQRCkBc1UVEnuQ';
+    directions.href='https://www.google.com/maps/dir/?api=1&destination=Armesa%20%C4%B0%C5%9F%20Merkezi&destination_place_id=ChIJie8JKfrYuxQRCkBc1UVEnuQ&travelmode=driving';
+    directions.target='_blank';
+    directions.rel='noopener noreferrer';
   }
 
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;

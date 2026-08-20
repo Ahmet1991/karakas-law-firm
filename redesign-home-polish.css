@@ -324,15 +324,16 @@ body{
 .hero__scales img{width:100%;height:100%;display:block;transform-origin:77.39% 30.42%}
 
 @keyframes terazi-salinim{
-  0%{transform:rotate(0deg)}
-  3.5%{transform:rotate(2.33deg)}    10.5%{transform:rotate(-1.88deg)}
-  17.5%{transform:rotate(1.52deg)}   24.5%{transform:rotate(-1.22deg)}
-  31.5%{transform:rotate(.986deg)}   38.5%{transform:rotate(-.795deg)}
-  45.5%{transform:rotate(.641deg)}   52.5%{transform:rotate(-.517deg)}
-  59.5%{transform:rotate(.417deg)}   66.5%{transform:rotate(-.336deg)}
-  73.5%{transform:rotate(.271deg)}   80.5%{transform:rotate(-.218deg)}
-  87.5%{transform:rotate(.176deg)}   94.5%{transform:rotate(-.142deg)}
-  100%{transform:rotate(0deg)}
+  0%{transform:rotate(0deg)}  1.75%{transform:rotate(2.45deg)}  5.25%{transform:rotate(-2.18deg)}
+  8.75%{transform:rotate(1.94deg)}  12.25%{transform:rotate(-1.73deg)}  15.75%{transform:rotate(1.54deg)}
+  19.25%{transform:rotate(-1.37deg)}  22.75%{transform:rotate(1.22deg)}  26.25%{transform:rotate(-1.08deg)}
+  29.75%{transform:rotate(0.964deg)}  33.25%{transform:rotate(-0.858deg)}  36.75%{transform:rotate(0.764deg)}
+  40.25%{transform:rotate(-0.68deg)}  43.75%{transform:rotate(0.605deg)}  47.25%{transform:rotate(-0.538deg)}
+  50.75%{transform:rotate(0.479deg)}  54.25%{transform:rotate(-0.426deg)}  57.75%{transform:rotate(0.379deg)}
+  61.25%{transform:rotate(-0.338deg)}  64.75%{transform:rotate(0.3deg)}  68.25%{transform:rotate(-0.267deg)}
+  71.75%{transform:rotate(0.238deg)}  75.25%{transform:rotate(-0.212deg)}  78.75%{transform:rotate(0.188deg)}
+  82.25%{transform:rotate(-0.168deg)}  85.75%{transform:rotate(0.149deg)}  89.25%{transform:rotate(-0.133deg)}
+  92.75%{transform:rotate(0.118deg)}  96.25%{transform:rotate(-0.105deg)}  100%{transform:rotate(0deg)}
 }
 
 @media(min-width:1181px){
@@ -352,7 +353,7 @@ body{
 /* Uçlar arasında sinüse yakın bir geçiş; sarkaç böyle hareket eder.
    Katman görünmediği kırılımlarda zaten display:none, animasyon zararsız. */
 @media(prefers-reduced-motion:no-preference){
-  .hero__scales img{animation:terazi-salinim 20s ease-in-out .6s both}
+  .hero__scales img{animation:terazi-salinim 40s ease-in-out .6s both}
 }
 
 /* Mobil. Burada hero `cover` kullanıyor; dar ve uzun ekranda cover'ın

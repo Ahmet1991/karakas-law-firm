@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate only the pages still owned by the legacy content generator.
+"""Generate only pages still owned by the legacy content generator.
 
-The redesigned TR/EN homepages are hand-written and no longer contain the
-AREAS:START/END markers expected by build.py's sync_home(). Import the generator
-as a module and call only the page builders we still need.
+The redesigned homepages and TR/EN privacy pages are hand-written. This wrapper
+therefore generates only the practice-area indexes/details plus preview robots;
+persistent SEO passes run afterwards from build_site.py.
 """
 from __future__ import annotations
 
@@ -17,10 +17,11 @@ def main() -> None:
         written.append(build.write(*build.build_areas_index(lang)))
         for i in range(len(build.AREAS)):
             written.append(build.write(*build.build_area_page(lang, i)))
-        written.append(build.write(*build.build_legal_page(lang)))
 
-    # sitemap is deliberately omitted here. sitemap_finalize.py owns the final
-    # bilingual sitemap after all SEO post-processing is complete.
+    # Hand-written pages intentionally NOT regenerated here:
+    #   index.html / en/index.html
+    #   kvkk/index.html / en/privacy/index.html
+    # sitemap is also omitted; sitemap_finalize.py owns the final bilingual file.
     written.append(build.build_robots())
 
     print(f"{len(written)} legacy-owned sayfa/dosya üretildi:")

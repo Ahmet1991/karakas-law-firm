@@ -38,6 +38,9 @@ jobs:
       - name: Run internal link and asset audit
         run: python tools/link_audit.py
 
+      - name: Run advertising-sensitive wording audit
+        run: python tools/content_compliance_audit.py
+
       - name: Commit generated files
         shell: bash
         run: |

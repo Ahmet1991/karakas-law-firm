@@ -186,3 +186,26 @@
       url("assets/izmir-kordon-gece.webp") 62% 60%/cover no-repeat;
   }
 }
+
+/* Sayfa hero'ları. Görsellerin sol yarısı zaten siyah, o yüzden İzmir
+   bandındakinden daha hafif bir karartma yetiyor. Bant üstten ve alttan
+   kırptığı için konu dikeyde ortada tutuluyor. */
+.subhero--photo{background:#080807 center 54%/cover no-repeat}
+.subhero--photo::after{
+  background-image:none;
+  background:
+    linear-gradient(90deg,rgba(8,8,7,.9) 0%,rgba(8,8,7,.62) 32%,rgba(8,8,7,.16) 60%,rgba(8,8,7,.02) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.26) 0%,transparent 40%,rgba(0,0,0,.4) 100%);
+}
+.subhero--hakkimizda{background-image:url("assets/hakkimizda-hero.webp");background-position:center 56%}
+.subhero--uzmanlik{background-image:url("assets/uzmanlik-hero.webp");background-position:center 50%}
+.subhero--makaleler{background-image:url("assets/makaleler-hero.webp");background-position:center 50%}
+
+@media(max-width:680px){
+  /* Dar ekranda cover yatayda çok kırpıyor; konuyu kadrajda tut ve
+     metnin altında kalan alanı koyulaştır. */
+  .subhero--photo{background-position:72% 50%}
+  .subhero--photo::after{
+    background:linear-gradient(180deg,rgba(8,8,7,.62) 0%,rgba(8,8,7,.74) 46%,rgba(8,8,7,.9) 84%,#080807 100%);
+  }
+}

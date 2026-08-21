@@ -176,3 +176,51 @@ button{font:inherit}
   }
   .nav-cta{order:1}
 }
+
+/* ------------------------------------------------------ zengin footer -- */
+.footer-grid{grid-template-columns:1.12fr .82fr 1.05fr .95fr;gap:clamp(28px,3.4vw,52px)}
+.footer-brand h3,.footer-col h3{
+  margin:0 0 15px;color:var(--gold);
+  font-family:var(--sans);font-weight:500;font-size:9.5px;
+  letter-spacing:.18em;text-transform:uppercase;
+}
+.footer-brand h3{margin-top:24px}
+.footer-nav{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.footer-nav a{color:#b9b3aa;font-size:12px;line-height:1.45;transition:color .25s}
+.footer-nav a:hover{color:var(--gold-2)}
+/* On iki alan tek sütunda uzun kalıyor; iki kolona bölünüyor. */
+.footer-col--areas .footer-nav{display:block;columns:2;column-gap:24px}
+.footer-col--areas .footer-nav li{break-inside:avoid;margin-bottom:9px}
+.footer-grid,.footer-legal,.footer-bottom{text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.footer-legal{
+  margin:30px 0 0;padding-top:18px;
+  border-top:1px solid var(--line-soft);
+  color:#6f6a64;font-size:10.5px;line-height:1.7;max-width:88ch;
+}
+.footer-bottom{margin-top:12px;padding-top:12px;border-top:0}
+
+/* İnce dikey ayraçlar: sütunları kendi başlarına durdurmak yerine bir
+   künye gibi bağlıyor. Uçlarda soluyor ki kesik görünmesin. */
+.footer-col{position:relative}
+.footer-col::before{
+  content:"";position:absolute;top:2px;bottom:2px;width:1px;
+  left:calc(-1 * clamp(14px,1.7vw,26px));
+  background:linear-gradient(180deg,transparent,rgba(195,148,82,.24) 16%,rgba(195,148,82,.24) 84%,transparent);
+}
+.footer-brand p{max-width:30ch}
+.footer-brand img{width:172px}
+.footer-nav a{display:inline-block;transition:color .25s var(--ease),transform .25s var(--ease)}
+.footer-nav a:hover{transform:translateX(4px)}
+.footer-contact li{align-items:flex-start}
+.site-footer{border-top-width:1px}
+
+@media(max-width:980px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:34px}
+  .footer-col--areas{grid-column:1/-1}
+  .footer-col::before{display:none}
+}
+@media(max-width:640px){
+  .footer-grid{grid-template-columns:1fr;gap:30px}
+  .footer-col--areas .footer-nav{columns:1}
+  .footer-legal{margin-top:24px}
+}

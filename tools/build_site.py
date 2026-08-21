@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """One-command build for Karakaş Law Firm.
 
-Runs the content generator, generated-page SEO, hand-written English core SEO,
-and the final bilingual sitemap writer. Use this instead of build.py directly.
+Generates only legacy-owned practice/legal pages, then applies the persistent
+SEO layer, bilingual core metadata and the final sitemap. The redesigned
+homepages are never rewritten by the legacy generator.
 """
 from __future__ import annotations
 
@@ -18,11 +19,11 @@ def run(script: str) -> None:
 
 
 def main() -> None:
-    run("build.py")
+    run("generate_practice_pages.py")
     run("seo_postprocess.py")
     run("core_pages_seo.py")
     run("sitemap_finalize.py")
-    print("\nTam site üretimi tamamlandı: içerik + TR/EN SEO + final sitemap.")
+    print("\nTam site üretimi tamamlandı: faaliyet sayfaları + TR/EN SEO + final sitemap.")
 
 
 if __name__ == "__main__":

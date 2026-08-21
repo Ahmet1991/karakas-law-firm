@@ -1,5 +1,5 @@
-# Hazırlık aşaması: site canlı alan adına taşınana kadar arama motorlarına kapalı.
+# Hazırlık aşaması: staging kopyası arama motorlarına kapalıdır.
+# Production domain bu repoya geçtiğinde firm.preview=false yapıp
+# python tools/build_site.py çalıştırın.
 User-agent: *
 Disallow: /
-
-Sitemap: https://www.karakaslawfirm.com/sitemap.xml

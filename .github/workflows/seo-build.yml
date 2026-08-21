@@ -7,8 +7,6 @@ on:
       - 'tools/**'
       - '.github/workflows/seo-build.yml'
   workflow_dispatch:
-  schedule:
-    - cron: '1 0 * * *'
 
 permissions:
   contents: write

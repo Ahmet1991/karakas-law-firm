@@ -37,10 +37,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add faaliyet-alanlari en/practice-areas kvkk en/privacy sitemap.xml robots.txt index.html en/index.html
+          git add faaliyet-alanlari en kvkk sitemap.xml robots.txt index.html
           if git diff --cached --quiet; then
             echo 'No generated changes.'
             exit 0
           fi
-          git commit -m 'chore: regenerate practice SEO pages'
+          git commit -m 'chore: regenerate bilingual SEO pages'
           git push

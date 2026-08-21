@@ -1,35 +1,34 @@
 #!/usr/bin/env python3
-"""Normalize SEO metadata for hand-written bilingual core pages."""
+"""Normalize metadata for hand-written bilingual core pages.
+
+Public metadata stays factual and brand-led. Legal article drafts are kept
+permanently noindex until the lawyer expressly approves their publication.
+"""
 from __future__ import annotations
+
+import re
 
 from seo_postprocess import FIRM, ROOT, SITE, patch_social, set_canonical, set_hreflang, set_robots, set_title
 
 EN_PAGES = [
     {
         "path": "en/index.html",
-        "title": "Karakaş Law Firm | İzmir Corporate & Commercial Law",
-        "description": "Karakaş Law Firm is an İzmir-based law firm advising companies and individuals on corporate, disputes, maritime, real estate, finance, employment and related matters.",
+        "title": "Karakaş Law Firm | İzmir",
+        "description": "Karakaş Law Firm was founded in İzmir by Attorney Pınar Karakaş. Office information and fields of legal practice.",
         "url": f"{SITE}/en/",
         "tr": f"{SITE}/",
     },
     {
         "path": "en/about/index.html",
-        "title": "About Pınar Karakaş | Karakaş Law Firm İzmir",
-        "description": "Learn about Karakaş Law Firm's approach and founding attorney Pınar Karakaş, including her education, professional background and areas of practice in İzmir.",
+        "title": "Pınar Karakaş | Karakaş Law Firm",
+        "description": "Professional and educational information about Attorney Pınar Karakaş, founder of Karakaş Law Firm in İzmir.",
         "url": f"{SITE}/en/about/",
         "tr": f"{SITE}/hakkimizda/",
     },
     {
-        "path": "en/articles/index.html",
-        "title": "Legal Articles & Insights | Karakaş Law Firm İzmir",
-        "description": "Legal articles and practical notes from Karakaş Law Firm in İzmir on leases, commercial contracts, employment law and related legal developments.",
-        "url": f"{SITE}/en/articles/",
-        "tr": f"{SITE}/makaleler/",
-    },
-    {
         "path": "en/contact/index.html",
-        "title": "Contact & Office Location | Karakaş Law Firm İzmir",
-        "description": "Contact Karakaş Law Firm in Konak, İzmir. View the Armesa İş Merkezi office address, phone, WhatsApp, email and directions.",
+        "title": "Contact | Karakaş Law Firm",
+        "description": "Address, telephone and email information for Karakaş Law Firm in Konak, İzmir.",
         "url": f"{SITE}/en/contact/",
         "tr": f"{SITE}/iletisim/",
     },
@@ -38,18 +37,16 @@ EN_PAGES = [
 TR_CORE = [
     ("index.html", f"{SITE}/", f"{SITE}/en/"),
     ("hakkimizda/index.html", f"{SITE}/hakkimizda/", f"{SITE}/en/about/"),
-    ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", f"{SITE}/en/practice-areas/"),
-    ("makaleler/index.html", f"{SITE}/makaleler/", f"{SITE}/en/articles/"),
+    ("faaliyet-alanlari/index.html", f"{SITE}/faaliyet-alanlari/", f"{SITE}/en/practice-areas/"),
     ("iletisim/index.html", f"{SITE}/iletisim/", f"{SITE}/en/contact/"),
 ]
 
-# These pages have no full English translation yet, so they should not get a
-# fake hreflang pair. They do still need preview/live robots state controlled
-# by firm.preview.
-TR_ARTICLE_PAGES = [
+DRAFT_PAGES = [
+    "makaleler/index.html",
     "makaleler/kira-sozlesmelerinde-tahliye-surecleri/index.html",
     "makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/index.html",
     "makaleler/is-hukukunda-kidem-tazminati-sartlari/index.html",
+    "en/articles/index.html",
 ]
 
 
@@ -83,12 +80,13 @@ def patch_tr_core(path_str: str, tr_url: str, en_url: str) -> None:
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
-def patch_robots_only(path_str: str) -> None:
+def force_noindex(path_str: str) -> None:
     path = ROOT / path_str
     if not path.exists():
         return
     doc = path.read_text(encoding="utf-8")
-    doc = set_robots(doc)
+    doc = re.sub(r'<meta\s+name=["\']robots["\'][^>]*>\s*', "", doc, flags=re.I)
+    doc = doc.replace("</head>", '<meta name="robots" content="noindex, nofollow">\n</head>', 1)
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
@@ -97,12 +95,12 @@ def main() -> None:
         patch_en_page(page)
     for path_str, tr_url, en_url in TR_CORE:
         patch_tr_core(path_str, tr_url, en_url)
-    for path_str in TR_ARTICLE_PAGES:
-        patch_robots_only(path_str)
+    for path_str in DRAFT_PAGES:
+        force_noindex(path_str)
     print(
-        "Core SEO tamamlandı: "
-        f"{len(EN_PAGES)} EN metadata + {len(TR_CORE)} TR core + "
-        f"{len(TR_ARTICLE_PAGES)} TR article robots"
+        "Core metadata tamamlandı: "
+        f"{len(EN_PAGES)} EN public + {len(TR_CORE)} TR public + "
+        f"{len(DRAFT_PAGES)} article draft noindex"
     )
 
 

@@ -35,6 +35,9 @@ jobs:
       - name: Run SEO regression audit
         run: python tools/seo_audit.py
 
+      - name: Run internal link and asset audit
+        run: python tools/link_audit.py
+
       - name: Commit generated files
         shell: bash
         run: |

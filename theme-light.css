@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Karakaş Hukuk Bürosu — aydınlık tema (beyaz + koyu lacivert + altın)
+
+   Mevcut koyu paletin üzerine binen bir katman. Sıralamada en sonda
+   olduğu için kazanır; kaldırıldığında site eski hâline döner.
+
+   Zemin beyaz, metin lacivert; başlık, hero ve footer lacivert bant.
+   Altın vurgu korunuyor (logo altın), ama beyaz üzerinde okunabilmesi
+   için koyultuluyor.
+   ========================================================================== */
+
+:root{
+  --navy:#0a1b3d;
+  --navy-2:#0f254d;
+  --navy-3:#16305c;
+
+  --bg:#ffffff;
+  --bg-soft:#f6f8fc;
+  --tint:#eff3fa;
+  --panel:#ffffff;
+  --panel-2:#f6f8fc;
+
+  --text:#0b1323;
+  --muted:#46536b;
+  --muted-2:#5b6677;
+
+  --line:#e3e7ef;
+  --line-soft:#eef1f6;
+
+  /* Altın: koyu zeminde parlak, beyaz zeminde okunur olması için iki ton. */
+  --gold:#8a6529;
+  --gold-2:#6f4f1d;
+  --gold-dim:#cbae72;
+  --gold-on-dark:#e0bd83;
+
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow-sm:0 1px 2px rgba(10,27,61,.06),0 1px 1px rgba(10,27,61,.04);
+  --shadow-md:0 10px 30px -12px rgba(10,27,61,.18),0 2px 4px rgba(10,27,61,.04);
+  --shadow-lg:0 30px 60px -20px rgba(10,27,61,.25),0 4px 10px rgba(10,27,61,.06);
+}
+
+body{background:#fff;color:var(--text)}
+
+/* ----------------------------------------------------------- başlık -- */
+.site-header{
+  background:var(--navy);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.site-header.is-stuck{
+  background:rgba(10,27,61,.97);
+  box-shadow:0 10px 30px rgba(10,27,61,.18);
+  border-bottom-color:rgba(255,255,255,.1);
+}
+.main-nav__link{color:rgba(255,255,255,.82)}
+.main-nav__link:hover,.main-nav__link.is-active{color:var(--gold-on-dark)}
+.main-nav__link::after{background:var(--gold-on-dark)}
+.nav-cta{
+  border-color:rgba(255,255,255,.34);
+  background:#fff;color:var(--navy);
+  border-radius:999px;
+}
+.nav-cta:hover{background:var(--gold-on-dark);border-color:var(--gold-on-dark);color:var(--navy)}
+.lang-switch a{color:rgba(255,255,255,.6)}
+.lang-switch a:hover,.lang-switch a[aria-current]{color:var(--gold-on-dark)}
+.lang-switch i{background:rgba(255,255,255,.28)}
+.menu-toggle i{background:#fff}
+
+/* ------------------------------------------------------------- hero -- */
+/* Bronz kabartma kaldırıldı. Hero artık sade bir lacivert bant: derinliği
+   fotoğraftan değil, ince bir ışık huzmesi ve dokudan alıyor. */
+.hero{
+  background:var(--navy);
+  border-bottom:0;
+  min-height:auto;height:auto;max-height:none;
+  padding:clamp(150px,15vw,210px) 0 clamp(80px,9vw,120px);
+}
+.hero::before{
+  background:
+    radial-gradient(120% 90% at 82% 8%,rgba(28,62,120,.55),transparent 62%),
+    radial-gradient(80% 70% at 96% 88%,rgba(203,174,114,.10),transparent 66%),
+    linear-gradient(180deg,var(--navy) 0%,#0c2049 55%,#0a1b3d 100%);
+}
+.hero::after{
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:132px 132px,132px 132px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 52%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 52%,#000 100%);
+}
+.hero__scales{display:none !important}
+.hero__inner{padding-top:0;min-height:0;display:block}
+.hero__copy{width:min(760px,92%);transform:none}
+.eyebrow{color:var(--gold-on-dark)}
+.eyebrow::after{background:rgba(203,174,114,.6)}
+.hero h1{color:#fff;max-width:18ch;text-shadow:none}
+.hero__rule{background:var(--gold-on-dark)}
+.hero__lead{color:rgba(255,255,255,.82);max-width:60ch}
+.hero .btn,.btn{
+  border-radius:999px;
+  border-color:rgba(255,255,255,.4);
+  background:#fff;color:var(--navy);
+}
+.hero .btn:hover,.btn:hover{background:var(--gold-on-dark);border-color:var(--gold-on-dark);color:var(--navy)}
+
+/* --------------------------------------------------------- bölümler -- */
+.section{background:#fff;border-bottom:1px solid var(--line)}
+.section--deep{background:var(--tint)}
+.section-label{color:var(--navy)}
+.section-label::after{background:var(--gold-dim)}
+.section-head h2,.about-copy h2,.page-title,.founder__copy h2,.contact-lead h2,
+.locate__copy h2,.about-page-copy h2,.expertise-card h2,.article-body h3,
+.article-page-card h2,.value-card h3,.practice-card h3{color:var(--text)}
+.section-head p,.page-lead,.prose,.about-page-copy p,.contact-lead p{color:var(--muted)}
+.text-link{color:var(--gold-2)}
+.text-link:hover{color:var(--navy)}
+.gold-rule,.page-rule{background:var(--gold)}
+.mini,.page-kicker,.expertise-no,.article-body time,.channel__body small,
+.footer-brand h3,.footer-col h3,.founder__areas h3,.value-card span{color:var(--gold-2)}
+
+/* --------------------------------------------------- uzmanlık şeridi -- */
+.practice-grid{
+  background:#fff;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-md);
+}
+.practice-card{border-right-color:var(--line);color:var(--text)}
+.practice-card::before{background:radial-gradient(90% 65% at 50% 110%,rgba(43,92,201,.06),transparent 70%)}
+.practice-card p{color:var(--muted-2)}
+.practice-icon{color:var(--gold)}
+.practice-card .arrow{color:var(--gold-2)}
+
+/* ------------------------------------------------------ kart yüzeyler -- */
+.article-card,.expertise-card,.value-card,.contact-channels,.channel,
+.contact-panel,.about-grid{
+  background:#fff;
+  border-color:var(--line);
+}
+.article-card,.expertise-card,.value-card{
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.article-card:hover,.expertise-card:hover{
+  border-color:var(--gold-dim);
+  box-shadow:var(--shadow-md);
+}
+.expertise-grid,.values-grid{background:var(--line)}
+.expertise-card:hover{background:#fff}
+.expertise-card p,.article-page-card p,.value-card p,.expertise-list li{color:var(--muted-2)}
+.expertise-list{border-top-color:var(--line)}
+.expertise-list li::before{background:var(--gold-dim)}
+.article-media{border-bottom-color:var(--line)}
+
+/* ---------------------------------------------------------- iletişim -- */
+.contact-channels{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);background:var(--line)}
+.channel{background:#fff}
+.channel:hover{background:var(--tint)}
+.channel__icon{border-color:var(--gold-dim);color:var(--gold-2)}
+.channel:hover .channel__icon{background:var(--gold);border-color:var(--gold);color:#fff}
+.channel__body strong{color:var(--text)}
+.channel__go{color:var(--gold-2)}
+.contact-notes li{color:var(--muted-2)}
+.contact-notes li::before{background:var(--gold)}
+.locate{background:var(--tint);border-color:var(--line)}
+.locate__copy{background:#fff}
+.locate address{color:var(--text)}
+.locate__note{color:var(--muted-2)}
+.locate__map{background:var(--tint);border-left-color:var(--line)}
+
+/* ----------------------------------------------------- alt sayfalar -- */
+.subhero{
+  background:var(--navy);
+  border-bottom:0;
+}
+.subhero .page-title{color:#fff}
+.subhero .page-kicker{color:var(--gold-on-dark)}
+.subhero .page-lead{color:rgba(255,255,255,.8)}
+.subhero .page-rule{background:var(--gold-on-dark)}
+.subhero__place{color:rgba(255,255,255,.62)}
+.subhero__place::before{background:rgba(203,174,114,.6)}
+/* Fotoğraflı hero'larda perde laciverte döner. */
+.subhero--photo::after{
+  background:
+    linear-gradient(90deg,rgba(10,27,61,.94) 0%,rgba(10,27,61,.7) 32%,rgba(10,27,61,.24) 60%,rgba(10,27,61,.06) 100%),
+    linear-gradient(180deg,rgba(7,18,42,.34) 0%,transparent 40%,rgba(7,18,42,.44) 100%);
+}
+.subhero--izmir::after{background:radial-gradient(46% 60% at 74% 52%,rgba(203,174,114,.12),transparent 68%)}
+.page-shell{background:#fff}
+
+/* ------------------------------------------------------------ kurucu -- */
+.founder{
+  background:var(--tint);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.founder__portrait::before{background:radial-gradient(50% 44% at 50% 40%,rgba(203,174,114,.3),transparent 70%)}
+.founder__portrait img{filter:drop-shadow(0 26px 52px rgba(10,27,61,.28))}
+.founder__copy > p{color:var(--muted)}
+.founder__facts{border-top-color:var(--line)}
+.founder__facts strong{color:var(--text)}
+.founder__areas{border-top-color:var(--line)}
+.founder__tags li{border-color:var(--line);color:var(--muted-2);border-radius:999px;background:#fff}
+.founder__tags li:hover{border-color:var(--gold-dim);color:var(--gold-2)}
+
+/* ------------------------------------------------------------ footer -- */
+/* İzmir fotoğrafı kalıyor, perdesi laciverde dönüyor. */
+.site-footer,.inner-footer{background:var(--navy);border-top:0}
+.site-footer::before,.inner-footer::before{
+  background:
+    linear-gradient(180deg,var(--navy) 0%,rgba(10,27,61,.72) 16%,rgba(10,27,61,.6) 52%,rgba(10,27,61,.8) 84%,rgba(7,18,42,.94) 100%),
+    linear-gradient(90deg,rgba(10,27,61,.94) 0%,rgba(10,27,61,.72) 40%,rgba(10,27,61,.4) 72%,rgba(10,27,61,.28) 100%),
+    url("assets/izmir-kordon-footer.webp") center 58%/cover no-repeat;
+}
+.footer-brand h3,.footer-col h3{color:var(--gold-on-dark)}
+.footer-brand p{color:rgba(255,255,255,.62)}
+.footer-nav a{color:rgba(255,255,255,.78)}
+.footer-nav a:hover{color:var(--gold-on-dark)}
+.footer-contact li{color:rgba(255,255,255,.8)}
+.footer-contact svg{color:var(--gold-on-dark)}
+.footer-col::before{background:linear-gradient(180deg,transparent,rgba(255,255,255,.16) 16%,rgba(255,255,255,.16) 84%,transparent)}
+.footer-legal{color:rgba(255,255,255,.5);border-top-color:rgba(255,255,255,.14)}
+.footer-bottom{color:rgba(255,255,255,.52)}
+.footer-bottom a:hover{color:var(--gold-on-dark)}
+.social-row a{border-color:rgba(255,255,255,.3);color:#fff}
+.social-row a:hover{background:var(--gold-on-dark);border-color:var(--gold-on-dark);color:var(--navy)}
+.social-row a:hover svg{fill:var(--navy)}
+
+/* --------------------------------------------------------- ayrıntılar -- */
+.skip-link{background:var(--navy);color:#fff}
+::selection{background:rgba(10,27,61,.14)}
+
+/* --------------------------------------------------- anasayfa girişi -- */
+/* Ad iki satır: "Karakaş" ağır display, "Hukuk Bürosu" ince ve aralıklı
+   versal. Altında büronun kendi tanıtım metni, uzun olduğu için rahat
+   satır aralığı ve 62ch ölçü ile. */
+.hero__wordmark{
+  margin:0;
+  font-family:var(--display);font-weight:400;
+  line-height:1;letter-spacing:-.02em;
+  color:#fff;
+}
+.hero__wordmark span{
+  display:block;
+  font-size:clamp(52px,7.4vw,104px);
+}
+.hero__wordmark em{
+  display:block;
+  margin-top:clamp(8px,1vw,14px);
+  font-style:normal;
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(15px,1.5vw,21px);
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold-on-dark);
+}
+.hero__rule{width:64px;height:1px;margin:clamp(26px,3vw,38px) 0}
+.hero .hero__lead{
+  max-width:62ch;
+  font-size:clamp(14.5px,1.15vw,16px);
+  line-height:1.95;
+  color:rgba(255,255,255,.8);
+}
+.hero__actions{margin-top:clamp(30px,3.4vw,42px);gap:14px}
+.btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.42)}
+.btn--ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
+
+@media(max-width:640px){
+  .hero__wordmark em{letter-spacing:.3em}
+  .hero .hero__lead{line-height:1.85}
+}

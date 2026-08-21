@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Post-process generated Karakaş practice pages for the redesigned site's SEO.
+"""Post-process generated Karakaş practice pages for safe, factual metadata.
 
-Run after tools/build.py. This keeps generated TR/EN practice pages aligned with
-canonical URLs, Open Graph/Twitter metadata, the redesigned TR practice index,
-and the hand-written article/core-page sitemap entries.
+The site may describe the fields in which the office works, but the generated
+pages must not imply specialisation or use repetitive search-ranking phrasing.
+Run after the legacy practice-page generator.
 """
 from __future__ import annotations
 
@@ -71,11 +71,10 @@ def set_robots(doc: str) -> str:
 
 def set_hreflang(doc: str, tr_url: str, en_url: str, current: str) -> str:
     doc = re.sub(r'<link\s+rel=["\']alternate["\']\s+hreflang=["\'][^"\']+["\'][^>]*>\s*', "", doc, flags=re.I)
-    x_default = tr_url
     links = (
         f'<link rel="alternate" hreflang="tr" href="{attr(tr_url)}">\n'
         f'<link rel="alternate" hreflang="en" href="{attr(en_url)}">\n'
-        f'<link rel="alternate" hreflang="x-default" href="{attr(x_default)}">\n'
+        f'<link rel="alternate" hreflang="x-default" href="{attr(tr_url)}">\n'
     )
     icon = re.search(r'<link\s+rel=["\']icon["\']', doc, flags=re.I)
     if icon:
@@ -105,21 +104,25 @@ def patch_detail(lang: str, area: dict) -> None:
     en_slug = area["slug"]["en"]
     if lang == "tr":
         path = ROOT / "faaliyet-alanlari" / tr_slug / "index.html"
-        title = f"İzmir {area['title']['tr']} | Karakaş Hukuk Bürosu"
+        title = f"{area['title']['tr']} | Karakaş Hukuk Bürosu"
         short = area["short"]["tr"].rstrip(".")
-        description = clamp(f"İzmir Konak merkezli Karakaş Hukuk Bürosu; {area['title']['tr'].lower()} kapsamında {short[:1].lower() + short[1:]}." )
+        description = clamp(
+            f"Karakaş Hukuk Bürosu'nun {area['title']['tr'].lower()} alanındaki çalışma konuları hakkında genel bilgi: {short[:1].lower() + short[1:]}."
+        )
         url = f"{SITE}/faaliyet-alanlari/{tr_slug}/"
         tr_url = url
         en_url = f"{SITE}/en/practice-areas/{en_slug}/"
         locale = "tr_TR"
         site_name = FIRM["name"]
-        index_href = "../../uzmanlik-alanlari/"
-        index_schema = f"{SITE}/uzmanlik-alanlari/"
+        index_href = "../../faaliyet-alanlari/"
+        index_schema = f"{SITE}/faaliyet-alanlari/"
     else:
         path = ROOT / "en" / "practice-areas" / en_slug / "index.html"
-        title = f"{area['title']['en']} in İzmir | Karakaş Law Firm"
+        title = f"{area['title']['en']} | Karakaş Law Firm"
         short = area["short"]["en"].rstrip(".")
-        description = clamp(f"Karakaş Law Firm in İzmir advises on {area['title']['en'].lower()}: {short[:1].lower() + short[1:]}." )
+        description = clamp(
+            f"General information on the areas in which Karakaş Law Firm works in {area['title']['en'].lower()}: {short[:1].lower() + short[1:]}."
+        )
         url = f"{SITE}/en/practice-areas/{en_slug}/"
         tr_url = f"{SITE}/faaliyet-alanlari/{tr_slug}/"
         en_url = url
@@ -138,11 +141,13 @@ def patch_detail(lang: str, area: dict) -> None:
     doc = patch_social(doc, title=title, description=description, url=url, locale=locale, site_name=site_name)
 
     if lang == "tr":
-        # Generated detail pages should point their overview breadcrumb to the
-        # redesigned /uzmanlik-alanlari/ page, while detail slugs stay stable.
-        doc = doc.replace('href="../../faaliyet-alanlari/">Faaliyet Alanları</a>', f'href="{index_href}">Uzmanlık Alanlarımız</a>')
-        doc = doc.replace(f'"item":"{SITE}/faaliyet-alanlari/"', f'"item":"{index_schema}"')
-        doc = doc.replace('"name":"Faaliyet Alanları"', '"name":"Uzmanlık Alanlarımız"')
+        doc = doc.replace(
+            'href="../../faaliyet-alanlari/">Faaliyet Alanları</a>',
+            f'href="{index_href}">Çalışma Alanları</a>',
+        )
+        doc = doc.replace(f'"item":"{SITE}/uzmanlik-alanlari/"', f'"item":"{index_schema}"')
+        doc = doc.replace('"name":"Uzmanlık Alanlarımız"', '"name":"Çalışma Alanları"')
+        doc = doc.replace('"name":"Faaliyet Alanları"', '"name":"Çalışma Alanları"')
 
     path.write_text(doc, encoding="utf-8", newline="\n")
 
@@ -152,41 +157,36 @@ def patch_en_index() -> None:
     if not path.exists():
         return
     doc = path.read_text(encoding="utf-8")
-    title = "Practice Areas in İzmir | Karakaş Law Firm"
-    desc = "Explore Karakaş Law Firm's practice areas in İzmir, including corporate, disputes, maritime, real estate, finance, employment and related legal matters."
+    title = "Practice Areas | Karakaş Law Firm"
+    desc = "General information on the fields in which Karakaş Law Firm works, including corporate, disputes, maritime, real estate, finance and employment matters."
     url = f"{SITE}/en/practice-areas/"
     doc = set_title(doc, title)
     doc = set_robots(doc)
     doc = set_canonical(doc, url)
-    doc = set_hreflang(doc, f"{SITE}/uzmanlik-alanlari/", url, "en")
+    doc = set_hreflang(doc, f"{SITE}/faaliyet-alanlari/", url, "en")
     doc = patch_social(doc, title=title, description=clamp(desc), url=url, locale="en_GB", site_name=FIRM.get("nameEn", "Karakaş Law Firm"))
-    doc = doc.replace('../../faaliyet-alanlari/', '../../uzmanlik-alanlari/')
-    doc = doc.replace(f'"item":"{SITE}/faaliyet-alanlari/"', f'"item":"{SITE}/uzmanlik-alanlari/"')
+    doc = doc.replace('../../uzmanlik-alanlari/', '../../faaliyet-alanlari/')
+    doc = doc.replace(f'"item":"{SITE}/uzmanlik-alanlari/"', f'"item":"{SITE}/faaliyet-alanlari/"')
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
-def write_legacy_redirect() -> None:
-    path = ROOT / "faaliyet-alanlari" / "index.html"
+def write_specialisation_redirect() -> None:
+    path = ROOT / "uzmanlik-alanlari" / "index.html"
     path.parent.mkdir(parents=True, exist_ok=True)
-    target = f"{SITE}/uzmanlik-alanlari/"
-    robots = '<meta name="robots" content="noindex, follow">' if PREVIEW else '<meta name="robots" content="noindex, follow">'
+    target = f"{SITE}/faaliyet-alanlari/"
     doc = f'''<!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Uzmanlık Alanlarımız | Karakaş Hukuk Bürosu</title>{robots}
+<title>Çalışma Alanları | Karakaş Hukuk Bürosu</title><meta name="robots" content="noindex, follow">
 <link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0;url={target}">
 <script>location.replace({json.dumps(target)});</script></head>
-<body><p><a href="{target}">Uzmanlık Alanlarımız sayfasına geçin.</a></p></body></html>'''
+<body><p><a href="{target}">Çalışma Alanları sayfasına geçin.</a></p></body></html>'''
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
 def patch_robots() -> None:
     path = ROOT / "robots.txt"
     if PREVIEW:
-        doc = (
-            "# Hazırlık aşaması: site canlı alan adına taşınana kadar arama motorlarına kapalı.\n"
-            "User-agent: *\nDisallow: /\n\n"
-            f"Sitemap: {SITE}/sitemap.xml\n"
-        )
+        doc = "# Hazırlık aşaması: staging kopyası arama motorlarına kapalıdır.\nUser-agent: *\nDisallow: /\n"
     else:
         doc = f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"
     path.write_text(doc, encoding="utf-8", newline="\n")
@@ -196,14 +196,12 @@ def build_sitemap() -> None:
     urls: list[tuple[str, str | None]] = [
         ("", TODAY),
         ("hakkimizda/", TODAY),
-        ("uzmanlik-alanlari/", TODAY),
-        ("makaleler/", TODAY),
-        ("makaleler/kira-sozlesmelerinde-tahliye-surecleri/", "2026-08-21"),
-        ("makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/", "2026-08-21"),
-        ("makaleler/is-hukukunda-kidem-tazminati-sartlari/", "2026-08-21"),
+        ("faaliyet-alanlari/", TODAY),
         ("iletisim/", TODAY),
         ("kvkk/", None),
         ("en/", TODAY),
+        ("en/about/", TODAY),
+        ("en/contact/", TODAY),
         ("en/practice-areas/", TODAY),
         ("en/privacy/", None),
     ]
@@ -224,10 +222,10 @@ def main() -> None:
         patch_detail("tr", area)
         patch_detail("en", area)
     patch_en_index()
-    write_legacy_redirect()
+    write_specialisation_redirect()
     build_sitemap()
     patch_robots()
-    print(f"SEO post-process tamamlandı: {len(AREAS) * 2} faaliyet detayı + index/sitemap/robots")
+    print(f"Compliance-aware SEO post-process tamamlandı: {len(AREAS) * 2} faaliyet detayı + EN index/redirect/sitemap/robots")
 
 
 if __name__ == "__main__":

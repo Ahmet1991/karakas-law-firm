@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Write the final bilingual sitemap after all page generators have run.
-
-Only factual office/core pages and practice-area pages are listed. Article drafts
-are intentionally excluded pending lawyer review under TBB advertising rules.
-"""
+"""Write the final bilingual sitemap after all page generators have run."""
 from __future__ import annotations
 
 import json
@@ -21,7 +17,7 @@ def main() -> None:
     urls: list[tuple[str, str | None]] = [
         ("", TODAY),
         ("hakkimizda/", TODAY),
-        ("faaliyet-alanlari/", TODAY),
+        ("uzmanlik-alanlari/", TODAY),
         ("iletisim/", TODAY),
         ("kvkk/", None),
         ("en/", TODAY),

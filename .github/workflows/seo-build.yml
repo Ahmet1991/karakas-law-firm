@@ -32,12 +32,15 @@ jobs:
       - name: Generate site and SEO
         run: python tools/build_site.py
 
+      - name: Run SEO regression audit
+        run: python tools/seo_audit.py
+
       - name: Commit generated files
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add faaliyet-alanlari en kvkk sitemap.xml robots.txt index.html
+          git add faaliyet-alanlari en kvkk sitemap.xml robots.txt index.html hakkimizda uzmanlik-alanlari makaleler iletisim
           if git diff --cached --quiet; then
             echo 'No generated changes.'
             exit 0

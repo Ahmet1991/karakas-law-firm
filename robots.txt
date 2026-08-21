@@ -1,6 +1,4 @@
-# Hazırlık aşaması: site canlı alan adına taşınana kadar arama
-# motorlarına kapalı. Yayına alırken noindex etiketlerini kaldırın
-# ve aşağıdaki Disallow satırını Allow: / olarak değiştirin.
+# Hazırlık aşaması: site canlı alan adına taşınana kadar arama motorlarına kapalı.
 User-agent: *
 Disallow: /
 

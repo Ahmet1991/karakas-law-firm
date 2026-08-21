@@ -1,116 +1,120 @@
 # Karakaş Hukuk Bürosu
 
-Bağımsız, çok sayfalı, iki dilli (TR/EN) statik web sitesi.
-Bağımlılık yok — GitHub Pages `main` dalının kökünden doğrudan yayınlanır.
+Bağımsız, çok sayfalı, iki dilli (TR/EN) statik web sitesi. GitHub Pages `main` dalının kökünden doğrudan yayınlanır.
 
-## Yapı
+## Güncel yapı
 
+```text
+index.html                         TR ana sayfa
+hakkimizda/                        TR hakkımızda / Pınar Karakaş
+uzmanlik-alanlari/                 TR çalışma alanları ana dizini
+faaliyet-alanlari/<slug>/          12 TR çalışma alanı detay sayfası
+makaleler/                         TR makale dizini + 3 makale
+iletisim/                          TR iletişim / ofis
+kvkk/                              TR aydınlatma metni
+
+en/index.html                      EN ana sayfa
+en/about/                           EN about
+en/practice-areas/                  EN practice areas + 12 detay
+en/articles/                        EN article overview
+en/contact/                         EN contact
+en/privacy/                         EN privacy
+
+404.html                            markalı özel 404
+sitemap.xml                         iki dilli final sitemap
+robots.txt                          hazırlık/canlı indeksleme kontrolü
+
+tools/content.json                 çalışma alanı içerik kaynağı
+tools/build.py                     eski temel sayfa üreticisi
+tools/seo_postprocess.py           üretilen detay sayfalarının kalıcı SEO katmanı
+tools/core_pages_seo.py            TR/EN çekirdek sayfa hreflang + EN metadata
+tools/sitemap_finalize.py          final iki dilli sitemap üreticisi
+tools/build_site.py                TEK KULLANILMASI GEREKEN build komutu
 ```
-index.html                        TR ana sayfa
-en/index.html                     EN ana sayfa
-faaliyet-alanlari/                TR faaliyet alanları (dizin + 12 detay sayfası)
-en/practice-areas/                EN karşılıkları
-styles.css                        Görsel sistem (tek dosya)
-script.js                         Yalnızca davranış — hiçbir stil enjekte etmez
-assets/                           Görseller, favicon seti, OG kartı
-sitemap.xml, robots.txt           Üretilen dosyalar
-tools/content.json                İçeriğin tek kaynağı
-tools/build.py                    Sayfa üreticisi
-```
 
-## İçerik güncelleme
+## İçerik ve SEO güncelleme
 
-Faaliyet alanı metinleri `tools/content.json` içinde tutulur. Değişiklikten sonra:
+Faaliyet alanı metinleri `tools/content.json` içinde tutulur. İçerik veya jeneratör değişikliğinden sonra **`build.py` tek başına çalıştırılmamalıdır.** Doğru komut:
 
 ```bash
-python tools/build.py
+python tools/build_site.py
 ```
 
-26 faaliyet alanı sayfası ile `sitemap.xml` ve `robots.txt` yeniden üretilir.
-**Üretilen HTML dosyaları repoya işlenir**; yayına alırken build adımı gerekmez,
-GitHub Pages dosyaları olduğu gibi servis eder.
+Bu komut sırasıyla:
 
-Ana sayfalar (`index.html`, `en/index.html`) elle düzenlenir — üretici onlara
-dokunmaz.
+1. temel TR/EN faaliyet sayfalarını üretir,
+2. canonical, hreflang, Open Graph/Twitter ve yerel SEO metadata katmanını uygular,
+3. elle yazılmış çekirdek TR/EN sayfaların dil eşleşmelerini normalize eder,
+4. `/faaliyet-alanlari/` eski genel dizinini `/uzmanlik-alanlari/` sayfasına yönlendirir,
+5. tüm gerçek TR/EN URL'lerini içeren `sitemap.xml` dosyasını son kez üretir,
+6. `firm.preview` değerine göre `robots.txt` durumunu korur.
+
+`.github/workflows/seo-build.yml` aynı komutu GitHub Actions üzerinden manuel **Run workflow** ile çalıştırabilecek şekilde tutulur.
+
+## SEO hazırlık modu
+
+Site şu an **hazırlık modundadır**. Üretim alan adı bu repoya taşınana kadar:
+
+- önemli sayfalarda `noindex, nofollow` bulunur,
+- `robots.txt` içinde `Disallow: /` bulunur,
+- canonical ve hreflang değerleri nihai `https://www.karakaslawfirm.com/` adreslerini gösterir,
+- sitemap hazırdır ancak staging kopyasının indekslenmesi bilinçli olarak engellenir.
+
+Bu kilitler erken kaldırılmamalıdır; mevcut canlı site ile arama sonuçlarında çakışma oluşturabilir.
+
+## Yayına alma
+
+`karakaslawfirm.com` bu repodaki siteye yönlendirildiği gün:
+
+1. `tools/content.json` içindeki `firm.preview` değerini `false` yapın.
+2. `python tools/build_site.py` çalıştırın **veya** GitHub → Actions → **Regenerate practice SEO pages** → **Run workflow** kullanın.
+3. Yeni TR çekirdek sayfalarda elle bırakılmış `noindex, nofollow` etiketleri varsa kaldırıldığını doğrulayın.
+4. `robots.txt` çıktısının `Allow: /` ve `Sitemap: https://www.karakaslawfirm.com/sitemap.xml` içerdiğini doğrulayın.
+5. Google Search Console'da alan adını doğrulayın ve sitemap'i gönderin.
+6. Rich Results Test ile `LegalService`, `ProfilePage/Person`, `Article` ve `BreadcrumbList` işaretlemelerini kontrol edin.
+7. Google Business Profile'da ad, telefon ve adresi site ile birebir eşitleyin.
+
+Detaylı yayın kontrolü için `SEO_LAUNCH_CHECKLIST.md` dosyasını kullanın.
 
 ## Görseller
 
-Kaynak dosyalar (`KARAKAS_HUKUK_LOGO_SEFFAF_4K.png`, `pinar-karakas-seffaf-*.png`)
-repoda durur ama tarayıcıya gönderilmez. Yayınlanan varyantlar bunlardan
-üretilmiştir:
+Yayınlanan temel görsel varlıklar:
 
 | Dosya | Kullanım |
 | --- | --- |
-| `mark-120/240.webp` | Header monogramı |
-| `logo-lockup-420/840.webp` | Açık zemin için tam logo |
-| `logo-lockup-ondark-420/840.webp` | Koyu zemin için (alt satır krem'e çekilmiştir) |
-| `pinar-karakas-400/640/900.webp` | Portre, `srcset` ile |
+| `assets/logo-horizontal-ondark.webp` | Yeni header / marka |
+| `assets/logo-lockup-ondark-420.webp` | Footer |
+| `assets/hero-adalet-base.webp` | Masaüstü hero |
+| `assets/hero-adalet-mobil.webp` | Mobil hero |
+| `assets/hero-adalet-premium.webp` | Sosyal paylaşım / premium sahne |
+| `assets/pinar-karakas-portre.webp` | Pınar Karakaş profil görseli |
+| `assets/makale-*.webp` | Makale kapakları |
+| `assets/og-image.jpg` | Üretilen faaliyet sayfalarının 1200×630 OG kartı |
 | `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png` | Simge seti |
-| `og-image.jpg` | Link önizleme kartı (1200×630) |
 
-Orijinal logodaki "HUKUK BÜROSU" alt satırı siyahtır ve lacivert zeminde
-okunmaz; `-ondark` varyantları bu satırı krem tona çeker.
+Kaynak görseller `assets/_source/` altında tutulur. Sayfalarda doğrudan kullanılmazlar.
 
-Varyantları kaynak dosyalardan yeniden üretmek için (Pillow gerekir):
+Görsel varyantları yeniden üretmek için (Pillow gerekir):
 
 ```bash
 python tools/build_assets.py
 ```
 
-## İletişim formu
+## İletişim ve ofis
 
-Form, sunucu gerektirmeyen [web3forms.com](https://web3forms.com) üzerinden
-çalışır. Bağlamak için:
+- Telefon: **+90 530 549 30 90**
+- E-posta: **avpinarkarakas@gmail.com**
+- Adres: **Akdeniz Mah. 1353 Sk. No:2, Armesa İş Merkezi D:32, Konak / İzmir**
+- LinkedIn: **Karakaş Law Firm**
 
-1. `avpinarkarakas@gmail.com` ile ücretsiz kaydolun.
-2. E-posta ile gelen Access Key'i `script.js` içindeki `FORM_ACCESS_KEY`
-   sabitine yapıştırın.
-
-Anahtar girilmediği sürece form gönderim yapmaz; bunun yerine ziyaretçiye,
-girdiği bilgilerle **önceden doldurulmuş bir e-posta bağlantısı** sunulur —
-yani hiçbir talep kaybolmaz. Formda ayrıca gizli bir spam tuzağı alanı ve
-zorunlu KVKK onayı bulunur.
+İletişim sayfasındaki harita Armesa İş Merkezi konumuna sabitlenmiştir. Adres, telefon ve firma adı Google Business Profile ve diğer güvenilir dizinlerde aynı yazımla kullanılmalıdır.
 
 ## Gizlilik
 
-Site hiçbir çerez yerleştirmez; analitik veya reklam scripti yoktur. Harita
-yalnızca ziyaretçi "Haritayı Yükle" düğmesine bastığında yüklenir — sayfa
-açılışında Google'a hiçbir istek gitmez. `kvkk/` ve `en/privacy/` sayfalarındaki
-aydınlatma metinleri `tools/legal-tr.html` ve `tools/legal-en.html` dosyalarından
-üretilir.
+`kvkk/` ve `en/privacy/` içeriklerinin kaynak parçaları `tools/legal-tr.html` ve `tools/legal-en.html` dosyalarındadır. Siteye analitik veya reklam servisi eklenirse KVKK/çerez tarafı yeniden değerlendirilmelidir.
 
-## Hero fotoğrafı (opsiyonel)
+## İçerik ilkesi
 
-`index.html` içinde yorum satırına alınmış `hero__photo` bloğu vardır. Uygun bir
-İzmir/büro fotoğrafı `assets/hero-izmir.webp` olarak eklenip yorum kaldırılırsa
-fotoğraf otomatik olarak bronz–lacivert duotone'a çevrilir; başka değişiklik
-gerekmez.
+Yayına almadan önce Av. Pınar Karakaş tarafından biyografi, eğitim bilgileri, faaliyet alanı metinleri ve hukuki içerikler son kez teyit edilmelidir.
 
-## Yayına alma
-
-Site şu an **hazırlık modundadır**: tüm sayfalarda `noindex` etiketi ve
-`robots.txt` içinde `Disallow: /` bulunur. Böylece büronun canlı sitesiyle arama
-sonuçlarında çakışmaz.
-
-Alan adı bu siteye yönlendirildiğinde:
-
-1. `tools/content.json` → `firm.preview` değerini `false` yapın, `python tools/build.py` çalıştırın.
-2. `index.html` ve `en/index.html` içindeki `<meta name="robots" content="noindex, nofollow">` satırlarını silin.
-3. Aynı dosyalara `<link rel="canonical" href="https://www.karakaslawfirm.com/">` (ve `/en/`) ekleyin.
-4. `Settings → Pages` → Source: **Deploy from a branch**, Branch: **main**, Folder: **/(root)**.
-
-## Doğrulanması gerekenler
-
-Aşağıdaki maddeler yayına almadan önce Av. Pınar Karakaş tarafından teyit
-edilmelidir:
-
-- ~~**Adres.**~~ Netleşti: **Akdeniz Mah. 1353 Sk. No:2, Armesa İş Merkezi
-  D:32, Konak / İzmir.** Canlı Wix sitesinin sayfa başlığında geçen
-  *Adalet/Anadolu Caddesi, Bayraklı* adresi hatalıdır; yayına geçildiğinde
-  Google İşletme Profili ve diğer dizinlerdeki eski kayıtların da
-  güncellenmesi gerekir.
-- Biyografi, unvan ve eğitim bilgileri.
-- Faaliyet alanı metinleri ve ana sayfadaki alıntı cümlesi.
-- Tüm içerik Türkiye Barolar Birliği Reklam Yasağı Yönetmeliği gözetilerek
-  yazılmıştır: başarı oranı, müvekkil/dava sayısı, karşılaştırmalı veya üstünlük
-  bildiren ifadeler bilinçli olarak kullanılmamıştır. Bu ilke korunmalıdır.
+Türkiye Barolar Birliği reklam yasağı gözetilmelidir. Başarı oranı, müvekkil/dava sayısı, karşılaştırmalı üstünlük, garanti, yanıltıcı ödül veya değerlendirme ifadeleri eklenmemelidir.

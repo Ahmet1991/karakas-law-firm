@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Normalize metadata for hand-written bilingual core pages.
 
-Public metadata stays factual and brand-led. Legal article drafts are kept
-permanently noindex until the lawyer expressly approves their publication.
+Article drafts remain permanently noindex until the lawyer expressly approves
+publication.
 """
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ EN_PAGES = [
 TR_CORE = [
     ("index.html", f"{SITE}/", f"{SITE}/en/"),
     ("hakkimizda/index.html", f"{SITE}/hakkimizda/", f"{SITE}/en/about/"),
-    ("faaliyet-alanlari/index.html", f"{SITE}/faaliyet-alanlari/", f"{SITE}/en/practice-areas/"),
+    ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", f"{SITE}/en/practice-areas/"),
     ("iletisim/index.html", f"{SITE}/iletisim/", f"{SITE}/en/contact/"),
 ]
 

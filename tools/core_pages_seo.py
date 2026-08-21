@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-"""Normalize SEO metadata for hand-written English core pages."""
+"""Normalize SEO metadata for hand-written bilingual core pages."""
 from __future__ import annotations
-
-from pathlib import Path
 
 from seo_postprocess import FIRM, ROOT, SITE, patch_social, set_canonical, set_hreflang, set_robots, set_title
 
-PAGES = [
+EN_PAGES = [
     {
         "path": "en/index.html",
         "title": "Karakaş Law Firm | İzmir Corporate & Commercial Law",
@@ -37,8 +35,16 @@ PAGES = [
     },
 ]
 
+TR_HREFLANG = [
+    ("index.html", f"{SITE}/", f"{SITE}/en/"),
+    ("hakkimizda/index.html", f"{SITE}/hakkimizda/", f"{SITE}/en/about/"),
+    ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", f"{SITE}/en/practice-areas/"),
+    ("makaleler/index.html", f"{SITE}/makaleler/", f"{SITE}/en/articles/"),
+    ("iletisim/index.html", f"{SITE}/iletisim/", f"{SITE}/en/contact/"),
+]
 
-def patch_page(cfg: dict[str, str]) -> None:
+
+def patch_en_page(cfg: dict[str, str]) -> None:
     path = ROOT / cfg["path"]
     if not path.exists():
         return
@@ -58,10 +64,21 @@ def patch_page(cfg: dict[str, str]) -> None:
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
+def patch_tr_hreflang(path_str: str, tr_url: str, en_url: str) -> None:
+    path = ROOT / path_str
+    if not path.exists():
+        return
+    doc = path.read_text(encoding="utf-8")
+    doc = set_hreflang(doc, tr_url, en_url, "tr")
+    path.write_text(doc, encoding="utf-8", newline="\n")
+
+
 def main() -> None:
-    for page in PAGES:
-        patch_page(page)
-    print(f"English core SEO tamamlandı: {len(PAGES)} sayfa")
+    for page in EN_PAGES:
+        patch_en_page(page)
+    for path_str, tr_url, en_url in TR_HREFLANG:
+        patch_tr_hreflang(path_str, tr_url, en_url)
+    print(f"Core SEO tamamlandı: {len(EN_PAGES)} EN metadata + {len(TR_HREFLANG)} reciprocal hreflang")
 
 
 if __name__ == "__main__":

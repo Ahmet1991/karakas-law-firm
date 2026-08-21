@@ -35,12 +35,21 @@ EN_PAGES = [
     },
 ]
 
-TR_HREFLANG = [
+TR_CORE = [
     ("index.html", f"{SITE}/", f"{SITE}/en/"),
     ("hakkimizda/index.html", f"{SITE}/hakkimizda/", f"{SITE}/en/about/"),
     ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", f"{SITE}/en/practice-areas/"),
     ("makaleler/index.html", f"{SITE}/makaleler/", f"{SITE}/en/articles/"),
     ("iletisim/index.html", f"{SITE}/iletisim/", f"{SITE}/en/contact/"),
+]
+
+# These pages have no full English translation yet, so they should not get a
+# fake hreflang pair. They do still need preview/live robots state controlled
+# by firm.preview.
+TR_ARTICLE_PAGES = [
+    "makaleler/kira-sozlesmelerinde-tahliye-surecleri/index.html",
+    "makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/index.html",
+    "makaleler/is-hukukunda-kidem-tazminati-sartlari/index.html",
 ]
 
 
@@ -64,21 +73,37 @@ def patch_en_page(cfg: dict[str, str]) -> None:
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
-def patch_tr_hreflang(path_str: str, tr_url: str, en_url: str) -> None:
+def patch_tr_core(path_str: str, tr_url: str, en_url: str) -> None:
     path = ROOT / path_str
     if not path.exists():
         return
     doc = path.read_text(encoding="utf-8")
+    doc = set_robots(doc)
     doc = set_hreflang(doc, tr_url, en_url, "tr")
+    path.write_text(doc, encoding="utf-8", newline="\n")
+
+
+def patch_robots_only(path_str: str) -> None:
+    path = ROOT / path_str
+    if not path.exists():
+        return
+    doc = path.read_text(encoding="utf-8")
+    doc = set_robots(doc)
     path.write_text(doc, encoding="utf-8", newline="\n")
 
 
 def main() -> None:
     for page in EN_PAGES:
         patch_en_page(page)
-    for path_str, tr_url, en_url in TR_HREFLANG:
-        patch_tr_hreflang(path_str, tr_url, en_url)
-    print(f"Core SEO tamamlandı: {len(EN_PAGES)} EN metadata + {len(TR_HREFLANG)} reciprocal hreflang")
+    for path_str, tr_url, en_url in TR_CORE:
+        patch_tr_core(path_str, tr_url, en_url)
+    for path_str in TR_ARTICLE_PAGES:
+        patch_robots_only(path_str)
+    print(
+        "Core SEO tamamlandı: "
+        f"{len(EN_PAGES)} EN metadata + {len(TR_CORE)} TR core + "
+        f"{len(TR_ARTICLE_PAGES)} TR article robots"
+    )
 
 
 if __name__ == "__main__":

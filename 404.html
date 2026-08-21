@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#080807">
 <title>Sayfa Bulunamadı | Karakaş Hukuk Bürosu</title>
 <meta name="robots" content="noindex, follow">
-<link rel="icon" href="assets/favicon.ico" sizes="32x32">
+<link id="favicon" rel="icon" href="/assets/favicon.ico" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -16,10 +16,10 @@
 </head>
 <body>
 <main class="wrap">
-<img class="logo" src="assets/logo-horizontal-ondark.webp" alt="Karakaş Hukuk Bürosu">
-<section class="tr" id="tr"><p class="kicker">Karakaş Hukuk Bürosu · İzmir</p><h1>Aradığınız sayfa burada değil.</h1><div class="rule"></div><p>Bağlantı değişmiş veya adres hatalı yazılmış olabilir. Ana sayfaya dönebilir ya da doğrudan aradığınız bölüme geçebilirsiniz.</p><div class="actions"><a class="btn" href="/">Ana Sayfaya Dön <span>→</span></a><a class="link" href="/uzmanlik-alanlari/">Uzmanlık Alanları</a><a class="link" href="/iletisim/">İletişim</a></div></section>
-<section class="en" id="en"><p class="kicker">Karakaş Law Firm · İzmir</p><h1>The page you’re looking for isn’t here.</h1><div class="rule"></div><p>The link may have moved or the address may be incorrect. Return home or continue directly to the section you need.</p><div class="actions"><a class="btn" href="/en/">Back to Home <span>→</span></a><a class="link" href="/en/practice-areas/">Practice Areas</a><a class="link" href="/en/contact/">Contact</a></div></section>
+<img class="logo" id="logo" alt="Karakaş Hukuk Bürosu">
+<section class="tr" id="tr"><p class="kicker">Karakaş Hukuk Bürosu · İzmir</p><h1>Aradığınız sayfa burada değil.</h1><div class="rule"></div><p>Bağlantı değişmiş veya adres hatalı yazılmış olabilir. Ana sayfaya dönebilir ya da doğrudan aradığınız bölüme geçebilirsiniz.</p><div class="actions"><a class="btn" data-path="" href="#">Ana Sayfaya Dön <span>→</span></a><a class="link" data-path="uzmanlik-alanlari/" href="#">Uzmanlık Alanları</a><a class="link" data-path="iletisim/" href="#">İletişim</a></div></section>
+<section class="en" id="en"><p class="kicker">Karakaş Law Firm · İzmir</p><h1>The page you’re looking for isn’t here.</h1><div class="rule"></div><p>The link may have moved or the address may be incorrect. Return home or continue directly to the section you need.</p><div class="actions"><a class="btn" data-path="en/" href="#">Back to Home <span>→</span></a><a class="link" data-path="en/practice-areas/" href="#">Practice Areas</a><a class="link" data-path="en/contact/" href="#">Contact</a></div></section>
 </main>
-<script>(function(){if(location.pathname.indexOf('/en/')===0){document.documentElement.lang='en';document.title='Page Not Found | Karakaş Law Firm';document.getElementById('tr').style.display='none';document.getElementById('en').style.display='block'}})();</script>
+<script>(function(){var isGh=location.hostname.endsWith('github.io');var base=isGh?'/karakas-law-firm/':'/';document.getElementById('logo').src=base+'assets/logo-horizontal-ondark.webp';document.getElementById('favicon').href=base+'assets/favicon.ico';document.querySelectorAll('[data-path]').forEach(function(a){a.href=base+a.getAttribute('data-path')});var english=location.pathname.indexOf('/en/')!==-1;if(english){document.documentElement.lang='en';document.title='Page Not Found | Karakaş Law Firm';document.getElementById('tr').style.display='none';document.getElementById('en').style.display='block'}})();</script>
 </body>
 </html>

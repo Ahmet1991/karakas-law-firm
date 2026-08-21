@@ -272,3 +272,133 @@ body{background:#fff;color:var(--text)}
   .hero__wordmark em{letter-spacing:.3em}
   .hero .hero__lead{line-height:1.85}
 }
+
+/* ======================================================================
+   Zenginleştirme: sade kalan yerlere derinlik
+   ====================================================================== */
+
+/* Hero fotoğrafı geri geliyor — bronz kabartma değil, İzmir Kordon.
+   Lacivert perdenin altında doku olarak duruyor, konu olarak değil. */
+.hero::before{
+  background:
+    linear-gradient(90deg,
+      rgba(8,21,46,.97) 0%,
+      rgba(8,21,46,.93) 34%,
+      rgba(9,24,52,.82) 58%,
+      rgba(10,27,61,.72) 100%),
+    radial-gradient(90% 80% at 88% 12%,rgba(38,78,145,.42),transparent 60%),
+    url("assets/izmir-kordon-gece.webp") center 62%/cover no-repeat;
+}
+.hero::after{
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.038) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.038) 1px,transparent 1px),
+    linear-gradient(180deg,transparent 68%,rgba(6,16,36,.55));
+  background-size:132px 132px,132px 132px,auto;
+  -webkit-mask-image:none;mask-image:none;
+}
+
+/* Rozet: düz etiket yerine ince çerçeveli hap. */
+.hero .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:clamp(24px,3vw,34px);
+  padding:9px 17px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:var(--gold-on-dark);font-size:10px;letter-spacing:.2em;
+}
+.hero .eyebrow::after{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--gold-on-dark);order:-1;
+}
+
+/* Uzun tanıtım metni cam bir kart içinde: AKENTEK'teki gibi, metni
+   fotoğraftan ayırıp okunur kılıyor. */
+.hero .hero__lead{
+  padding:clamp(20px,2.3vw,30px) clamp(22px,2.5vw,34px);
+  border:1px solid rgba(255,255,255,.14);
+  border-left:2px solid var(--gold-on-dark);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:rgba(255,255,255,.86);
+  box-shadow:0 20px 50px -24px rgba(0,0,0,.6);
+}
+
+/* ------------------------------------------------------ künye şeridi -- */
+.creds{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.1)}
+.creds ul{
+  list-style:none;margin:0;padding:clamp(26px,3vw,38px) 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,44px);
+}
+.creds li{position:relative;display:grid;gap:6px;padding-left:clamp(18px,2vw,30px)}
+.creds li:first-child{padding-left:0}
+.creds li:not(:first-child)::before{
+  content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.18),transparent);
+}
+.creds strong{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(21px,2.3vw,30px);line-height:1.1;color:#fff;
+}
+.creds span{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+/* --------------------------------------------- uzmanlık kartlarına can -- */
+.practice-grid{border-radius:var(--radius);box-shadow:var(--shadow-lg)}
+.practice-card{
+  padding-top:38px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
+}
+.practice-no{
+  position:absolute;top:18px;left:0;right:0;
+  font-family:var(--display);font-size:12px;letter-spacing:.14em;
+  color:var(--gold-dim);
+}
+.practice-card::after{
+  content:"";position:absolute;left:50%;bottom:0;width:0;height:2px;
+  background:var(--gold);transform:translateX(-50%);
+  transition:width .38s var(--ease);
+}
+.practice-card:hover{background:#fff;transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.practice-card:hover::after{width:46%}
+.practice-card:hover .practice-no{color:var(--gold-2)}
+.practice-icon{transition:transform .35s var(--ease)}
+.practice-card:hover .practice-icon{transform:translateY(-3px)}
+
+/* ------------------------------------------------- bölüm başlıklarına -- */
+.section-label{position:relative;padding-bottom:16px}
+.section-label::before{
+  content:"";position:absolute;left:50%;bottom:0;width:34px;height:2px;
+  background:var(--gold);transform:translateX(-50%);
+}
+.section-head h2{letter-spacing:-.03em}
+
+/* --------------------------------------------------- makale kartları -- */
+.article-card{transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s}
+.article-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.article-media{overflow:hidden}
+.article-media img{transition:transform .6s var(--ease)}
+.article-card:hover .article-media img{transform:scale(1.05)}
+
+@media(max-width:900px){
+  .creds ul{grid-template-columns:repeat(2,1fr);gap:24px}
+  .creds li:nth-child(3){padding-left:0}
+  .creds li:nth-child(3)::before{display:none}
+}
+@media(max-width:560px){
+  .creds ul{grid-template-columns:1fr;gap:18px}
+  .creds li,.creds li:first-child{padding-left:0}
+  .creds li::before{display:none!important}
+}
+
+/* ---------------------------------------------------- kurucu portresi -- */
+/* Koyu temada arkasındaki altın hale ve alttaki eriyen maske "parlama"
+   gibi duruyordu; aydınlık zeminde soluk bir kutuya dönüşüyor. Şeffaf
+   PNG doğrudan zemine otursun. */
+.founder__portrait::before{display:none}
+.founder__portrait img{
+  -webkit-mask-image:none;mask-image:none;
+  filter:none;
+}

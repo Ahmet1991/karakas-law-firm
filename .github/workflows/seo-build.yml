@@ -29,11 +29,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Generate practice pages
-        run: python tools/build.py
-
-      - name: Apply persistent SEO layer
-        run: python tools/seo_postprocess.py
+      - name: Generate site and SEO
+        run: python tools/build_site.py
 
       - name: Commit generated files
         shell: bash

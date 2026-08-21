@@ -17,7 +17,15 @@ ERRORS: list[str] = []
 
 PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("başarı oranı", re.compile(r"başarı\s+oran", re.I)),
-    ("garanti/garantili sonuç", re.compile(r"\bgaranti(?:li|si|lenmiş)?\b", re.I)),
+    (
+        "sonuç/başarı garantisi",
+        re.compile(
+            r"(?:\b(?:sonuç|başarı|kazanma)\w*\s+garanti\w*\b|"
+            r"\bgarantili\s+(?:sonuç|başarı|kazanma)\w*\b|"
+            r"\b(?:sonucu|başarıyı|kazanmayı)\s+garanti\s+ed\w*\b)",
+            re.I,
+        ),
+    ),
     ("en iyi", re.compile(r"\ben\s+iyi\b", re.I)),
     ("lider konum", re.compile(r"\blider\s+konum", re.I)),
     ("rakiplerden üstün", re.compile(r"\brakip\w*\s+(?:üstün|daha\s+iyi)", re.I)),
@@ -45,4 +53,4 @@ if ERRORS:
         print("  -", problem)
     sys.exit(1)
 
-print("CONTENT COMPLIANCE AUDIT OK — karşılaştırmalı/garantili pazarlama dili bulunmadı")
+print("CONTENT COMPLIANCE AUDIT OK — karşılaştırmalı/sonuç-garantili pazarlama dili bulunmadı")

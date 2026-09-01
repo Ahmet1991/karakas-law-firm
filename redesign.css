@@ -43,7 +43,7 @@ button{font:inherit}
 /* Hero */
 .hero{position:relative;min-height:720px;height:100svh;max-height:980px;display:flex;align-items:center;overflow:hidden;background:#070706;border-bottom:1px solid var(--line)}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080807 0%,rgba(8,8,7,.98) 31%,rgba(8,8,7,.76) 47%,rgba(8,8,7,.08) 69%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.46)),url("assets/hero-adalet-premium.webp") center right/cover no-repeat}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 62% 40%,rgba(208,158,88,.16),transparent 31%),linear-gradient(90deg,rgba(195,148,82,.05) 1px,transparent 1px);background-size:auto,110px 100%}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 62% 40%,rgba(208,158,88,.16),transparent 31%)}
 .hero__inner{position:relative;z-index:2;padding-top:86px}
 .hero__copy{width:min(550px,48vw);padding-left:4px}
 .eyebrow{margin:0 0 26px;color:var(--gold);font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;display:flex;align-items:center;gap:15px}.eyebrow::after{content:"";width:46px;height:1px;background:var(--gold-dim)}
@@ -223,4 +223,52 @@ button{font:inherit}
   .footer-grid{grid-template-columns:1fr;gap:30px}
   .footer-col--areas .footer-nav{columns:1}
   .footer-legal{margin-top:24px}
+}
+
+/* ======================================================================
+   Sayfa gecisleri ve giris animasyonlari
+
+   Buradaki hicbir kural JavaScript'e bagli degil; script calismasa da
+   sayfa gorunur kalir.
+   ====================================================================== */
+
+/* Sayfa acilisi: kisa bir yumusama. */
+@keyframes page-enter{from{opacity:0}to{opacity:1}}
+body{animation:page-enter .45s var(--ease) both}
+
+/* Sayfalar arasi gecis — destekleyen tarayicilarda capraz belge gecisi,
+   digerlerinde sessizce yok sayilir. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:page-exit .22s var(--ease) both}
+::view-transition-new(root){animation:page-enter .34s var(--ease) both}
+@keyframes page-exit{from{opacity:1}to{opacity:0}}
+
+/* Reveal biraz hizlandi; 0.75s beklemek agir hissettiriyordu. */
+.reveal{transition-duration:.6s}
+
+/* Izgaralarda sirali acilis: kartlar ayni anda degil, pesi sira gelir. */
+.expertise-grid > .reveal:nth-child(3n+2),
+.practice-grid > .reveal:nth-child(3n+2),
+.article-grid > .reveal:nth-child(3n+2){transition-delay:.08s}
+.expertise-grid > .reveal:nth-child(3n+3),
+.practice-grid > .reveal:nth-child(3n+3),
+.article-grid > .reveal:nth-child(3n+3){transition-delay:.16s}
+
+/* Kapsam maddeleri sirayla belirir. */
+.scope.is-in > ul > li{animation:scope-item .5s var(--ease) both}
+.scope.is-in > ul > li:nth-child(2){animation-delay:.05s}
+.scope.is-in > ul > li:nth-child(3){animation-delay:.1s}
+.scope.is-in > ul > li:nth-child(4){animation-delay:.15s}
+.scope.is-in > ul > li:nth-child(5){animation-delay:.2s}
+.scope.is-in > ul > li:nth-child(n+6){animation-delay:.25s}
+@keyframes scope-item{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Baglantilarda ve kartlarda tutarli gecis suresi. */
+a,.btn,.text-link,.expertise-card,.area-nav a,.area-index a{transition-timing-function:var(--ease)}
+
+@media(prefers-reduced-motion:reduce){
+  body{animation:none}
+  @view-transition{navigation:none}
+  .scope.is-in > ul > li{animation:none}
+  .expertise-grid > .reveal,.practice-grid > .reveal,.article-grid > .reveal{transition-delay:0s!important}
 }

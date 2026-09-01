@@ -119,9 +119,9 @@
     var mapStyle=document.createElement('style');
     mapStyle.setAttribute('data-karakas-map-polish','true');
     mapStyle.textContent=[
-      '.locate{max-width:1420px;margin:54px auto 76px;border:1px solid rgba(195,148,82,.30);background:#090908;overflow:hidden}',
-      '.locate__copy{position:relative;background:radial-gradient(90% 120% at 0% 0%,rgba(195,148,82,.07),transparent 52%),linear-gradient(110deg,#080807,#0b0a09)}',
-      '.locate__copy:after{content:"";position:absolute;inset:18px;border:1px solid rgba(195,148,82,.08);pointer-events:none}',
+      '.locate{max-width:1420px;margin:54px auto 76px;border:1px solid var(--line);border-radius:var(--radius,0);background:var(--panel,#090908);box-shadow:var(--shadow-md,none);overflow:hidden}',
+      '.locate__copy{position:relative;background:radial-gradient(90% 120% at 0% 0%,rgba(203,174,114,.10),transparent 55%),var(--panel,#080807)}',
+      '.locate__copy:after{content:"";position:absolute;inset:18px;border:1px solid var(--line-soft,rgba(195,148,82,.08));pointer-events:none}',
       '.locate__map.map-premium{position:relative;min-height:520px;margin:18px 18px 18px 0;border:1px solid rgba(224,189,131,.38);overflow:hidden;background:#efe9df;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}',
       '.locate__map.map-premium iframe{position:absolute;inset:0;width:100%;height:100%;filter:none!important;-webkit-filter:none!important}',
       '.map-office-badge{position:absolute;z-index:3;left:18px;top:18px;display:flex;align-items:center;gap:11px;padding:11px 14px 11px 10px;background:rgba(7,7,6,.94);border:1px solid rgba(195,148,82,.55);box-shadow:0 10px 28px rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:none}',
@@ -143,15 +143,32 @@
 
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items=document.querySelectorAll('.reveal');
+  function show(el){el.classList.add('is-in');}
+
   if(reduced||!('IntersectionObserver' in window)){
-    items.forEach(function(el){el.classList.add('is-in');});
+    items.forEach(show);
   }else{
+    // threshold 0: bir pikseli bile gorunur olunca tetiklenir. Onceki .08
+    // degeri, ekrandan cok daha uzun bir ogede (ornegin makale govdesinin
+    // tamami tek bir .reveal ise) hicbir zaman saglanamiyor ve icerik kalici
+    // olarak gorunmez kaliyordu.
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){entry.target.classList.add('is-in');io.unobserve(entry.target);}
+        if(entry.isIntersecting){show(entry.target);io.unobserve(entry.target);}
       });
-    },{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+    },{threshold:0,rootMargin:'0px 0px -8% 0px'});
     items.forEach(function(el){io.observe(el);});
+
+    // Ilk ekranda duran ogeler kaydirma beklemeden acilir.
+    requestAnimationFrame(function(){
+      items.forEach(function(el){
+        if(el.getBoundingClientRect().top < window.innerHeight)show(el);
+      });
+    });
+
+    // Emniyet agi: gozlemci herhangi bir sebeple calismazsa icerik
+    // gorunmez kalmasin.
+    window.setTimeout(function(){items.forEach(show);},2500);
   }
 
   var year=document.getElementById('year');

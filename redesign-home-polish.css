@@ -232,7 +232,7 @@ body{
   .about-banner__copy{display:block;padding:38px 0 4px}
   .about-banner__copy h2{margin:0;max-width:16ch;font-family:var(--display);font-weight:400;
     font-size:clamp(30px,4.4vw,40px);line-height:1.1;letter-spacing:-.02em}
-  .about-banner__copy p{margin-top:16px;color:#a8a29a;font-size:13px;line-height:1.75;max-width:56ch}
+  .about-banner__copy p{margin-top:16px;color:var(--muted,#a8a29a);font-size:13px;line-height:1.75;max-width:56ch}
   .about-banner__copy .mini{margin-bottom:12px;color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
   .about-banner__cta{padding:20px 0 34px;text-align:left}
 }

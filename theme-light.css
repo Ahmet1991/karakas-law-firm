@@ -83,11 +83,8 @@ body{background:#fff;color:var(--text)}
 }
 .hero::after{
   background:
-    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
-    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:132px 132px,132px 132px;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 52%,#000 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 52%,#000 100%);
+    radial-gradient(68% 54% at 76% 24%,rgba(126,170,238,.14),transparent 70%);
+  -webkit-mask-image:none;mask-image:none;
 }
 .hero__scales{display:none !important}
 .hero__inner{padding-top:0;min-height:0;display:block}
@@ -112,7 +109,7 @@ body{background:#fff;color:var(--text)}
 .section-head h2,.about-copy h2,.page-title,.founder__copy h2,.contact-lead h2,
 .locate__copy h2,.about-page-copy h2,.expertise-card h2,.article-body h3,
 .article-page-card h2,.value-card h3,.practice-card h3{color:var(--text)}
-.section-head p,.page-lead,.prose,.about-page-copy p,.contact-lead p{color:var(--muted)}
+.section-head p,.page-lead,.prose,.about-page-copy p,.about-copy p,.contact-lead p{color:var(--muted)}
 .text-link{color:var(--gold-2)}
 .text-link:hover{color:var(--navy)}
 .gold-rule,.page-rule{background:var(--gold)}
@@ -135,17 +132,17 @@ body{background:#fff;color:var(--text)}
 .practice-card .arrow{color:var(--gold-2)}
 
 /* ------------------------------------------------------ kart yüzeyler -- */
-.article-card,.expertise-card,.value-card,.contact-channels,.channel,
+.article-card,.article-page-card,.expertise-card,.value-card,.contact-channels,.channel,
 .contact-panel,.about-grid{
   background:#fff;
   border-color:var(--line);
 }
-.article-card,.expertise-card,.value-card{
+.article-card,.article-page-card,.expertise-card,.value-card{
   border-radius:var(--radius);
   overflow:hidden;
   box-shadow:var(--shadow-sm);
 }
-.article-card:hover,.expertise-card:hover{
+.article-card:hover,.article-page-card:hover,.expertise-card:hover{
   border-color:var(--gold-dim);
   box-shadow:var(--shadow-md);
 }
@@ -289,12 +286,14 @@ body{background:#fff;color:var(--text)}
     radial-gradient(90% 80% at 88% 12%,rgba(38,78,145,.42),transparent 60%),
     url("assets/izmir-kordon-gece.webp") center 62%/cover no-repeat;
 }
+/* Izgara doku kaldirildi: derinlik artik tek bir yumusak isik huzmesi ve
+   alt kenardaki karartmadan geliyor. Cizgi yok. */
 .hero::after{
   background:
-    linear-gradient(90deg,rgba(255,255,255,.038) 1px,transparent 1px),
-    linear-gradient(rgba(255,255,255,.038) 1px,transparent 1px),
-    linear-gradient(180deg,transparent 68%,rgba(6,16,36,.55));
-  background-size:132px 132px,132px 132px,auto;
+    radial-gradient(66% 52% at 74% 22%,rgba(132,176,242,.15),transparent 70%),
+    radial-gradient(120% 100% at 50% 108%,rgba(6,16,36,.5),transparent 58%),
+    linear-gradient(180deg,transparent 64%,rgba(6,16,36,.58));
+  background-size:auto;
   -webkit-mask-image:none;mask-image:none;
 }
 
@@ -354,7 +353,7 @@ body{background:#fff;color:var(--text)}
 .practice-no{
   position:absolute;top:18px;left:0;right:0;
   font-family:var(--display);font-size:12px;letter-spacing:.14em;
-  color:var(--gold-dim);
+  color:var(--gold);
 }
 .practice-card::after{
   content:"";position:absolute;left:50%;bottom:0;width:0;height:2px;
@@ -401,4 +400,146 @@ body{background:#fff;color:var(--text)}
 .founder__portrait img{
   -webkit-mask-image:none;mask-image:none;
   filter:none;
+}
+
+/* Kırıntı yolu lacivert bandın üstünde: ol'un kendi rengi de açık olmalı,
+   yoksa ayraçlar ve geçerli sayfa adı koyu üstüne koyu düşüyor. */
+.subhero .breadcrumb{color:rgba(255,255,255,.55)}
+
+/* ======================================================================
+   Mobil premium katmanı
+
+   Ortak tema dosyasında tutulur: yeniden tasarlanan bütün sayfalar bu
+   dosyayı zaten yükler. Yeni bir görsel dosyası veya çizgili/ızgara doku
+   eklemez; mevcut İzmir gece fotoğrafını, yüzey derinliğini ve dokunma
+   ritmini dar ekran için yeniden dengeler.
+   ====================================================================== */
+
+@media(max-width:900px){
+  .main-nav{background:rgba(10,27,61,.99)}
+  .main-nav__link{min-height:48px;display:flex;align-items:center}
+  .nav-cta{min-height:48px}
+
+  /* Alt sayfa hero'ları masaüstündeki lacivert dilini korur; yalnızca
+     alttaki hafif vignette, metni küçük ekranda fotoğraftan ayırır. */
+  .subhero::after{
+    background:
+      radial-gradient(86% 58% at 78% 10%,rgba(126,170,238,.12),transparent 70%),
+      linear-gradient(180deg,transparent 54%,rgba(6,16,36,.38) 100%);
+  }
+}
+
+@media(max-width:640px){
+  /* Hero: aynı İzmir imgesi, fakat mobilde metne doğru koyulaşan daha net
+     bir kadraj ve yumuşak alt derinlik. */
+  .hero{
+    min-height:690px;
+    padding:124px 0 52px;
+    display:flex;
+    align-items:flex-end;
+  }
+  .hero::before{
+    background:
+      linear-gradient(180deg,rgba(10,27,61,.46) 0%,rgba(10,27,61,.7) 46%,rgba(6,16,36,.96) 100%),
+      linear-gradient(90deg,rgba(10,27,61,.74) 0%,rgba(10,27,61,.3) 100%),
+      url("assets/izmir-kordon-gece.webp") 66% 52%/cover no-repeat;
+  }
+  .hero::after{
+    background:
+      radial-gradient(78% 42% at 76% 13%,rgba(126,170,238,.16),transparent 72%),
+      radial-gradient(92% 46% at 50% 100%,rgba(203,174,114,.10),transparent 70%),
+      linear-gradient(180deg,transparent 55%,rgba(6,16,36,.42) 100%);
+  }
+  .hero__inner{padding:0;min-height:0}
+  .hero__copy{width:100%;max-width:35rem}
+  .hero .eyebrow{margin-bottom:18px;padding:8px 13px;font-size:9px;letter-spacing:.16em}
+  .hero__wordmark span,.hero h1{font-size:clamp(42px,12vw,54px);line-height:1.03}
+  .hero__wordmark em{font-size:13px;letter-spacing:.3em}
+  .hero__rule{width:48px;margin:21px 0}
+  .hero .hero__lead{
+    padding:18px 18px 18px 20px;
+    border-color:rgba(255,255,255,.16);
+    border-left-color:var(--gold-on-dark);
+    border-radius:12px;
+    font-size:13.5px;
+    line-height:1.78;
+    box-shadow:0 18px 38px -24px rgba(0,0,0,.72);
+  }
+  .hero__actions{gap:10px;margin-top:22px}
+  .hero .btn{min-height:50px;padding:12px 17px}
+
+  /* Bölünmüş masaüstü ızgarası yerine, kartların arasında nefes alan ayrı
+     yüzeyler. Tek tek sınırlar işlevsel kart sınırlarıdır; dekoratif çizgi
+     deseni değildir. */
+  .practice-grid,.expertise-grid,.values-grid,.article-page-grid{
+    gap:10px;
+    border:0;
+    background:transparent;
+    overflow:visible;
+    box-shadow:none;
+  }
+  .practice-card,.practice-card:nth-child(n),
+  .expertise-card,.value-card,.article-card,.article-page-card{
+    min-width:0;
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow-sm);
+  }
+  .practice-card{min-height:212px;padding:24px 14px 20px;background:#fff}
+  .practice-card:active,.expertise-card:active,.article-card:active,.article-page-card:active{
+    transform:translateY(1px);
+    box-shadow:0 1px 2px rgba(10,27,61,.1);
+  }
+  .practice-card h3{font-size:12.5px;overflow-wrap:anywhere}
+  .practice-card p{font-size:10.5px;line-height:1.65}
+  .expertise-card{min-height:0;padding:26px 22px 22px}
+  .expertise-card h2,.article-page-card h2{font-size:clamp(25px,7vw,30px)}
+  .article-card,.article-page-card{overflow:hidden}
+
+  .scope > ul,.area-nav,.contact-channels{
+    gap:10px;
+    border:0;
+    background:transparent;
+    overflow:visible;
+    box-shadow:none;
+  }
+  .scope > ul > li,.area-nav a,.channel{
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow-sm);
+  }
+  .scope > ul > li{padding:16px 18px 16px 40px}
+  .scope > ul > li::before{left:18px}
+  .area-nav a{padding:20px 20px;min-height:92px}
+  .channel{min-height:84px;padding:19px 18px}
+
+  .page-title{font-size:clamp(40px,11.5vw,52px);line-height:1.06}
+  .page-lead{font-size:15px;line-height:1.78}
+  .article-content p,.article-content ul,.article-content ol{font-size:15.5px;line-height:1.85}
+  .article-cta,.area-cta{border-radius:12px}
+  .footer-nav a{display:inline-flex;align-items:center;min-height:44px}
+
+  /* Mevcut WhatsApp kısayolu yeterli; ikinci bir sabit iletişim şeridi,
+     kısa ekranlarda içerik alanını ve dokunma hedeflerini örterdi. */
+  .wa-float{
+    right:max(16px,env(safe-area-inset-right));
+    bottom:max(16px,env(safe-area-inset-bottom));
+    width:52px;height:52px;
+    border:2px solid rgba(255,255,255,.82);
+    box-shadow:0 14px 30px rgba(10,27,61,.3);
+  }
+}
+
+@media(max-width:420px){
+  .hero__actions{display:grid;grid-template-columns:1fr}
+  .hero .btn{width:100%}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .practice-card,.expertise-card,.article-card,.article-page-card,.wa-float{
+    transition:none;
+  }
+  .practice-card:active,.expertise-card:active,.article-card:active,.article-page-card:active{
+    transform:none;
+  }
 }

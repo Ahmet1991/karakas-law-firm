@@ -269,6 +269,36 @@
 /* Kurucu bölümü portresiz: Av. Pınar Karakaş fotoğrafının yayınlanmasını
    istemedi. İki sütunlu ızgara tek sütuna düşer, metin ortalanmış bir
    ölçüde kalır — boş bir sütun bırakmaz. */
-.founder__grid--no-portrait{grid-template-columns:minmax(0,1fr);justify-items:start}
-.founder__grid--no-portrait .founder__copy{max-width:76ch}
-.founder__grid--no-portrait .founder__copy h2{font-size:clamp(38px,4.4vw,60px)}
+/* Portre kaldırılınca tek sütun kalıp sağda ~%40 boşluk bırakıyordu.
+   Künye (eğitim / baro / uzmanlık alanları) sağa alınarak genişlik
+   anlamlı biçimde dolduruluyor; fotoğrafa gerek kalmıyor. */
+.founder__grid--no-portrait{
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  gap:clamp(40px,5vw,90px);
+  align-items:start;
+}
+.founder__grid--no-portrait .founder__copy{max-width:64ch}
+.founder__grid--no-portrait .founder__copy h2{font-size:clamp(38px,4.2vw,58px)}
+
+.founder__aside{
+  position:sticky;top:120px;
+  padding:clamp(26px,2.6vw,36px);
+  border:1px solid var(--line);
+  border-radius:var(--radius,0);
+  background:var(--panel,transparent);
+  box-shadow:var(--shadow-sm,none);
+}
+/* Panelin kendi çerçevesi var; içindeki ayırıcı çizgiler fazlalık. */
+.founder__aside .founder__facts{
+  margin-top:0;padding-top:0;border-top:0;
+  grid-template-columns:1fr;gap:22px;
+}
+.founder__aside .founder__areas{margin-top:26px;padding-top:22px}
+
+@media(max-width:980px){
+  .founder__grid--no-portrait{grid-template-columns:1fr;gap:34px}
+  .founder__aside{position:static;top:auto}
+}
+@media(max-width:640px){
+  .founder__aside{padding:22px 20px}
+}

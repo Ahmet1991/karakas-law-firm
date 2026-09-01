@@ -2,7 +2,6 @@
 
 Source files (kept in the repo, never shipped to the browser):
   assets/KARAKAS_HUKUK_LOGO_SEFFAF_4K.png   4096x2731 stacked lockup
-  assets/pinar-karakas-seffaf-yuksek-kalite.png  1266x1242 cut-out portrait
 
 Output goes to assets/ as WebP, plus favicons and an Open Graph card.
 """
@@ -18,7 +17,6 @@ INK = (10, 15, 26, 255)
 GOLD = (201, 169, 106, 255)
 
 LOGO_SRC = "KARAKAS_HUKUK_LOGO_SEFFAF_4K.png"
-PORTRAIT_SRC = "pinar-karakas-seffaf-yuksek-kalite.png"
 
 
 def p(*parts):
@@ -97,10 +95,8 @@ for w in (120, 240):
 ghost = mono.filter(ImageFilter.GaussianBlur(1.6))
 record(*save_webp(ghost, "mark-ghost.webp", 400, quality=32))
 
-# --------------------------------------------------------------- portrait ---
-portrait = trimmed(PORTRAIT_SRC)
-for w in (400, 640, 900):
-    record(*save_webp(portrait, f"pinar-karakas-{w}.webp", w, quality=86))
+# Portre üretimi kaldırıldı: Av. Pınar Karakaş fotoğrafının yayınlanmasını
+# istemedi; kaynak dosya da depodan silindi.
 
 # --------------------------------------------------------------- favicons ---
 def favicon(size):
@@ -148,5 +144,5 @@ for name, size, nbytes in results:
 print("-" * 56)
 print(f"{'TOTAL (all variants)':<46}{total/1024:>8.1f} KB")
 
-src = os.path.getsize(p(LOGO_SRC)) + os.path.getsize(p(PORTRAIT_SRC))
-print(f"{'source PNGs (kept, not shipped)':<46}{src/1024:>8.1f} KB")
+src = os.path.getsize(p(LOGO_SRC))
+print(f"{'source PNG (kept, not shipped)':<46}{src/1024:>8.1f} KB")

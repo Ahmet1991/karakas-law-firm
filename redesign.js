@@ -171,6 +171,44 @@
     window.setTimeout(function(){items.forEach(show);},2500);
   }
 
+  // --- Sayfalar arasi morph gecisi -----------------------------------
+  // Bir karta tiklandiginda kartin basligina, detay sayfasindaki
+  // .page-title ile AYNI view-transition adi verilir; tarayici ikisini
+  // eslestirip aralarinda akitir. Ad ayni anda tek ogede olabilecegi
+  // icin once sayfanin kendi basligindan aliniyor.
+  if(!reduced && 'startViewTransition' in document){
+    document.addEventListener('click',function(ev){
+      var t=ev.target;
+      if(!t||!t.closest)return;
+      var card=t.closest('.expertise-card,.article-page-card,.article-card,.practice-card');
+      if(!card)return;
+      var title=card.querySelector('h2,h3');
+      if(!title)return;
+      var own=document.querySelector('.subhero .page-title');
+      if(own)own.style.viewTransitionName='none';
+      title.style.viewTransitionName='page-title';
+    },true);
+
+    // Geri donuldugunde (bfcache) ad uzerinde kalmasin.
+    window.addEventListener('pageshow',function(){
+      var m=document.querySelector('[style*="view-transition-name"]');
+      if(m)m.style.viewTransitionName='';
+      var own=document.querySelector('.subhero .page-title');
+      if(own)own.style.viewTransitionName='';
+    });
+  }
+
+  // --- Makale okuma ilerleme cizgisi ---------------------------------
+  // Dolgusu CSS'te scroll() zaman cizgisiyle yapiliyor; burada yalnizca
+  // ogeyi ekliyoruz. Destek yoksa cizgi eklenmiyor.
+  if(!reduced && document.querySelector('.article-content') &&
+     window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()')){
+    var bar=document.createElement('div');
+    bar.className='read-progress';
+    bar.setAttribute('aria-hidden','true');
+    document.body.appendChild(bar);
+  }
+
   var year=document.getElementById('year');
   if(year)year.textContent=new Date().getFullYear();
 })();

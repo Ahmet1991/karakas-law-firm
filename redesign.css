@@ -272,3 +272,95 @@ a,.btn,.text-link,.expertise-card,.area-nav a,.area-index a{transition-timing-fu
   .scope.is-in > ul > li{animation:none}
   .expertise-grid > .reveal,.practice-grid > .reveal,.article-grid > .reveal{transition-delay:0s!important}
 }
+
+/* ======================================================================
+   1) Hero koreografisi
+
+   Hero'nun tamami tek bir .reveal blogu olarak beliriyordu; hepsi ayni
+   anda gelince "tasarlanmamis" duruyordu. Artik ogeler sirayla giriyor
+   ve bu saf CSS: script calismasa da hero acilir.
+   ====================================================================== */
+
+@keyframes hero-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes hero-rule-in{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:none}}
+
+.hero__copy > *{animation:hero-rise .7s var(--ease) both}
+.hero__copy .eyebrow{animation-delay:.10s}
+.hero__copy .hero__wordmark,.hero__copy h1{animation-delay:.20s}
+.hero__copy .hero__rule{animation:hero-rule-in .6s var(--ease) .34s both;transform-origin:left center}
+.hero__copy .hero__lead{animation-delay:.44s}
+.hero__copy .hero__actions{animation-delay:.58s}
+
+/* ======================================================================
+   2) Sayfalar arasi morph gecisi
+
+   Baslik ve header'a view-transition adi verilir; tarayici iki sayfa
+   arasinda bunlari eslestirip akitir. Desteklemeyen tarayicida sessizce
+   duz crossfade'e duser.
+   ====================================================================== */
+
+.site-header{view-transition-name:site-header}
+.wa-float{view-transition-name:wa-float}
+.subhero .page-title{view-transition-name:page-title}
+
+/* Header ve WhatsApp dugmesi gecerken solup yeniden belirmesin; yerinde
+   kalsinlar. */
+::view-transition-old(site-header),::view-transition-new(site-header),
+::view-transition-old(wa-float),::view-transition-new(wa-float){animation:none}
+::view-transition-group(page-title){animation-duration:.42s}
+
+/* ======================================================================
+   3) Kaydirmaya bagli hareket (native, JS yok)
+   ====================================================================== */
+
+@supports (animation-timeline: view()){
+  @media(prefers-reduced-motion:no-preference){
+    /* Hero fotografi kaydirirken cok hafif suzuluyor. scale, kenarlarin
+       acilmamasi icin. */
+    @keyframes hero-drift{from{transform:scale(1.05) translateY(-1.2%)}to{transform:scale(1.05) translateY(1.2%)}}
+    .hero::before{animation:hero-drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  }
+}
+
+/* Makale sayfalarinda okuma ilerleme cizgisi (redesign.js ekler). */
+.read-progress{
+  position:fixed;top:0;left:0;z-index:200;
+  width:100%;height:2px;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--gold-dim),var(--gold));
+  pointer-events:none;
+}
+@supports (animation-timeline: scroll()){
+  @keyframes read-progress{to{transform:scaleX(1)}}
+  .read-progress{animation:read-progress linear both;animation-timeline:scroll(root block)}
+}
+
+/* ======================================================================
+   4) Malzeme hissi
+   ====================================================================== */
+
+/* Bodoni optik boyutlandirma: buyuk puntoda inceliyor, kucukte kaliniyor. */
+.hero__wordmark,.page-title,.section-head h2,.founder__copy h2,
+.expertise-card h2,.article-page-card h2,.article-content h2{font-optical-sizing:auto}
+
+/* Baglantilardaki ok, uzerine gelince ilerliyor. */
+.text-link span,.btn svg,.nav-cta svg{transition:transform .3s var(--ease)}
+.text-link:hover span,.btn:hover svg,.nav-cta:hover svg{transform:translateX(4px)}
+
+/* Kart gorselleri cok hafif yaklasir; cerceve disina tasmaz. */
+.article-card a,.article-page-card a,.article-media{overflow:hidden}
+.article-card img,.article-page-card img{transition:transform .6s var(--ease)}
+.article-card:hover img,.article-page-card:hover img{transform:scale(1.04)}
+
+/* Klavyeyle gezinme gorunur olsun. */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.subhero :focus-visible,.site-header :focus-visible,.site-footer :focus-visible,
+.hero :focus-visible{outline-color:var(--gold-on-dark,var(--gold))}
+
+@media(prefers-reduced-motion:reduce){
+  .hero__copy > *{animation:none}
+  .hero::before{animation:none}
+  .read-progress{display:none}
+  .text-link:hover span,.btn:hover svg,.nav-cta:hover svg{transform:none}
+  .article-card:hover img,.article-page-card:hover img{transform:none}
+  ::view-transition-group(page-title){animation-duration:1ms}
+}

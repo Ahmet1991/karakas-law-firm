@@ -116,19 +116,6 @@
   background:radial-gradient(58% 96% at 20% 46%,rgba(195,148,82,.075),transparent 64%),#0a0a09;
 }
 .founder__grid{display:grid;grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);gap:clamp(38px,5vw,82px);align-items:center}
-.founder__portrait{position:relative;margin:0}
-.founder__portrait::before{
-  content:"";position:absolute;inset:-8% -6% -3%;
-  background:radial-gradient(50% 44% at 50% 40%,rgba(195,148,82,.22),transparent 70%);
-  pointer-events:none;
-}
-.founder__portrait img{
-  position:relative;width:100%;height:auto;
-  filter:drop-shadow(0 26px 52px rgba(0,0,0,.6));
-  /* The cutout ends on a hard edge; dissolve it into the band. */
-  -webkit-mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.35) 94%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 78%,rgba(0,0,0,.35) 94%,transparent 100%);
-}
 
 .founder__copy h2{font-family:var(--display);font-size:clamp(36px,4vw,56px);font-weight:400;line-height:1.05;letter-spacing:-.025em;margin:0}
 .founder__copy > p{color:#a8a29a;font-size:14px;line-height:1.85;margin:0 0 18px;max-width:64ch}
@@ -150,7 +137,6 @@
 
 @media(max-width:980px){
   .founder__grid{grid-template-columns:1fr;gap:34px}
-  .founder__portrait{max-width:360px;justify-self:center}
   .founder__facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 }
 @media(max-width:680px){
@@ -279,3 +265,10 @@
   .area-nav{grid-template-columns:1fr}
   .area-nav a:last-child{text-align:left}
 }
+
+/* Kurucu bölümü portresiz: Av. Pınar Karakaş fotoğrafının yayınlanmasını
+   istemedi. İki sütunlu ızgara tek sütuna düşer, metin ortalanmış bir
+   ölçüde kalır — boş bir sütun bırakmaz. */
+.founder__grid--no-portrait{grid-template-columns:minmax(0,1fr);justify-items:start}
+.founder__grid--no-portrait .founder__copy{max-width:76ch}
+.founder__grid--no-portrait .founder__copy h2{font-size:clamp(38px,4.4vw,60px)}

@@ -195,8 +195,6 @@ body{background:#fff;color:var(--text)}
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
-.founder__portrait::before{background:radial-gradient(50% 44% at 50% 40%,rgba(203,174,114,.3),transparent 70%)}
-.founder__portrait img{filter:drop-shadow(0 26px 52px rgba(10,27,61,.28))}
 .founder__copy > p{color:var(--muted)}
 .founder__facts{border-top-color:var(--line)}
 .founder__facts strong{color:var(--text)}
@@ -396,11 +394,6 @@ body{background:#fff;color:var(--text)}
 /* Koyu temada arkasındaki altın hale ve alttaki eriyen maske "parlama"
    gibi duruyordu; aydınlık zeminde soluk bir kutuya dönüşüyor. Şeffaf
    PNG doğrudan zemine otursun. */
-.founder__portrait::before{display:none}
-.founder__portrait img{
-  -webkit-mask-image:none;mask-image:none;
-  filter:none;
-}
 
 /* Kırıntı yolu lacivert bandın üstünde: ol'un kendi rengi de açık olmalı,
    yoksa ayraçlar ve geçerli sayfa adı koyu üstüne koyu düşüyor. */

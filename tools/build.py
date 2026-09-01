@@ -49,11 +49,14 @@ L = {
         "menuOpen": "Menüyü aç",
         "navAria": "Ana menü",
         "nav": [
-            ("#hakkimizda", "Hakkımızda"),
-            ("#faaliyet-alanlari", "Faaliyet Alanları"),
-            ("#pinar-karakas", "Pınar Karakaş"),
-            ("#iletisim", "İletişim"),
+            ("", "Ana Sayfa"),
+            ("hakkimizda/", "Hakkımızda"),
+            ("uzmanlik-alanlari/", "Uzmanlık Alanlarımız"),
+            ("makaleler/", "Makaleler"),
+            ("iletisim/", "İletişim"),
         ],
+        "contactHref": "iletisim/",
+        "activeHref": "uzmanlik-alanlari/",
         "cta": "Danışmanlık Al",
         "home": "Ana Sayfa",
         "areasTitle": "Faaliyet Alanları",
@@ -69,6 +72,7 @@ L = {
         ),
         "ctaMail": "E-posta Gönder",
         "footerSite": "Site",
+        "footerSocial": "Sosyal Medya",
         "footerContact": "İletişim",
         "footerBlurb": (
             "İzmir merkezli, yerli ve yabancı şirketlere kurumsal hukuk ve "
@@ -112,11 +116,14 @@ L = {
         "menuOpen": "Open menu",
         "navAria": "Main menu",
         "nav": [
-            ("#about", "About"),
-            ("#practice-areas", "Practice Areas"),
-            ("#pinar-karakas", "Pınar Karakaş"),
-            ("#contact", "Contact"),
+            ("", "Home"),
+            ("about/", "About"),
+            ("practice-areas/", "Practice Areas"),
+            ("articles/", "Articles"),
+            ("contact/", "Contact"),
         ],
+        "contactHref": "contact/",
+        "activeHref": "practice-areas/",
         "cta": "Get in Touch",
         "home": "Home",
         "areasTitle": "Practice Areas",
@@ -132,6 +139,7 @@ L = {
         ),
         "ctaMail": "Send an Email",
         "footerSite": "Site",
+        "footerSocial": "Social Media",
         "footerContact": "Contact",
         "footerBlurb": (
             "An independent law firm based in İzmir, advising domestic and "
@@ -186,8 +194,10 @@ def paths(lang, depth):
         "areas": root + ("faaliyet-alanlari/" if lang == "tr" else "en/practice-areas/"),
         "legal": root + ("kvkk/" if lang == "tr" else "en/privacy/"),
         "assets": root + "assets/",
-        "css": root + "styles.css",
-        "js": root + "script.js",
+        "css": root + "redesign.css",
+        "css_pages": root + "redesign-pages.css",
+        "css_theme": root + "theme-light.css",
+        "js": root + "redesign.js",
     }
 
 
@@ -230,6 +240,9 @@ def head(lang, depth, title, description, canonical_path, alternate_path):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{p['css']}">
+<link rel="stylesheet" href="{p['css_pages']}">
+<link rel="stylesheet" href="{p['css_theme']}">
+<noscript><style>.reveal{{opacity:1!important;transform:none!important}}</style></noscript>
 </head>
 """
 
@@ -239,7 +252,11 @@ def header(lang, depth, alternate_href):
     p = paths(lang, depth)
     other = "en" if lang == "tr" else "tr"
     nav_links = "\n      ".join(
-        f'<a class="main-nav__link" href="{p["home"]}{href}">{e(label)}</a>'
+        '<a class="main-nav__link{}" href="{}{}">{}</a>'.format(
+            " is-active" if href and href == t["activeHref"] else "",
+            p["home"], href,
+            e(label),
+        )
         for href, label in t["nav"]
     )
     tr_href = p["home_tr"] if lang == "en" else "./"
@@ -260,11 +277,7 @@ def header(lang, depth, alternate_href):
   <div class="shell nav-wrap">
 
     <a class="brand" href="{p['home']}" aria-label="{e(t['brandAria'])}">
-      <img class="brand__mark" src="{p['assets']}mark-120.webp" srcset="{p['assets']}mark-120.webp 120w, {p['assets']}mark-240.webp 240w" sizes="46px" width="120" height="149" alt="" fetchpriority="high">
-      <span class="brand__type">
-        <span class="brand__name">KARAKAŞ</span>
-        <span class="brand__sub">HUKUK BÜROSU</span>
-      </span>
+      <img src="{p['assets']}logo-horizontal-ondark.webp" width="1287" height="436" alt="{e(FIRM['name'] if lang == 'tr' else FIRM['nameEn'])}" fetchpriority="high">
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="{e(t['menuOpen'])}">
@@ -273,13 +286,13 @@ def header(lang, depth, alternate_href):
 
     <nav class="main-nav" id="main-nav" aria-label="{e(t['navAria'])}">
       {nav_links}
-      <a class="nav-cta" href="{p['home']}{t['nav'][3][0]}">
+      <a class="nav-cta" href="{p['home']}{t['contactHref']}">
         {e(t['cta'])}
         {ARROW}
       </a>
-      <span class="lang">
+      <span class="lang-switch">
         <a href="{tr_href}" hreflang="tr"{' aria-current="true"' if lang == 'tr' else ''}>TR</a>
-        <span aria-hidden="true"></span>
+        <i aria-hidden="true"></i>
         <a href="{en_href}" hreflang="en"{' aria-current="true"' if lang == 'en' else ''}>EN</a>
       </span>
     </nav>
@@ -320,23 +333,18 @@ def floating(lang, depth):
     t = L[lang]
     p = paths(lang, depth)
     wa = "https://wa.me/" + FIRM["phoneHref"].lstrip("+")
-    contact_anchor = p["home"] + t["nav"][3][0]
+    contact_anchor = p["home"] + t["contactHref"]
     return f"""
 <a class="wa-float" href="{wa}" target="_blank" rel="noopener" aria-label="{e(t['waAria'])}">
   {WA_ICON}
 </a>
-
-<nav class="action-bar" aria-label="{e(t['barAria'])}">
-  <ul>
-    <li><a href="tel:{FIRM['phoneHref']}">{PHONE_ICON}{e(t['barCall'])}</a></li>
-    <li><a href="{wa}" target="_blank" rel="noopener">{WA_ICON}WhatsApp</a></li>
-    <li><a href="{contact_anchor}">{MAIL_ICON}{e(t['barWrite'])}</a></li>
-  </ul>
-</nav>
 """
 
 
 def footer(lang, depth):
+    """Elle yazılan sayfalarla (hakkimizda, iletisim, makaleler) birebir aynı
+    footer söz dizimi: .footer-grid / .footer-col / .social-row. Eski
+    .footer__* sınıflarının yeni CSS'te karşılığı yok."""
     t = L[lang]
     p = paths(lang, depth)
     a = FIRM["address"]
@@ -345,6 +353,10 @@ def footer(lang, depth):
         f'<li><a href="{p["home"]}{href}">{e(label)}</a></li>'
         for href, label in t["nav"]
     )
+    area_links = "\n          ".join(
+        f'<li><a href="{p["areas"]}{area["slug"][lang]}/">{e(area["title"][lang])}</a></li>'
+        for area in AREAS
+    )
     maps = (
         "https://www.google.com/maps/search/?api=1&amp;query="
         + html.escape(f"{a['street']} {a['district']} {a['city']}".replace(" ", "%20"))
@@ -352,42 +364,49 @@ def footer(lang, depth):
     return f"""
 <footer class="site-footer">
   <div class="shell">
-    <div class="footer__top">
+    <div class="footer-grid">
 
-      <div>
-        <img class="footer__lockup" src="{p['assets']}logo-lockup-ondark-420.webp" width="420" height="338" loading="lazy" alt="{e(FIRM['name'])}">
-        <p class="footer__blurb">{e(t['footerBlurb'])}</p>
+      <div class="footer-brand">
+        <img src="{p['assets']}logo-lockup-ondark-420.webp" width="420" height="338" loading="lazy" alt="{e(FIRM['name'])}">
+        <p>{e(t['footerBlurb'])}</p>
+        <h3>{e(t['footerSocial'])}</h3>
+        <div class="social-row">
+          <a href="{FIRM['linkedin']}" target="_blank" rel="noopener" aria-label="{e(t['linkedinAria'])}">{LINKEDIN_ICON}</a>
+        </div>
       </div>
 
-      <div class="footer__col">
+      <nav class="footer-col" aria-label="{e(t['footerSite'])}">
         <h3>{e(t['footerSite'])}</h3>
-        <ul>
+        <ul class="footer-nav">
           {site_links}
           <li><a href="{p['legal']}">{e(t['legalTitle'])}</a></li>
           <li><a href="{other_home}">{e(t['otherLangLabel'])}</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="footer__col">
+      <nav class="footer-col footer-col--areas" aria-label="{e(t['areasTitle'])}">
+        <h3>{e(t['areasTitle'])}</h3>
+        <ul class="footer-nav">
+          {area_links}
+        </ul>
+      </nav>
+
+      <div class="footer-col">
         <h3>{e(t['footerContact'])}</h3>
-        <ul>
+        <ul class="footer-contact">
+          <li><a href="{maps}" target="_blank" rel="noopener">{e(a['street'])}<br>{e(a['district'])} / {e(a['city'])}</a></li>
           <li><a href="tel:{FIRM['phoneHref']}">{e(FIRM['phone'])}</a></li>
           <li><a href="mailto:{FIRM['email']}">{e(FIRM['email'])}</a></li>
-          <li><a href="{maps}" target="_blank" rel="noopener">{e(a['street'])}<br>{e(a['district'])} / {e(a['city'])}</a></li>
         </ul>
       </div>
 
     </div>
 
-    <div class="social">
-      <a href="{FIRM['linkedin']}" target="_blank" rel="noopener" aria-label="{e(t['linkedinAria'])}">{LINKEDIN_ICON}</a>
-    </div>
+    <p class="footer-legal">{e(t['footerLegal'])}</p>
 
-    <p class="footer__legal">{e(t['footerLegal'])}</p>
-
-    <div class="footer__meta">
+    <div class="footer-bottom">
       <span>© <span id="year">2026</span> {e(FIRM['name'])}</span>
-      <a href="#top">{e(t['toTop'])}</a>
+      <span><a href="{p['legal']}">{e(t['legalTitle'])}</a></span>
     </div>
   </div>
 </footer>
@@ -509,21 +528,22 @@ def build_area_page(lang, idx):
     body = f"""
 <main id="main">
 
-  <section class="page-hero">
+  <section class="subhero subhero--area">
     <div class="shell">
       <ol class="breadcrumb">
         <li><a href="{p['home']}">{e(t['home'])}</a></li>
         <li><a href="{p['areas']}">{e(t['areasTitle'])}</a></li>
-        <li>{e(area['title'][lang])}</li>
+        <li aria-current="page">{e(area['title'][lang])}</li>
       </ol>
 
-      <p class="eyebrow">{area['no']} · {e(t['areaKicker']).upper()}</p>
-      <h1 class="display-l">{e(area['title'][lang])}</h1>
-      <p class="page-hero__lead lead">{e(area['lead'][lang])}</p>
+      <p class="page-kicker">{area['no']} · {e(t['areaKicker']).upper()}</p>
+      <h1 class="page-title">{e(area['title'][lang])}</h1>
+      <div class="page-rule"></div>
+      <p class="page-lead">{e(area['lead'][lang])}</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="page-shell">
     <div class="shell area-layout">
       {area_index_html(lang, slug, depth)}
 
@@ -537,8 +557,8 @@ def build_area_page(lang, idx):
           <h2>{e(t['ctaHeading'])}</h2>
           <p>{e(t['ctaBody'])}</p>
           <div class="area-cta__actions">
-            <a class="btn btn--gold" href="mailto:{FIRM['email']}">{e(t['ctaMail'])} {ARROW}</a>
-            <a class="btn btn--outline-light" href="tel:{FIRM['phoneHref']}">{e(FIRM['phone'])}</a>
+            <a class="btn" href="mailto:{FIRM['email']}">{e(t['ctaMail'])} {ARROW}</a>
+            <a class="btn btn--ghost" href="tel:{FIRM['phoneHref']}">{e(FIRM['phone'])}</a>
           </div>
         </div>
 
@@ -585,11 +605,11 @@ def build_areas_index(lang):
 
     cards = []
     for area in AREAS:
-        cards.append(f"""        <a class="card reveal" href="{p['areas']}{area['slug'][lang]}/">
-          <span class="card__no">{area['no']}</span>
-          <h3 class="card__title">{e(area['title'][lang])}</h3>
-          <p class="card__desc">{e(area['card'][lang])}</p>
-          <span class="card__go">{e(t['detail'])} {ARROW}</span>
+        cards.append(f"""        <a class="expertise-card reveal" href="{p['areas']}{area['slug'][lang]}/">
+          <span class="expertise-no">{area['no']}</span>
+          <h2>{e(area['title'][lang])}</h2>
+          <p>{e(area['card'][lang])}</p>
+          <span class="text-link">{e(t['detail'])} {ARROW}</span>
         </a>""")
 
     title = f"{t['areasTitle']} | {FIRM['name'] if lang == 'tr' else FIRM['nameEn']}"
@@ -597,18 +617,23 @@ def build_areas_index(lang):
     body = f"""
 <main id="main">
 
-  <section class="page-hero page-hero--index">
+  <section class="subhero subhero--area">
     <div class="shell">
       <ol class="breadcrumb">
         <li><a href="{p['home']}">{e(t['home'])}</a></li>
-        <li>{e(t['areasTitle'])}</li>
+        <li aria-current="page">{e(t['areasTitle'])}</li>
       </ol>
 
-      <p class="eyebrow">{e(t['areasTitle']).upper()}</p>
-      <h1 class="display-l">{e(t['areasIndexHeading'])}</h1>
-      <p class="page-hero__lead lead">{e(t['areasIndexLead'])}</p>
+      <p class="page-kicker">{e(t['areasTitle']).upper()}</p>
+      <h1 class="page-title">{e(t['areasIndexHeading'])}</h1>
+      <div class="page-rule"></div>
+      <p class="page-lead">{e(t['areasIndexLead'])}</p>
+    </div>
+  </section>
 
-      <div class="practice__grid">
+  <section class="page-shell">
+    <div class="shell">
+      <div class="expertise-grid">
 {chr(10).join(cards)}
       </div>
     </div>
@@ -793,6 +818,21 @@ def build_robots():
 
 
 def main():
+    """Dogrudan calistirmaya kapali.
+
+    Bu jenerator eskiden kvkk/ ve en/privacy/ sayfalarini da uretiyordu; o
+    sayfalar artik elle bakiliyor ve burada uretilirse eski .page-hero /
+    .display-l soz dizimiyle uzerine yazilir. Sahiplik listesi
+    generate_practice_pages.py icindedir; tek dogru giris noktasi
+    build_site.py'dir.
+    """
+    raise SystemExit(
+        "build.py dogrudan calistirilmamalidir; elle bakilan sayfalari ezer.\n"
+        "Dogru komut: python tools/build_site.py"
+    )
+
+
+def _legacy_main_unused():
     written = []
     for lang in ("tr", "en"):
         written.append(write(*build_areas_index(lang)))

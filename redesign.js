@@ -7,6 +7,16 @@
   var pageLang=document.documentElement.lang==='en'?'en':'tr';
   var sharedScript=document.currentScript;
   var siteRoot=sharedScript&&sharedScript.src?new URL('./',sharedScript.src):new URL('./',window.location.href);
+  /* Privacy-friendly traffic and performance measurement. Cloudflare's RUM
+     beacon does not use browser storage such as cookies or localStorage. */
+  if(!document.querySelector('script[data-karakas-analytics]')){
+    var analytics=document.createElement('script');
+    analytics.src='https://static.cloudflareinsights.com/beacon.min.js';
+    analytics.defer=true;
+    analytics.setAttribute('data-cf-beacon',JSON.stringify({token:'55bc39ac470944d0bd24237fc8db164b'}));
+    analytics.setAttribute('data-karakas-analytics','cloudflare');
+    document.head.appendChild(analytics);
+  }
 
   /* Keep Articles/Makaleler in the shared navigation on every redesigned page.
      Older hand-written pages may not contain the item in their static markup. */

@@ -30,10 +30,13 @@ for rel in (
         fail(f"Removed article asset still exists: {rel}")
 
 href_re = re.compile(r'href=["\'][^"\']*(?:makaleler|articles)/', re.IGNORECASE)
+empty_li_re = re.compile(r"<li>\s*</li>", re.IGNORECASE)
 for path in ROOT.rglob("*.html"):
     text = path.read_text(encoding="utf-8")
     if href_re.search(text):
         fail(f"Article link remains in HTML: {path.relative_to(ROOT)}")
+    if empty_li_re.search(text):
+        fail(f"Empty list item remains after article link removal: {path.relative_to(ROOT)}")
 
 for rel in ("index.html", "en/index.html"):
     path = ROOT / rel

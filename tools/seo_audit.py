@@ -39,19 +39,26 @@ def canonical(doc: str) -> str | None:
 
 
 def meta(doc: str, key: str, *, prop: bool = False) -> str | None:
+    """Return a meta content value while respecting the attribute quote type.
+
+    A value such as ``content="Karakaş Hukuk Bürosu'nun ..."`` legitimately
+    contains an apostrophe. Parsing it with a generic [^\"'] character class
+    truncates the value, so parse each meta tag's attributes with a matching
+    quote backreference instead.
+    """
     kind = "property" if prop else "name"
-    m = re.search(
-        rf'<meta\s+{kind}=["\']{re.escape(key)}["\'][^>]*content=["\']([^"\']*)',
-        doc,
-        re.I,
-    )
-    if not m:
-        m = re.search(
-            rf'<meta\s+content=["\']([^"\']*)["\'][^>]*{kind}=["\']{re.escape(key)}["\']',
-            doc,
-            re.I,
-        )
-    return m.group(1) if m else None
+    for tag in re.findall(r"<meta\b[^>]*>", doc, re.I | re.S):
+        attrs = {
+            name.lower(): value
+            for name, _, value in re.findall(
+                r"([:\w-]+)\s*=\s*([\"'])(.*?)\2",
+                tag,
+                re.I | re.S,
+            )
+        }
+        if attrs.get(kind) == key:
+            return attrs.get("content")
+    return None
 
 
 def has_noindex(doc: str) -> bool:
@@ -181,10 +188,6 @@ if not has_noindex(legacy):
 not_found = read("404.html")
 if not has_noindex(not_found):
     fail("404.html noindex olmalı")
-
-    doc = read(path)
-    if "2024-05" in doc or "May 2024" in doc or "Mayıs 2024" in doc:
-        fail(f"Eski 2024 makale tarihi kaldı: {path}")
 
 # --------------------------------------------------------------------- report
 if ERRORS:

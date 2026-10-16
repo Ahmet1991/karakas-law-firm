@@ -1,0 +1,72 @@
+name: Apply footer logo fix
+
+on:
+  push:
+    branches:
+      - fix/footer-logo-ratio-20261016
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/footer-logo-ratio-20261016
+          fetch-depth: 0
+
+      - name: Normalize footer logo sizing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+
+          css_path = root / 'redesign.css'
+          css = css_path.read_text(encoding='utf-8')
+          old_css = '.footer-brand img{width:172px}'
+          new_css = '.footer-brand img{width:188px;height:auto}'
+          assert css.count(old_css) == 1, f'unexpected footer CSS match count: {css.count(old_css)}'
+          css_path.write_text(css.replace(old_css, new_css, 1), encoding='utf-8')
+
+          build_path = root / 'tools/build.py'
+          build = build_path.read_text(encoding='utf-8')
+          old_build = 'logo-lockup-ondark-420.webp" width="420" height="338" loading="lazy"'
+          new_build = 'logo-lockup-ondark-420.webp" width="420" loading="lazy"'
+          assert build.count(old_build) == 1, f'unexpected build template match count: {build.count(old_build)}'
+          build_path.write_text(build.replace(old_build, new_build, 1), encoding='utf-8')
+
+          fixed_height = re.compile(
+              r'(<img[^>]*logo-lockup-ondark-420\.webp[^>]*?)\s+height="338"([^>]*>)',
+              re.IGNORECASE,
+          )
+          changed = []
+          for path in root.rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              updated, count = fixed_height.subn(r'\1\2', text)
+              if count:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append((str(path), count))
+
+          print('Normalized footer logo HTML in', len(changed), 'files')
+          for path, count in changed:
+              print(f'  {path}: {count}')
+          PY
+
+      - name: Verify patch shape
+        run: |
+          git diff --check
+          python tools/site_integrity_test.py
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add redesign.css tools/build.py '*.html' 'en/**/*.html' 'faaliyet-alanlari/**/*.html' 'hakkimizda/**/*.html' 'uzmanlik-alanlari/**/*.html' 'iletisim/**/*.html' 'kvkk/**/*.html' 2>/dev/null || true
+          git add -u
+          git commit -m "fix: keep footer logo proportions consistent"
+          git push origin HEAD:fix/footer-logo-ratio-20261016

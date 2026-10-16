@@ -20,6 +20,7 @@ ERRORS: list[str] = []
 CHECKED = 0
 
 ATTR_RE = re.compile(r"\b(?:href|src)\s*=\s*([\"'])(.*?)\1", re.I | re.S)
+HREF_RE = re.compile(r"\bhref\s*=\s*([\"'])(.*?)\1", re.I | re.S)
 ID_RE = re.compile(r"\b(?:id|name)\s*=\s*([\"'])(.*?)\1", re.I | re.S)
 
 
@@ -112,16 +113,20 @@ for page in pages:
             if fragment not in anchors(target):
                 fail(f"Eksik fragment: {rel_page} -> {raw_url}")
 
-# Explicitly prohibit anchors from the retired single-page architecture.
-LEGACY_FRAGMENTS = ("#faaliyet-alanlari", "#hakkimizda", "#pinar-karakas", "#iletisim")
+# Explicitly prohibit href fragments from the retired single-page architecture.
+# Search only actual href attributes so JSON-LD entity identifiers such as an
+# @id ending in #pinar-karakas are not mistaken for navigation links.
+LEGACY_FRAGMENTS = {"faaliyet-alanlari", "hakkimizda", "pinar-karakas", "iletisim"}
 for page in pages:
     rel_page = page.relative_to(ROOT).as_posix()
     doc = page.read_text(encoding="utf-8")
     if rel_page in {"index.html", "en/index.html"}:
         continue
-    for marker in LEGACY_FRAGMENTS:
-        if marker in doc:
-            fail(f"Eski tek-sayfa anchor'ı kaldı: {rel_page} -> {marker}")
+    for _, raw_url in HREF_RE.findall(doc):
+        parsed = urlsplit(html.unescape(raw_url.strip()))
+        fragment = unquote(parsed.fragment) if parsed.fragment else ""
+        if fragment in LEGACY_FRAGMENTS:
+            fail(f"Eski tek-sayfa anchor'ı kaldı: {rel_page} -> #{fragment}")
 
 if ERRORS:
     print(f"LINK AUDIT FAILED — {len(ERRORS)} sorun")

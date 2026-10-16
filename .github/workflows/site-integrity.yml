@@ -1,0 +1,32 @@
+name: Site integrity
+
+on:
+  push:
+    branches:
+      - main
+      - chore/remove-articles-and-draft-notices-20261016
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate site in verification mode
+        run: python tools/build_site.py
+      - name: Run SEO regression audit
+        run: python tools/seo_audit.py
+      - name: Run internal link and asset audit
+        run: python tools/link_audit.py
+      - name: Run advertising-sensitive wording audit
+        run: python tools/content_compliance_audit.py
+      - name: Check removed sections and privacy notice state
+        run: python tools/site_integrity_test.py

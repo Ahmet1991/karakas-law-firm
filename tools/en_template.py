@@ -53,7 +53,7 @@ PIN_SVG = ('<svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0
            '<circle cx="12" cy="10" r="2.6"/></svg>')
 
 NAV = [('', 'Home'), ('about/', 'About'), ('practice-areas/', 'Practice Areas'),
-       ('articles/', 'Articles'), ('contact/', 'Contact')]
+       ('contact/', 'Contact')]
 
 
 def head(title, desc, up, tr_url, extra_css, preload=''):
@@ -115,7 +115,6 @@ def inner_footer(up):
         '<div class="inner-footer__links">'
         '<a href="' + en_root + 'about/">About</a>'
         '<a href="' + en_root + 'practice-areas/">Practice Areas</a>'
-        '<a href="' + en_root + 'articles/">Articles</a>'
         '<a href="' + en_root + 'privacy/">Privacy Notice</a></div></div>'
         '<div class="inner-footer__bottom">© <span id="year">2026</span> Karakaş Law Firm</div>'
         '</div></footer>' + script(up))

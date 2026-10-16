@@ -39,7 +39,7 @@ TR = {
   'tag': 'Hukuki süreçlerde açık, ölçülü ve özenli bir yaklaşım.',
   'nav_h': 'Site Haritası',
   'nav': [('', 'Ana Sayfa'), ('hakkimizda/', 'Hakkımızda'), ('uzmanlik-alanlari/', 'Uzmanlık Alanlarımız'),
-          ('makaleler/', 'Makaleler'), ('iletisim/', 'İletişim'), ('kvkk/', 'Aydınlatma Metni')],
+('iletisim/', 'İletişim'), ('kvkk/', 'Aydınlatma Metni')],
   'areas_h': 'Uzmanlık Alanları',
   'areas_base': 'faaliyet-alanlari/',
   'areas': [('ticaret-ve-sirketler-hukuku', 'Ticaret ve Şirketler Hukuku'),
@@ -61,7 +61,7 @@ EN = {
   'tag': 'A clear, measured and careful approach to legal matters.',
   'nav_h': 'Site Map',
   'nav': [('', 'Home'), ('about/', 'About'), ('practice-areas/', 'Practice Areas'),
-          ('articles/', 'Articles'), ('contact/', 'Contact'), ('privacy/', 'Privacy Notice')],
+('contact/', 'Contact'), ('privacy/', 'Privacy Notice')],
   'areas_h': 'Practice Areas',
   'areas_base': 'practice-areas/',
   'areas': [('corporate-and-commercial-law', 'Corporate &amp; Commercial Law'),
@@ -85,10 +85,10 @@ EN = {
 # sayfa -> (dil, site kokune uzaklik, gezinme kokune uzaklik)
 PAGES = [
   ('index.html', TR, 0, 0), ('hakkimizda/index.html', TR, 1, 1),
-  ('uzmanlik-alanlari/index.html', TR, 1, 1), ('makaleler/index.html', TR, 1, 1),
+  ('uzmanlik-alanlari/index.html', TR, 1, 1),
   ('iletisim/index.html', TR, 1, 1),
   ('en/index.html', EN, 1, 0), ('en/about/index.html', EN, 2, 1),
-  ('en/practice-areas/index.html', EN, 2, 1), ('en/articles/index.html', EN, 2, 1),
+  ('en/practice-areas/index.html', EN, 2, 1),
   ('en/contact/index.html', EN, 2, 1),
 ]
 

@@ -61,6 +61,14 @@ for path in list((ROOT / "tools").glob("*.py")) + [ROOT / "README.md", ROOT / ".
         if marker in text:
             fail(f"Article route marker {marker!r} remains in source: {path.relative_to(ROOT)}")
 
+# Runtime JavaScript must not recreate the retired navigation or homepage section.
+runtime_js = ROOT / "redesign.js"
+if runtime_js.exists():
+    text = runtime_js.read_text(encoding="utf-8")
+    for marker in ("makaleler/", "en/articles/", "home-articles-restored", "articlePairs"):
+        if marker in text:
+            fail(f"Runtime article injection marker {marker!r} remains in redesign.js")
+
 sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
 for marker in ("/makaleler/", "/en/articles/"):
     if marker in sitemap:

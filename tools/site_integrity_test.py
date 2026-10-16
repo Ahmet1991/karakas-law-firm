@@ -74,6 +74,15 @@ for marker in ("/makaleler/", "/en/articles/"):
     if marker in sitemap:
         fail(f"Article route remains in sitemap: {marker}")
 
+# Footer logo must use one consistent rendered size and preserve its intrinsic ratio.
+footer_css = (ROOT / "redesign.css").read_text(encoding="utf-8")
+if ".footer-brand img{width:188px;height:auto}" not in footer_css:
+    fail("Footer logo CSS must render at 188px wide with height:auto on every page")
+
+build_source = (ROOT / "tools/build.py").read_text(encoding="utf-8")
+if re.search(r'logo-lockup-ondark-420\.webp[^>]*height=["\']338["\']', build_source):
+    fail("Practice-page generator still hard-codes footer logo height=338")
+
 # Public privacy notices must not contain internal draft/review instructions.
 privacy_files = (
     ROOT / "kvkk/index.html",
@@ -106,4 +115,4 @@ if ERRORS:
         print(f"- {item}")
     sys.exit(1)
 
-print("Site integrity check passed: articles removed and privacy notices are publication-ready.")
+print("Site integrity check passed: articles removed, privacy notices are publication-ready, and footer logo ratio is stable.")

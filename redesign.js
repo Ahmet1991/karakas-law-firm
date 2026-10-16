@@ -5,8 +5,6 @@
   var toggle=document.querySelector('.menu-toggle');
   var nav=document.querySelector('.main-nav');
   var pageLang=document.documentElement.lang==='en'?'en':'tr';
-  var sharedScript=document.currentScript;
-  var siteRoot=sharedScript&&sharedScript.src?new URL('./',sharedScript.src):new URL('./',window.location.href);
   /* Privacy-friendly traffic and performance measurement. Cloudflare's RUM
      beacon does not use browser storage such as cookies or localStorage. */
   if(!document.querySelector('script[data-karakas-analytics]')){
@@ -16,77 +14,6 @@
     analytics.setAttribute('data-cf-beacon',JSON.stringify({token:'55bc39ac470944d0bd24237fc8db164b'}));
     analytics.setAttribute('data-karakas-analytics','cloudflare');
     document.head.appendChild(analytics);
-  }
-
-  /* Keep Articles/Makaleler in the shared navigation on every redesigned page.
-     Older hand-written pages may not contain the item in their static markup. */
-  if(nav&&!nav.querySelector('a[href*="makaleler"],a[href*="articles"]')){
-    var articleNav=document.createElement('a');
-    articleNav.className='main-nav__link';
-    articleNav.textContent=pageLang==='en'?'Articles':'Makaleler';
-    articleNav.href=new URL(pageLang==='en'?'en/articles/':'makaleler/',siteRoot).href;
-    var contactLink=Array.prototype.find.call(nav.querySelectorAll('.main-nav__link'),function(a){
-      var text=(a.textContent||'').trim().toLowerCase();
-      return text==='iletişim'||text==='contact';
-    });
-    if(contactLink)nav.insertBefore(articleNav,contactLink);
-    else{
-      var langSwitch=nav.querySelector('.lang-switch');
-      if(langSwitch)nav.insertBefore(articleNav,langSwitch);else nav.appendChild(articleNav);
-    }
-  }
-
-  /* Article language pairs. A reader switching language on a detail article
-     lands on the same article, not merely the article index. */
-  var articlePairs={
-    'kira-sozlesmelerinde-tahliye-surecleri':'lease-eviction-processes',
-    'ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar':'commercial-contracts-key-considerations',
-    'is-hukukunda-kidem-tazminati-sartlari':'severance-pay-conditions'
-  };
-  var path=window.location.pathname.replace(/\/+$/,'');
-  Object.keys(articlePairs).forEach(function(trSlug){
-    var enSlug=articlePairs[trSlug];
-    var trNeedle='/makaleler/'+trSlug;
-    var enNeedle='/en/articles/'+enSlug;
-    if(path.indexOf(trNeedle)!==-1){
-      var enSwitch=document.querySelector('.lang-switch a[hreflang="en"]');
-      var enUrl=new URL('en/articles/'+enSlug+'/',siteRoot).href;
-      if(enSwitch)enSwitch.href=enUrl;
-      if(!document.head.querySelector('link[rel="alternate"][hreflang="en"]')){
-        var enAlt=document.createElement('link');enAlt.rel='alternate';enAlt.hreflang='en';enAlt.href=enUrl;document.head.appendChild(enAlt);
-      }
-    }
-    if(path.indexOf(enNeedle)!==-1){
-      var trSwitch=document.querySelector('.lang-switch a[hreflang="tr"]');
-      var trUrl=new URL('makaleler/'+trSlug+'/',siteRoot).href;
-      if(trSwitch)trSwitch.href=trUrl;
-      if(!document.head.querySelector('link[rel="alternate"][hreflang="tr"]')){
-        var trAlt=document.createElement('link');trAlt.rel='alternate';trAlt.hreflang='tr';trAlt.href=trUrl;document.head.appendChild(trAlt);
-      }
-    }
-  });
-
-  /* Restore the three-article block on both homepages without duplicating it
-     if the markup is later added statically. */
-  var isHome=(path.endsWith('/karakas-law-firm')||path.endsWith('/karakas-law-firm/index.html')||path===''||path==='/'||path.endsWith('/en'));
-  if(isHome&&!document.querySelector('.home-articles-restored')&&!document.querySelector('.article-grid')){
-    var main=document.getElementById('main')||document.querySelector('main');
-    if(main){
-      var section=document.createElement('section');
-      section.className='section section--deep home-articles-restored';
-      if(pageLang==='en'){
-        section.innerHTML='<div class="shell"><div class="section-head reveal"><div><p class="section-label" style="justify-content:flex-start;margin-bottom:18px">Articles</p><h2>Notes on legal developments.</h2></div><a class="text-link" href="'+new URL('en/articles/',siteRoot).href+'">All Articles <span>→</span></a></div><div class="article-grid">'+
-          '<article class="article-card reveal"><a href="'+new URL('en/articles/lease-eviction-processes/',siteRoot).href+'"><div class="article-media one" style="background:none"><img src="'+new URL('assets/makale-kira-sozlesmeleri.webp',siteRoot).href+'" alt="Lease agreements and eviction proceedings" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 August 2026</time><h3><a href="'+new URL('en/articles/lease-eviction-processes/',siteRoot).href+'">Eviction Under a Lease: How the Process Works</a></h3><a class="text-link" href="'+new URL('en/articles/lease-eviction-processes/',siteRoot).href+'">Read More <span>→</span></a></div></article>'+
-          '<article class="article-card reveal"><a href="'+new URL('en/articles/commercial-contracts-key-considerations/',siteRoot).href+'"><div class="article-media two" style="background:none"><img src="'+new URL('assets/makale-ticari-sozlesmeler.webp',siteRoot).href+'" alt="Commercial contract legal review" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 August 2026</time><h3><a href="'+new URL('en/articles/commercial-contracts-key-considerations/',siteRoot).href+'">Key Considerations in Commercial Contracts</a></h3><a class="text-link" href="'+new URL('en/articles/commercial-contracts-key-considerations/',siteRoot).href+'">Read More <span>→</span></a></div></article>'+
-          '<article class="article-card reveal"><a href="'+new URL('en/articles/severance-pay-conditions/',siteRoot).href+'"><div class="article-media three" style="background:none"><img src="'+new URL('assets/makale-is-hukuku.webp',siteRoot).href+'" alt="Employment law and severance pay" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 August 2026</time><h3><a href="'+new URL('en/articles/severance-pay-conditions/',siteRoot).href+'">When Is Severance Pay Owed?</a></h3><a class="text-link" href="'+new URL('en/articles/severance-pay-conditions/',siteRoot).href+'">Read More <span>→</span></a></div></article></div></div>';
-      }else{
-        section.innerHTML='<div class="shell"><div class="section-head reveal"><div><p class="section-label" style="justify-content:flex-start;margin-bottom:18px">Güncel Makaleler</p><h2>Hukuki gelişmelere dair notlar.</h2></div><a class="text-link" href="'+new URL('makaleler/',siteRoot).href+'">Tüm Makaleler <span>→</span></a></div><div class="article-grid">'+
-          '<article class="article-card reveal"><a href="'+new URL('makaleler/kira-sozlesmelerinde-tahliye-surecleri/',siteRoot).href+'"><div class="article-media one" style="background:none"><img src="'+new URL('assets/makale-kira-sozlesmeleri.webp',siteRoot).href+'" alt="Kira sözleşmeleri ve tahliye süreçleri" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 Ağustos 2026</time><h3><a href="'+new URL('makaleler/kira-sozlesmelerinde-tahliye-surecleri/',siteRoot).href+'">Kira Sözleşmelerinde Tahliye Süreçleri Nelerdir?</a></h3><a class="text-link" href="'+new URL('makaleler/kira-sozlesmelerinde-tahliye-surecleri/',siteRoot).href+'">Devamını Oku <span>→</span></a></div></article>'+
-          '<article class="article-card reveal"><a href="'+new URL('makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/',siteRoot).href+'"><div class="article-media two" style="background:none"><img src="'+new URL('assets/makale-ticari-sozlesmeler.webp',siteRoot).href+'" alt="Ticari sözleşmelerin hukuki değerlendirmesi" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 Ağustos 2026</time><h3><a href="'+new URL('makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/',siteRoot).href+'">Ticari Sözleşmelerde Dikkat Edilmesi Gereken Hususlar</a></h3><a class="text-link" href="'+new URL('makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/',siteRoot).href+'">Devamını Oku <span>→</span></a></div></article>'+
-          '<article class="article-card reveal"><a href="'+new URL('makaleler/is-hukukunda-kidem-tazminati-sartlari/',siteRoot).href+'"><div class="article-media three" style="background:none"><img src="'+new URL('assets/makale-is-hukuku.webp',siteRoot).href+'" alt="İş hukuku ve kıdem tazminatı" width="1200" height="800" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover"></div></a><div class="article-body"><time datetime="2026-08-21">21 Ağustos 2026</time><h3><a href="'+new URL('makaleler/is-hukukunda-kidem-tazminati-sartlari/',siteRoot).href+'">İş Hukukunda Kıdem Tazminatı Şartları</a></h3><a class="text-link" href="'+new URL('makaleler/is-hukukunda-kidem-tazminati-sartlari/',siteRoot).href+'">Devamını Oku <span>→</span></a></div></article></div></div>';
-      }
-      main.appendChild(section);
-    }
   }
 
   function syncHeader(){

@@ -9,14 +9,12 @@ index.html                         TR ana sayfa
 hakkimizda/                        TR hakkımızda / Pınar Karakaş
 uzmanlik-alanlari/                 TR çalışma alanları ana dizini
 faaliyet-alanlari/<slug>/          12 TR çalışma alanı detay sayfası
-makaleler/                         TR makale dizini + 3 makale
 iletisim/                          TR iletişim / ofis
 kvkk/                              TR aydınlatma metni
 
 en/index.html                      EN ana sayfa
 en/about/                           EN about
 en/practice-areas/                  EN practice areas + 12 detay
-en/articles/                        EN article overview
 en/contact/                         EN contact
 en/privacy/                         EN privacy
 
@@ -71,7 +69,6 @@ Bu kilitler erken kaldırılmamalıdır; mevcut canlı site ile arama sonuçlar�
 3. Yeni TR çekirdek sayfalarda elle bırakılmış `noindex, nofollow` etiketleri varsa kaldırıldığını doğrulayın.
 4. `robots.txt` çıktısının `Allow: /` ve `Sitemap: https://www.karakaslawfirm.com/sitemap.xml` içerdiğini doğrulayın.
 5. Google Search Console'da alan adını doğrulayın ve sitemap'i gönderin.
-6. Rich Results Test ile `LegalService`, `ProfilePage/Person`, `Article` ve `BreadcrumbList` işaretlemelerini kontrol edin.
 7. Google Business Profile'da ad, telefon ve adresi site ile birebir eşitleyin.
 
 Detaylı yayın kontrolü için `SEO_LAUNCH_CHECKLIST.md` dosyasını kullanın.
@@ -88,7 +85,6 @@ Yayınlanan temel görsel varlıklar:
 | `assets/hero-adalet-mobil.webp` | Mobil hero |
 | `assets/hero-adalet-premium.webp` | Sosyal paylaşım / premium sahne |
 | `assets/pinar-karakas-portre.webp` | Pınar Karakaş profil görseli |
-| `assets/makale-*.webp` | Makale kapakları |
 | `assets/og-image.jpg` | Üretilen faaliyet sayfalarının 1200×630 OG kartı |
 | `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png` | Simge seti |
 

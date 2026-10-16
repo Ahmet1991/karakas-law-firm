@@ -118,18 +118,6 @@ HOME_SIX = [
   '<path d="M6 40c0-8 5-13 11-13s11 5 11 13M28 31c7-2 13 2 14 9"/>'),
 ]
 
-ARTICLES = [
- ('kira-sozlesmelerinde-tahliye-surecleri', 'one', '20 May 2024',
-  'Eviction Under a Lease: How the Process Actually Runs',
-  'The grounds, the deadlines and the points that decide the outcome in practice.'),
- ('ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar', 'two', '12 May 2024',
-  'Allocating Risk in Commercial Contracts',
-  'Where liability sits, which safeguards hold, and what tends to be left unsaid.'),
- ('is-hukukunda-kidem-tazminati-sartlari', 'three', '05 May 2024',
-  'When Severance Pay Is Owed',
-  'The conditions that trigger entitlement, and how it is calculated in practice.'),
-]
-
 # ---------------------------------------------------------------- homepage --
 cards = ''
 for slug, title, desc, icon in HOME_SIX:
@@ -137,11 +125,6 @@ for slug, title, desc, icon in HOME_SIX:
         '<span class="practice-icon"><svg viewBox="0 0 48 48">' + icon + '</svg></span>'
         '<h3>' + title + '</h3><p>' + desc + '</p><span class="arrow">&rarr;</span></a>')
 
-art = ''
-for slug, cls, date, title, _ in ARTICLES:
-    art += ('<article class="article-card reveal"><div class="article-media ' + cls + '"></div>'
-        '<div class="article-body"><time datetime="2024-05-20">' + date + '</time><h3>' + title + '</h3>'
-        '<a class="text-link" href="articles/">Read More <span>&rarr;</span></a></div></article>')
 
 s = head('Karakaş Law Firm | İzmir',
          'Karakaş Law Firm provides advocacy and legal counsel to companies and individuals from İzmir, Türkiye.',
@@ -175,10 +158,6 @@ s += ('<main id="main">\n'
   '<a class="text-link" href="about/">About Us <span>&rarr;</span></a></div>'
   '<div class="about-media" role="img" aria-label="Karakaş Law Firm"></div></div></section>\n'
   '<section class="section section--deep"><div class="shell"><div class="section-head reveal">'
-  '<div><p class="section-label" style="justify-content:flex-start;margin-bottom:18px">Insights</p>'
-  '<h2>Notes on legal developments.</h2></div>'
-  '<a class="text-link" href="articles/">All Articles <span>&rarr;</span></a></div>'
-  '<div class="article-grid">' + art + '</div></div></section>\n'
   '</main>\n')
 s += wa_float() + home_footer(1)
 W('en/index.html', s)
@@ -260,28 +239,6 @@ s += ('<main>\n'
 s += wa_float() + inner_footer(2)
 W('en/practice-areas/index.html', s)
 
-# --------------------------------------------------------------- articles --
-cards = ''
-for slug, cls, date, title, desc in ARTICLES:
-    cards += ('<article class="article-page-card reveal"><div class="article-media ' + cls + '"></div>'
-        '<div class="article-body"><time datetime="2024-05-20">' + date + '</time>'
-        '<h2>' + title + '</h2><p>' + desc + '</p>'
-        '<a class="text-link" href="../../makaleler/' + slug + '/">Read in Turkish <span>&rarr;</span></a>'
-        '</div></article>\n')
-
-s = head('Articles | Karakaş Law Firm', 'Short notes on legal developments, contracts and practice.',
-         2, '../../makaleler/', 'redesign-pages.css')
-s += header(2, 'articles/', '../../makaleler/', 'contact/', 'Get in Touch')
-s += ('<main>\n'
-  '<section class="subhero"><div class="shell reveal"><p class="page-kicker">Insights</p>'
-  '<h1 class="page-title">Articles</h1><div class="page-rule"></div>'
-  '<p class="page-lead">Short notes on legal developments, contracts and practice. Full texts are currently '
-  'published in Turkish.</p></div></section>\n'
-  '<section class="page-shell"><div class="shell"><div class="article-page-grid">\n' + cards +
-  '</div></div></section>\n</main>\n')
-s += wa_float() + inner_footer(2)
-W('en/articles/index.html', s)
-
 # ---------------------------------------------------------------- contact --
 CH = [('tel:+905305493090', 'Phone', '+90 530 549 30 90',
        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
@@ -338,4 +295,4 @@ s += ('<main>\n'
 s += wa_float() + inner_footer(2)
 W('en/contact/index.html', s)
 
-print('yazildi: en/index.html, en/about/, en/practice-areas/, en/articles/, en/contact/')
+print('yazildi: en/index.html, en/about/, en/practice-areas/, en/contact/')

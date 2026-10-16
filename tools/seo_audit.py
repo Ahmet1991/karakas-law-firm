@@ -2,7 +2,7 @@
 """Static SEO regression audit for the Karakaş Law Firm site.
 
 Run after tools/build_site.py. Exits non-zero when metadata, sitemap, hreflang,
-preview/production indexing state or article schema regresses.
+preview/production indexing state regresses.
 """
 from __future__ import annotations
 
@@ -75,15 +75,10 @@ CORE: list[tuple[str, str]] = [
     ("index.html", f"{SITE}/"),
     ("hakkimizda/index.html", f"{SITE}/hakkimizda/"),
     ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/"),
-    ("makaleler/index.html", f"{SITE}/makaleler/"),
-    ("makaleler/kira-sozlesmelerinde-tahliye-surecleri/index.html", f"{SITE}/makaleler/kira-sozlesmelerinde-tahliye-surecleri/"),
-    ("makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/index.html", f"{SITE}/makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/"),
-    ("makaleler/is-hukukunda-kidem-tazminati-sartlari/index.html", f"{SITE}/makaleler/is-hukukunda-kidem-tazminati-sartlari/"),
     ("iletisim/index.html", f"{SITE}/iletisim/"),
     ("kvkk/index.html", f"{SITE}/kvkk/"),
     ("en/index.html", f"{SITE}/en/"),
     ("en/about/index.html", f"{SITE}/en/about/"),
-    ("en/articles/index.html", f"{SITE}/en/articles/"),
     ("en/contact/index.html", f"{SITE}/en/contact/"),
     ("en/practice-areas/index.html", f"{SITE}/en/practice-areas/"),
     ("en/privacy/index.html", f"{SITE}/en/privacy/"),
@@ -135,7 +130,6 @@ CORE_PAIRS = [
     ("index.html", f"{SITE}/", "en/index.html", f"{SITE}/en/"),
     ("hakkimizda/index.html", f"{SITE}/hakkimizda/", "en/about/index.html", f"{SITE}/en/about/"),
     ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", "en/practice-areas/index.html", f"{SITE}/en/practice-areas/"),
-    ("makaleler/index.html", f"{SITE}/makaleler/", "en/articles/index.html", f"{SITE}/en/articles/"),
     ("iletisim/index.html", f"{SITE}/iletisim/", "en/contact/index.html", f"{SITE}/en/contact/"),
     ("kvkk/index.html", f"{SITE}/kvkk/", "en/privacy/index.html", f"{SITE}/en/privacy/"),
 ]
@@ -153,19 +147,6 @@ for tr_path, tr_url, en_path, en_url in CORE_PAIRS + DETAIL_PAIRS:
             fail(f"EN self hreflang eksik: {en_path}")
         if not has_hreflang(en_doc, "tr", tr_url):
             fail(f"EN -> TR hreflang eksik: {en_path}")
-
-# ------------------------------------------------------------------- articles
-ARTICLE_PATHS = [
-    "makaleler/kira-sozlesmelerinde-tahliye-surecleri/index.html",
-    "makaleler/ticari-sozlesmelerde-dikkat-edilmesi-gereken-hususlar/index.html",
-    "makaleler/is-hukukunda-kidem-tazminati-sartlari/index.html",
-]
-for path in ARTICLE_PATHS:
-    doc = read(path)
-    if '"@type":"Article"' not in doc and '"@type": "Article"' not in doc:
-        fail(f"Article JSON-LD eksik: {path}")
-    if "Pınar Karakaş" not in doc:
-        fail(f"Makale yazar bilgisi eksik: {path}")
 
 # -------------------------------------------------------------------- sitemap
 sitemap = read("sitemap.xml")
@@ -201,7 +182,6 @@ not_found = read("404.html")
 if not has_noindex(not_found):
     fail("404.html noindex olmalı")
 
-for path in ("en/index.html", "en/articles/index.html"):
     doc = read(path)
     if "2024-05" in doc or "May 2024" in doc or "Mayıs 2024" in doc:
         fail(f"Eski 2024 makale tarihi kaldı: {path}")

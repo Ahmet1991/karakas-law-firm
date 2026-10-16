@@ -31,12 +31,19 @@ for rel in (
 
 href_re = re.compile(r'href=["\'][^"\']*(?:makaleler|articles)/', re.IGNORECASE)
 empty_li_re = re.compile(r"<li>\s*</li>", re.IGNORECASE)
+footer_logo_fixed_height_re = re.compile(
+    r'<div class=["\']footer-brand["\'][^>]*>.*?'
+    r'<img[^>]*logo-lockup-ondark-420\.webp[^>]*\sheight=["\']\d+["\']',
+    re.IGNORECASE | re.DOTALL,
+)
 for path in ROOT.rglob("*.html"):
     text = path.read_text(encoding="utf-8")
     if href_re.search(text):
         fail(f"Article link remains in HTML: {path.relative_to(ROOT)}")
     if empty_li_re.search(text):
         fail(f"Empty list item remains after article link removal: {path.relative_to(ROOT)}")
+    if footer_logo_fixed_height_re.search(text):
+        fail(f"Footer logo has a fixed HTML height: {path.relative_to(ROOT)}")
 
 for rel in ("index.html", "en/index.html"):
     path = ROOT / rel

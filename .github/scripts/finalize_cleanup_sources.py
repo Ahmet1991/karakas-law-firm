@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,4 +35,13 @@ markers = ("makaleler/", "en/articles/", "assets/makale-", "makaleler-hero")
 lines = [line for line in lines if not any(marker in line for marker in markers)]
 path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
-print("Final stale article source markers removed.")
+# Removing an anchor from a hand-authored footer can leave an empty <li> shell.
+# Strip those shells so the footer does not retain a blank row/gap.
+empty_li = re.compile(r"<li>\s*</li>", re.IGNORECASE)
+for path in ROOT.rglob("*.html"):
+    text = path.read_text(encoding="utf-8")
+    updated = empty_li.sub("", text)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8", newline="\n")
+
+print("Final stale article source markers and empty list shells removed.")

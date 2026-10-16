@@ -1,0 +1,48 @@
+name: Regenerate cleanup branch
+
+on:
+  push:
+    branches:
+      - chore/remove-articles-and-draft-notices-20261016
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerate-cleanup-branch
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate site
+        run: python tools/build_site.py
+      - name: Run SEO regression audit
+        run: python tools/seo_audit.py
+      - name: Run internal link and asset audit
+        run: python tools/link_audit.py
+      - name: Run advertising-sensitive wording audit
+        run: python tools/content_compliance_audit.py
+      - name: Run site integrity regression check
+        run: python tools/site_integrity_test.py
+      - name: Commit regenerated site files
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add faaliyet-alanlari en kvkk sitemap.xml robots.txt index.html hakkimizda uzmanlik-alanlari iletisim
+          if git diff --cached --quiet; then
+            echo 'No regenerated changes.'
+            exit 0
+          fi
+          git commit -m 'chore: regenerate site after article removal'
+          git push

@@ -86,9 +86,8 @@
     items.forEach(show);
   }else{
     // threshold 0: bir pikseli bile gorunur olunca tetiklenir. Onceki .08
-    // degeri, ekrandan cok daha uzun bir ogede (ornegin makale govdesinin
-    // tamami tek bir .reveal ise) hicbir zaman saglanamiyor ve icerik kalici
-    // olarak gorunmez kaliyordu.
+    // degeri, ekrandan cok daha uzun tek bir .reveal kapsayicida hicbir
+    // zaman saglanamayabilir ve icerik kalici olarak gorunmez kalabilir.
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){show(entry.target);io.unobserve(entry.target);}
@@ -117,7 +116,7 @@
     document.addEventListener('click',function(ev){
       var t=ev.target;
       if(!t||!t.closest)return;
-      var card=t.closest('.expertise-card,.article-page-card,.article-card,.practice-card');
+      var card=t.closest('.expertise-card,.practice-card');
       if(!card)return;
       var title=card.querySelector('h2,h3');
       if(!title)return;
@@ -133,17 +132,6 @@
       var own=document.querySelector('.subhero .page-title');
       if(own)own.style.viewTransitionName='';
     });
-  }
-
-  // --- Makale okuma ilerleme cizgisi ---------------------------------
-  // Dolgusu CSS'te scroll() zaman cizgisiyle yapiliyor; burada yalnizca
-  // ogeyi ekliyoruz. Destek yoksa cizgi eklenmiyor.
-  if(!reduced && document.querySelector('.article-content') &&
-     window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()')){
-    var bar=document.createElement('div');
-    bar.className='read-progress';
-    bar.setAttribute('aria-hidden','true');
-    document.body.appendChild(bar);
   }
 
   var year=document.getElementById('year');

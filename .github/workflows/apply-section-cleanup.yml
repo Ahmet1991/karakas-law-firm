@@ -26,6 +26,8 @@ jobs:
           python-version: '3.12'
       - name: Apply cleanup migration
         run: python .github/scripts/apply_remove_articles_cleanup.py
+      - name: Remove final stale article source markers
+        run: python .github/scripts/finalize_cleanup_sources.py
       - name: Regenerate site metadata and generated pages
         run: python tools/build_site.py
       - name: Run SEO audit (baseline warning allowed)

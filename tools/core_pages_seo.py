@@ -8,7 +8,7 @@ EN_PAGES = [
     {
         "path": "en/index.html",
         "title": "Karakaş Law Firm | İzmir",
-        "description": "Karakaş Law Firm was founded in İzmir by Attorney Pınar Karakaş. Office information, practice areas and legal articles.",
+        "description": "Karakaş Law Firm was founded in İzmir by Attorney Pınar Karakaş. Office information and practice areas.",
         "url": f"{SITE}/en/",
         "tr": f"{SITE}/",
     },
@@ -34,7 +34,6 @@ TR_CORE = [
     ("uzmanlik-alanlari/index.html", f"{SITE}/uzmanlik-alanlari/", f"{SITE}/en/practice-areas/"),
     ("iletisim/index.html", f"{SITE}/iletisim/", f"{SITE}/en/contact/"),
 ]
-
 
 
 def patch_en_page(cfg: dict[str, str]) -> None:

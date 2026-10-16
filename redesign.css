@@ -208,7 +208,7 @@ button{font:inherit}
   background:linear-gradient(180deg,transparent,rgba(195,148,82,.24) 16%,rgba(195,148,82,.24) 84%,transparent);
 }
 .footer-brand p{max-width:30ch}
-.footer-brand img{width:172px}
+.footer-brand img{width:188px;height:auto}
 .footer-nav a{display:inline-block;transition:color .25s var(--ease),transform .25s var(--ease)}
 .footer-nav a:hover{transform:translateX(4px)}
 .footer-contact li{align-items:flex-start}

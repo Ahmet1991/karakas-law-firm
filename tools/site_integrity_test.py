@@ -46,6 +46,12 @@ for rel in ("index.html", "en/index.html"):
             if marker in text:
                 fail(f"Article section marker {marker!r} remains in {rel}")
 
+# SEO/source wording should not still advertise a section that no longer exists.
+for rel in ("en/index.html", "tools/core_pages_seo.py"):
+    path = ROOT / rel
+    if path.exists() and "legal articles" in path.read_text(encoding="utf-8").lower():
+        fail(f"Stale article wording remains in {rel}")
+
 # Build/source files must not be able to re-introduce the removed section.
 for path in list((ROOT / "tools").glob("*.py")) + [ROOT / "README.md", ROOT / ".github/workflows/seo-build.yml"]:
     if not path.exists() or path.name == Path(__file__).name:

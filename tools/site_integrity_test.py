@@ -31,12 +31,19 @@ for rel in (
 
 href_re = re.compile(r'href=["\'][^"\']*(?:makaleler|articles)/', re.IGNORECASE)
 empty_li_re = re.compile(r"<li>\s*</li>", re.IGNORECASE)
+footer_logo_fixed_height_re = re.compile(
+    r'<div class=["\']footer-brand["\'][^>]*>.*?'
+    r'<img[^>]*logo-lockup-ondark-420\.webp[^>]*\sheight=["\']\d+["\']',
+    re.IGNORECASE | re.DOTALL,
+)
 for path in ROOT.rglob("*.html"):
     text = path.read_text(encoding="utf-8")
     if href_re.search(text):
         fail(f"Article link remains in HTML: {path.relative_to(ROOT)}")
     if empty_li_re.search(text):
         fail(f"Empty list item remains after article link removal: {path.relative_to(ROOT)}")
+    if footer_logo_fixed_height_re.search(text):
+        fail(f"Footer logo has a fixed HTML height: {path.relative_to(ROOT)}")
 
 for rel in ("index.html", "en/index.html"):
     path = ROOT / rel
@@ -74,6 +81,15 @@ for marker in ("/makaleler/", "/en/articles/"):
     if marker in sitemap:
         fail(f"Article route remains in sitemap: {marker}")
 
+# Footer logo must use one consistent rendered size and preserve its intrinsic ratio.
+footer_css = (ROOT / "redesign.css").read_text(encoding="utf-8")
+if ".footer-brand img{width:188px;height:auto}" not in footer_css:
+    fail("Footer logo CSS must render at 188px wide with height:auto on every page")
+
+build_source = (ROOT / "tools/build.py").read_text(encoding="utf-8")
+if re.search(r'logo-lockup-ondark-420\.webp[^>]*height=["\']338["\']', build_source):
+    fail("Practice-page generator still hard-codes footer logo height=338")
+
 # Public privacy notices must not contain internal draft/review instructions.
 privacy_files = (
     ROOT / "kvkk/index.html",
@@ -106,4 +122,4 @@ if ERRORS:
         print(f"- {item}")
     sys.exit(1)
 
-print("Site integrity check passed: articles removed and privacy notices are publication-ready.")
+print("Site integrity check passed: articles removed, privacy notices are publication-ready, and footer logo ratio is stable.")

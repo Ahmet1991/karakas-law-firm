@@ -365,7 +365,7 @@ def footer(lang, depth):
     <div class="footer-grid">
 
       <div class="footer-brand">
-        <img src="{p['assets']}logo-lockup-ondark-420.webp" width="420" height="338" loading="lazy" alt="{e(FIRM['name'])}">
+        <img src="{p['assets']}logo-lockup-ondark-420.webp" width="420" loading="lazy" alt="{e(FIRM['name'])}">
         <p>{e(t['footerBlurb'])}</p>
         <h3>{e(t['footerSocial'])}</h3>
         <div class="social-row">
